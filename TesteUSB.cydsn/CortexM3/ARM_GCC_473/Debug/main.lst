@@ -1,0 +1,1490 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	AltSettingNumber
+  19              		.bss
+  20              		.type	AltSettingNumber, %object
+  21              		.size	AltSettingNumber, 1
+  22              	AltSettingNumber:
+  23 0000 00       		.space	1
+  24              		.comm	Interrupt_OUT_Buffer,8,4
+  25              		.comm	EP2_Count,1,1
+  26              		.comm	Bulk_OUT_Buffer,8,4
+  27              		.comm	EP4_Count,1,1
+  28              		.comm	Isochronous_OUT_Buffer,8,4
+  29              		.comm	EP6_Count,1,1
+  30              		.section	.text.main,"ax",%progbits
+  31              		.align	2
+  32              		.global	main
+  33              		.thumb
+  34              		.thumb_func
+  35              		.type	main, %function
+  36              	main:
+  37              	.LFB56:
+  38              		.file 1 ".\\main.c"
+   1:.\main.c      **** //#include <device.h>
+   2:.\main.c      **** //#include <project.h>
+   3:.\main.c      **** 
+   4:.\main.c      **** #include <device.h>
+   5:.\main.c      **** 
+   6:.\main.c      **** /* Create Defines for various Endpoints */
+   7:.\main.c      **** #define EP1 0x01
+   8:.\main.c      **** #define EP2 0x02
+   9:.\main.c      **** #define EP3 0x03
+  10:.\main.c      **** #define EP4 0x04
+  11:.\main.c      **** #define EP5 0x05
+  12:.\main.c      **** #define EP6 0x06
+  13:.\main.c      **** #define ZeroBandwidthInterface 0
+  14:.\main.c      **** #define UnassignedAddress 0
+  15:.\main.c      **** 
+  16:.\main.c      **** 
+  17:.\main.c      **** 
+  18:.\main.c      **** /* Function Prototypes */
+  19:.\main.c      **** void Interrupt_Transfer (void);
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 2
+
+
+  20:.\main.c      **** void Bulk_Transfer (void);
+  21:.\main.c      **** void Isochronous_Transfer (void);
+  22:.\main.c      **** 
+  23:.\main.c      **** /* External variable that contains device address assigned by host */
+  24:.\main.c      **** extern volatile uint8 USBFS_deviceAddress;
+  25:.\main.c      **** 
+  26:.\main.c      **** uint8 AltSettingNumber = 0u;
+  27:.\main.c      **** 
+  28:.\main.c      **** 
+  29:.\main.c      **** /* Buffers variables where data sent from host will be stored */
+  30:.\main.c      **** uint8 Interrupt_OUT_Buffer[8], EP2_Count;
+  31:.\main.c      **** uint8 Bulk_OUT_Buffer[8], EP4_Count;
+  32:.\main.c      **** uint8 Isochronous_OUT_Buffer[8], EP6_Count ;
+  33:.\main.c      **** 
+  34:.\main.c      **** 
+  35:.\main.c      **** 
+  36:.\main.c      **** 
+  37:.\main.c      **** int main(void)
+  38:.\main.c      **** {
+  39              		.loc 1 38 0
+  40              		.cfi_startproc
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 1, uses_anonymous_args = 0
+  43 0000 80B5     		push	{r7, lr}
+  44              	.LCFI0:
+  45              		.cfi_def_cfa_offset 8
+  46              		.cfi_offset 7, -8
+  47              		.cfi_offset 14, -4
+  48 0002 00AF     		add	r7, sp, #0
+  49              	.LCFI1:
+  50              		.cfi_def_cfa_register 7
+  39:.\main.c      ****      
+  40:.\main.c      ****     /* Start all components used on schematic */
+  41:.\main.c      ****     ADC_DelSig_IRQ_Start();
+  51              		.loc 1 41 0
+  52 0004 FFF7FEFF 		bl	ADC_DelSig_IRQ_Start
+  42:.\main.c      ****     ADC_DelSig_Start();
+  53              		.loc 1 42 0
+  54 0008 FFF7FEFF 		bl	ADC_DelSig_Start
+  43:.\main.c      ****     ADC_DelSig_StartConvert();
+  55              		.loc 1 43 0
+  56 000c FFF7FEFF 		bl	ADC_DelSig_StartConvert
+  44:.\main.c      ****     Filter_Start();
+  57              		.loc 1 44 0
+  58 0010 FFF7FEFF 		bl	Filter_Start
+  45:.\main.c      ****     WaveDAC8_Start();
+  59              		.loc 1 45 0
+  60 0014 FFF7FEFF 		bl	WaveDAC8_Start
+  46:.\main.c      ****     Opamp_1_Start();
+  61              		.loc 1 46 0
+  62 0018 FFF7FEFF 		bl	Opamp_1_Start
+  47:.\main.c      ****     //isr_StartEx(isr);
+  48:.\main.c      **** 
+  49:.\main.c      **** 	// Enable the interrupt register bit to poll
+  50:.\main.c      ****     // Value 1 for Channel A, Value 2 for Channel B
+  51:.\main.c      ****     Filter_INT_CTRL_REG |= (1 << Filter_CHANNEL_A);
+  63              		.loc 1 51 0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 3
+
+
+  64 001c 4CF29873 		movw	r3, #51096
+  65 0020 C4F20003 		movt	r3, 16384
+  66 0024 4CF29872 		movw	r2, #51096
+  67 0028 C4F20002 		movt	r2, 16384
+  68 002c 1278     		ldrb	r2, [r2, #0]
+  69 002e D2B2     		uxtb	r2, r2
+  70 0030 42F00102 		orr	r2, r2, #1
+  71 0034 D2B2     		uxtb	r2, r2
+  72 0036 1A70     		strb	r2, [r3, #0]
+  52:.\main.c      **** 	    
+  53:.\main.c      ****      /* Local Variable to store active configuration number */
+  54:.\main.c      ****      //uint8 AltSettingNumber = 0u;
+  55:.\main.c      ****       
+  56:.\main.c      ****      /* Enable global interrupts */
+  57:.\main.c      ****      CYGlobalIntEnable;
+  73              		.loc 1 57 0
+  74              	@ 57 ".\main.c" 1
+  75 0038 62B6     		CPSIE   i
+  76              	@ 0 "" 2
+  58:.\main.c      ****      
+  59:.\main.c      ****      /* Start USBFS Component based on power settings in DWR (5V in this case) */
+  60:.\main.c      ****      USBFS_Start(0, USBFS_DWR_VDDD_OPERATION);
+  77              		.loc 1 60 0
+  78              		.thumb
+  79 003a 4FF00000 		mov	r0, #0
+  80 003e 4FF00201 		mov	r1, #2
+  81 0042 FFF7FEFF 		bl	USBFS_Start
+  61:.\main.c      ****      
+  62:.\main.c      ****      /* Wait until device address is assigned */
+  63:.\main.c      ****      while(USBFS_deviceAddress == UnassignedAddress);
+  82              		.loc 1 63 0
+  83 0046 00BF     		nop
+  84              	.L2:
+  85              		.loc 1 63 0 is_stmt 0 discriminator 1
+  86 0048 40F20003 		movw	r3, #:lower16:USBFS_deviceAddress
+  87 004c C0F20003 		movt	r3, #:upper16:USBFS_deviceAddress
+  88 0050 1B78     		ldrb	r3, [r3, #0]
+  89 0052 DBB2     		uxtb	r3, r3
+  90 0054 002B     		cmp	r3, #0
+  91 0056 F7D0     		beq	.L2
+  92 0058 00E0     		b	.L11
+  93              	.L13:
+  64:.\main.c      ****      for(;;)
+  65:.\main.c      ****      {
+  66:.\main.c      ****          /* Ensure USB device is fully enumerated prior to running code */
+  67:.\main.c      ****          if(USBFS_GetConfiguration() != 0)
+  68:.\main.c      ****          {
+  69:.\main.c      ****          /* Check USB configuration has changed */
+  70:.\main.c      ****              if(USBFS_IsConfigurationChanged() != ZeroBandwidthInterface)
+  71:.\main.c      ****              {
+  72:.\main.c      ****                  /* Get the active interface number and re-enable OUT EP based on Alternative Setti
+  73:.\main.c      ****                  AltSettingNumber = USBFS_GetInterfaceSetting(0);
+  74:.\main.c      ****                  if(AltSettingNumber == 0x01) USBFS_EnableOutEP(2);
+  75:.\main.c      ****                  if(AltSettingNumber == 0x02) USBFS_EnableOutEP(4);
+  76:.\main.c      ****                  if(AltSettingNumber == 0x03) USBFS_EnableOutEP(6);
+  77:.\main.c      ****              }
+  78:.\main.c      ****              /* Check the Alternative Setting variable to see which endpoint buffers to read and lo
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 4
+
+
+  79:.\main.c      ****          switch(AltSettingNumber)
+  80:.\main.c      ****          {
+  81:.\main.c      ****              /* Check if Interrupt Configuration is Active */
+  82:.\main.c      ****              case 0x01:Interrupt_Transfer();
+  83:.\main.c      ****              break;
+  84:.\main.c      ****              /* Check if Bulk Configuration is Active */
+  85:.\main.c      ****              case 0x02:Bulk_Transfer();
+  86:.\main.c      ****              break;
+  87:.\main.c      ****              /* Check if Isochronous Configuration is Active */
+  88:.\main.c      ****              case 0x03:Isochronous_Transfer();
+  89:.\main.c      ****              break;
+  90:.\main.c      ****              /* Should Never Get Here */
+  91:.\main.c      ****              default: break;
+  92:.\main.c      ****             }
+  93:.\main.c      ****         }
+  94:.\main.c      ****     }  
+  94              		.loc 1 94 0 is_stmt 1
+  95 005a 00BF     		nop
+  96              	.L11:
+  67:.\main.c      ****          if(USBFS_GetConfiguration() != 0)
+  97              		.loc 1 67 0
+  98 005c FFF7FEFF 		bl	USBFS_GetConfiguration
+  99 0060 0346     		mov	r3, r0
+ 100 0062 002B     		cmp	r3, #0
+ 101 0064 F9D0     		beq	.L13
+  70:.\main.c      ****              if(USBFS_IsConfigurationChanged() != ZeroBandwidthInterface)
+ 102              		.loc 1 70 0
+ 103 0066 FFF7FEFF 		bl	USBFS_IsConfigurationChanged
+ 104 006a 0346     		mov	r3, r0
+ 105 006c 002B     		cmp	r3, #0
+ 106 006e 2BD0     		beq	.L4
+  73:.\main.c      ****                  AltSettingNumber = USBFS_GetInterfaceSetting(0);
+ 107              		.loc 1 73 0
+ 108 0070 4FF00000 		mov	r0, #0
+ 109 0074 FFF7FEFF 		bl	USBFS_GetInterfaceSetting
+ 110 0078 0346     		mov	r3, r0
+ 111 007a 1A46     		mov	r2, r3
+ 112 007c 40F20003 		movw	r3, #:lower16:AltSettingNumber
+ 113 0080 C0F20003 		movt	r3, #:upper16:AltSettingNumber
+ 114 0084 1A70     		strb	r2, [r3, #0]
+  74:.\main.c      ****                  if(AltSettingNumber == 0x01) USBFS_EnableOutEP(2);
+ 115              		.loc 1 74 0
+ 116 0086 40F20003 		movw	r3, #:lower16:AltSettingNumber
+ 117 008a C0F20003 		movt	r3, #:upper16:AltSettingNumber
+ 118 008e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 119 0090 012B     		cmp	r3, #1
+ 120 0092 03D1     		bne	.L5
+  74:.\main.c      ****                  if(AltSettingNumber == 0x01) USBFS_EnableOutEP(2);
+ 121              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 122 0094 4FF00200 		mov	r0, #2
+ 123 0098 FFF7FEFF 		bl	USBFS_EnableOutEP
+ 124              	.L5:
+  75:.\main.c      ****                  if(AltSettingNumber == 0x02) USBFS_EnableOutEP(4);
+ 125              		.loc 1 75 0 is_stmt 1
+ 126 009c 40F20003 		movw	r3, #:lower16:AltSettingNumber
+ 127 00a0 C0F20003 		movt	r3, #:upper16:AltSettingNumber
+ 128 00a4 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 5
+
+
+ 129 00a6 022B     		cmp	r3, #2
+ 130 00a8 03D1     		bne	.L6
+  75:.\main.c      ****                  if(AltSettingNumber == 0x02) USBFS_EnableOutEP(4);
+ 131              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 132 00aa 4FF00400 		mov	r0, #4
+ 133 00ae FFF7FEFF 		bl	USBFS_EnableOutEP
+ 134              	.L6:
+  76:.\main.c      ****                  if(AltSettingNumber == 0x03) USBFS_EnableOutEP(6);
+ 135              		.loc 1 76 0 is_stmt 1
+ 136 00b2 40F20003 		movw	r3, #:lower16:AltSettingNumber
+ 137 00b6 C0F20003 		movt	r3, #:upper16:AltSettingNumber
+ 138 00ba 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 139 00bc 032B     		cmp	r3, #3
+ 140 00be 03D1     		bne	.L4
+  76:.\main.c      ****                  if(AltSettingNumber == 0x03) USBFS_EnableOutEP(6);
+ 141              		.loc 1 76 0 is_stmt 0 discriminator 1
+ 142 00c0 4FF00600 		mov	r0, #6
+ 143 00c4 FFF7FEFF 		bl	USBFS_EnableOutEP
+ 144              	.L4:
+  79:.\main.c      ****          switch(AltSettingNumber)
+ 145              		.loc 1 79 0 is_stmt 1
+ 146 00c8 40F20003 		movw	r3, #:lower16:AltSettingNumber
+ 147 00cc C0F20003 		movt	r3, #:upper16:AltSettingNumber
+ 148 00d0 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 149 00d2 022B     		cmp	r3, #2
+ 150 00d4 06D0     		beq	.L9
+ 151 00d6 032B     		cmp	r3, #3
+ 152 00d8 07D0     		beq	.L10
+ 153 00da 012B     		cmp	r3, #1
+ 154 00dc 08D1     		bne	.L12
+ 155              	.L8:
+  82:.\main.c      ****              case 0x01:Interrupt_Transfer();
+ 156              		.loc 1 82 0
+ 157 00de FFF7FEFF 		bl	Interrupt_Transfer
+  83:.\main.c      ****              break;
+ 158              		.loc 1 83 0
+ 159 00e2 06E0     		b	.L3
+ 160              	.L9:
+  85:.\main.c      ****              case 0x02:Bulk_Transfer();
+ 161              		.loc 1 85 0
+ 162 00e4 FFF7FEFF 		bl	Bulk_Transfer
+  86:.\main.c      ****              break;
+ 163              		.loc 1 86 0
+ 164 00e8 03E0     		b	.L3
+ 165              	.L10:
+  88:.\main.c      ****              case 0x03:Isochronous_Transfer();
+ 166              		.loc 1 88 0
+ 167 00ea FFF7FEFF 		bl	Isochronous_Transfer
+  89:.\main.c      ****              break;
+ 168              		.loc 1 89 0
+ 169 00ee 00E0     		b	.L3
+ 170              	.L12:
+  91:.\main.c      ****              default: break;
+ 171              		.loc 1 91 0
+ 172 00f0 00BF     		nop
+ 173              	.L3:
+ 174              		.loc 1 94 0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 6
+
+
+ 175 00f2 B2E7     		b	.L13
+ 176              		.cfi_endproc
+ 177              	.LFE56:
+ 178              		.size	main, .-main
+ 179              		.section	.text.Interrupt_Transfer,"ax",%progbits
+ 180              		.align	2
+ 181              		.global	Interrupt_Transfer
+ 182              		.thumb
+ 183              		.thumb_func
+ 184              		.type	Interrupt_Transfer, %function
+ 185              	Interrupt_Transfer:
+ 186              	.LFB57:
+  95:.\main.c      ****  return(0);
+  96:.\main.c      **** 
+  97:.\main.c      ****     
+  98:.\main.c      **** }
+  99:.\main.c      **** 
+ 100:.\main.c      **** /* Transfer data from ADC - Is a bulk transfer actually, change name some time in teh future */
+ 101:.\main.c      **** void Interrupt_Transfer (void)
+ 102:.\main.c      **** {
+ 187              		.loc 1 102 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 8
+ 190              		@ frame_needed = 1, uses_anonymous_args = 0
+ 191 0000 80B5     		push	{r7, lr}
+ 192              	.LCFI2:
+ 193              		.cfi_def_cfa_offset 8
+ 194              		.cfi_offset 7, -8
+ 195              		.cfi_offset 14, -4
+ 196 0002 82B0     		sub	sp, sp, #8
+ 197              	.LCFI3:
+ 198              		.cfi_def_cfa_offset 16
+ 199 0004 00AF     		add	r7, sp, #0
+ 200              	.LCFI4:
+ 201              		.cfi_def_cfa_register 7
+ 103:.\main.c      ****     /* Check to see if OUT Endpoint has data. If so, read EP2 buffer and load back into EP1 for loo
+ 104:.\main.c      ****     if(USBFS_GetEPState(EP2) == USBFS_OUT_BUFFER_FULL)    
+ 202              		.loc 1 104 0
+ 203 0006 4FF00200 		mov	r0, #2
+ 204 000a FFF7FEFF 		bl	USBFS_GetEPState
+ 205 000e 0346     		mov	r3, r0
+ 206 0010 012B     		cmp	r3, #1
+ 207 0012 44D1     		bne	.L14
+ 208              	.LBB2:
+ 105:.\main.c      ****     {
+ 106:.\main.c      ****         /* Determine the number of bytes received */
+ 107:.\main.c      ****         EP2_Count = USBFS_GetEPCount(EP2);
+ 209              		.loc 1 107 0
+ 210 0014 4FF00200 		mov	r0, #2
+ 211 0018 FFF7FEFF 		bl	USBFS_GetEPCount
+ 212 001c 0346     		mov	r3, r0
+ 213 001e DAB2     		uxtb	r2, r3
+ 214 0020 40F20003 		movw	r3, #:lower16:EP2_Count
+ 215 0024 C0F20003 		movt	r3, #:upper16:EP2_Count
+ 216 0028 1A70     		strb	r2, [r3, #0]
+ 108:.\main.c      ****         /* Read data from OUT endpoint and store in Interrupt_OUT_Buffer */
+ 109:.\main.c      ****         USBFS_ReadOutEP(EP2, Interrupt_OUT_Buffer, EP2_Count);
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 7
+
+
+ 217              		.loc 1 109 0
+ 218 002a 40F20003 		movw	r3, #:lower16:EP2_Count
+ 219 002e C0F20003 		movt	r3, #:upper16:EP2_Count
+ 220 0032 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 221 0034 4FF00200 		mov	r0, #2
+ 222 0038 40F20001 		movw	r1, #:lower16:Interrupt_OUT_Buffer
+ 223 003c C0F20001 		movt	r1, #:upper16:Interrupt_OUT_Buffer
+ 224 0040 1A46     		mov	r2, r3
+ 225 0042 FFF7FEFF 		bl	USBFS_ReadOutEP
+ 110:.\main.c      ****         /* Send data from the ADC */
+ 111:.\main.c      ****         // Fill in the buffer
+ 112:.\main.c      ****         int i;
+ 113:.\main.c      ****         /* Remove the code in the interrupt routine because the ADC_GetResult 
+ 114:.\main.c      ****            makes ADC_IsEndConversion useless. Will not work if this is not done */
+ 115:.\main.c      ****         for(i=0;i<8;i++){
+ 226              		.loc 1 115 0
+ 227 0046 4FF00003 		mov	r3, #0
+ 228 004a 7B60     		str	r3, [r7, #4]
+ 229 004c 16E0     		b	.L16
+ 230              	.L19:
+ 116:.\main.c      ****         while(ADC_DelSig_IsEndConversion(ADC_DelSig_WAIT_FOR_RESULT)==0);
+ 231              		.loc 1 116 0
+ 232 004e 00BF     		nop
+ 233              	.L17:
+ 234              		.loc 1 116 0 is_stmt 0 discriminator 1
+ 235 0050 4FF00000 		mov	r0, #0
+ 236 0054 FFF7FEFF 		bl	ADC_DelSig_IsEndConversion
+ 237 0058 0346     		mov	r3, r0
+ 238 005a 002B     		cmp	r3, #0
+ 239 005c F8D0     		beq	.L17
+ 117:.\main.c      ****         Interrupt_OUT_Buffer[i] = ADC_DelSig_GetResult8();
+ 240              		.loc 1 117 0 is_stmt 1
+ 241 005e FFF7FEFF 		bl	ADC_DelSig_GetResult8
+ 242 0062 0346     		mov	r3, r0
+ 243 0064 DAB2     		uxtb	r2, r3
+ 244 0066 40F20003 		movw	r3, #:lower16:Interrupt_OUT_Buffer
+ 245 006a C0F20003 		movt	r3, #:upper16:Interrupt_OUT_Buffer
+ 246 006e 7968     		ldr	r1, [r7, #4]
+ 247 0070 5B18     		adds	r3, r3, r1
+ 248 0072 1A70     		strb	r2, [r3, #0]
+ 115:.\main.c      ****         for(i=0;i<8;i++){
+ 249              		.loc 1 115 0
+ 250 0074 7B68     		ldr	r3, [r7, #4]
+ 251 0076 03F10103 		add	r3, r3, #1
+ 252 007a 7B60     		str	r3, [r7, #4]
+ 253              	.L16:
+ 115:.\main.c      ****         for(i=0;i<8;i++){
+ 254              		.loc 1 115 0 is_stmt 0 discriminator 1
+ 255 007c 7B68     		ldr	r3, [r7, #4]
+ 256 007e 072B     		cmp	r3, #7
+ 257 0080 E5DD     		ble	.L19
+ 118:.\main.c      ****         
+ 119:.\main.c      ****         }
+ 120:.\main.c      ****         // Sends the buffer
+ 121:.\main.c      ****         USBFS_LoadInEP(EP1, Interrupt_OUT_Buffer, 8);
+ 258              		.loc 1 121 0 is_stmt 1
+ 259 0082 4FF00100 		mov	r0, #1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 8
+
+
+ 260 0086 40F20001 		movw	r1, #:lower16:Interrupt_OUT_Buffer
+ 261 008a C0F20001 		movt	r1, #:upper16:Interrupt_OUT_Buffer
+ 262 008e 4FF00802 		mov	r2, #8
+ 263 0092 FFF7FEFF 		bl	USBFS_LoadInEP
+ 122:.\main.c      ****         /* Re-arm the Out Endpoint */
+ 123:.\main.c      ****         USBFS_EnableOutEP(EP2);
+ 264              		.loc 1 123 0
+ 265 0096 4FF00200 		mov	r0, #2
+ 266 009a FFF7FEFF 		bl	USBFS_EnableOutEP
+ 267              	.L14:
+ 268              	.LBE2:
+ 124:.\main.c      ****     
+ 125:.\main.c      ****     }    
+ 126:.\main.c      ****     
+ 127:.\main.c      **** //    /* Check to see if OUT Endpoint has data. If so, read EP2 buffer and load back into EP1 for l
+ 128:.\main.c      **** // if(USBFS_GetEPState(EP2) == USBFS_OUT_BUFFER_FULL)
+ 129:.\main.c      **** // {
+ 130:.\main.c      **** //     /* Determine the number of bytes received */
+ 131:.\main.c      **** //     EP2_Count = USBFS_GetEPCount(EP2);
+ 132:.\main.c      **** //     /* Read data from OUT endpoint and store in Interrupt_OUT_Buffer */
+ 133:.\main.c      **** //     USBFS_ReadOutEP(EP2, Interrupt_OUT_Buffer, EP2_Count);
+ 134:.\main.c      **** //     /* Create loopback by reloading data received into IN endpoint */
+ 135:.\main.c      **** //     USBFS_LoadInEP(EP1, Interrupt_OUT_Buffer, 8);
+ 136:.\main.c      **** //     /* Re-arm the Out Endpoint */
+ 137:.\main.c      **** //     USBFS_EnableOutEP(EP2);
+ 138:.\main.c      **** // }
+ 139:.\main.c      **** }
+ 269              		.loc 1 139 0
+ 270 009e 07F10807 		add	r7, r7, #8
+ 271 00a2 BD46     		mov	sp, r7
+ 272 00a4 80BD     		pop	{r7, pc}
+ 273              		.cfi_endproc
+ 274              	.LFE57:
+ 275              		.size	Interrupt_Transfer, .-Interrupt_Transfer
+ 276 00a6 00BF     		.section	.text.Bulk_Transfer,"ax",%progbits
+ 277              		.align	2
+ 278              		.global	Bulk_Transfer
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.type	Bulk_Transfer, %function
+ 282              	Bulk_Transfer:
+ 283              	.LFB58:
+ 140:.\main.c      **** 
+ 141:.\main.c      **** /* Transfer data from Filter */
+ 142:.\main.c      **** void Bulk_Transfer (void)
+ 143:.\main.c      **** {
+ 284              		.loc 1 143 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 8
+ 287              		@ frame_needed = 1, uses_anonymous_args = 0
+ 288 0000 80B5     		push	{r7, lr}
+ 289              	.LCFI5:
+ 290              		.cfi_def_cfa_offset 8
+ 291              		.cfi_offset 7, -8
+ 292              		.cfi_offset 14, -4
+ 293 0002 82B0     		sub	sp, sp, #8
+ 294              	.LCFI6:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 9
+
+
+ 295              		.cfi_def_cfa_offset 16
+ 296 0004 00AF     		add	r7, sp, #0
+ 297              	.LCFI7:
+ 298              		.cfi_def_cfa_register 7
+ 144:.\main.c      ****     // Check if there is data available. If so, send some data into EP3
+ 145:.\main.c      ****     if( USBFS_bGetEPState(EP4) == USBFS_OUT_BUFFER_FULL)
+ 299              		.loc 1 145 0
+ 300 0006 4FF00400 		mov	r0, #4
+ 301 000a FFF7FEFF 		bl	USBFS_GetEPState
+ 302 000e 0346     		mov	r3, r0
+ 303 0010 012B     		cmp	r3, #1
+ 304 0012 49D1     		bne	.L20
+ 305              	.LBB3:
+ 146:.\main.c      ****     {
+ 147:.\main.c      ****     // Determine number of bytes received
+ 148:.\main.c      ****     EP4_Count = USBFS_wGetEPCount(EP4);
+ 306              		.loc 1 148 0
+ 307 0014 4FF00400 		mov	r0, #4
+ 308 0018 FFF7FEFF 		bl	USBFS_GetEPCount
+ 309 001c 0346     		mov	r3, r0
+ 310 001e DAB2     		uxtb	r2, r3
+ 311 0020 40F20003 		movw	r3, #:lower16:EP4_Count
+ 312 0024 C0F20003 		movt	r3, #:upper16:EP4_Count
+ 313 0028 1A70     		strb	r2, [r3, #0]
+ 149:.\main.c      ****     /* Read data from OUT endpoint and store in Bulk_OUT_Buffer */
+ 150:.\main.c      ****     USBFS_ReadOutEP(EP4, Bulk_OUT_Buffer, EP4_Count);
+ 314              		.loc 1 150 0
+ 315 002a 40F20003 		movw	r3, #:lower16:EP4_Count
+ 316 002e C0F20003 		movt	r3, #:upper16:EP4_Count
+ 317 0032 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 318 0034 4FF00400 		mov	r0, #4
+ 319 0038 40F20001 		movw	r1, #:lower16:Bulk_OUT_Buffer
+ 320 003c C0F20001 		movt	r1, #:upper16:Bulk_OUT_Buffer
+ 321 0040 1A46     		mov	r2, r3
+ 322 0042 FFF7FEFF 		bl	USBFS_ReadOutEP
+ 151:.\main.c      ****    
+ 152:.\main.c      ****     // Get data from the filter
+ 153:.\main.c      ****     int i ;
+ 154:.\main.c      ****     for(i = 0;i < 8;i++)
+ 323              		.loc 1 154 0
+ 324 0046 4FF00003 		mov	r3, #0
+ 325 004a 7B60     		str	r3, [r7, #4]
+ 326 004c 1BE0     		b	.L22
+ 327              	.L25:
+ 155:.\main.c      ****     {
+ 156:.\main.c      ****         while (Filter_IsInterruptChannelA() == 0) ; 
+ 328              		.loc 1 156 0
+ 329 004e 00BF     		nop
+ 330              	.L23:
+ 331              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 332 0050 4CF28473 		movw	r3, #51076
+ 333 0054 C4F20003 		movt	r3, 16384
+ 334 0058 1B78     		ldrb	r3, [r3, #0]
+ 335 005a DBB2     		uxtb	r3, r3
+ 336 005c 03F00803 		and	r3, r3, #8
+ 337 0060 002B     		cmp	r3, #0
+ 338 0062 F5D0     		beq	.L23
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 10
+
+
+ 157:.\main.c      ****         Bulk_OUT_Buffer[i] = Filter_Read8(Filter_CHANNEL_A);
+ 339              		.loc 1 157 0 is_stmt 1
+ 340 0064 4FF00000 		mov	r0, #0
+ 341 0068 FFF7FEFF 		bl	Filter_Read8
+ 342 006c 0346     		mov	r3, r0
+ 343 006e 1A46     		mov	r2, r3
+ 344 0070 40F20003 		movw	r3, #:lower16:Bulk_OUT_Buffer
+ 345 0074 C0F20003 		movt	r3, #:upper16:Bulk_OUT_Buffer
+ 346 0078 7968     		ldr	r1, [r7, #4]
+ 347 007a 5B18     		adds	r3, r3, r1
+ 348 007c 1A70     		strb	r2, [r3, #0]
+ 154:.\main.c      ****     for(i = 0;i < 8;i++)
+ 349              		.loc 1 154 0
+ 350 007e 7B68     		ldr	r3, [r7, #4]
+ 351 0080 03F10103 		add	r3, r3, #1
+ 352 0084 7B60     		str	r3, [r7, #4]
+ 353              	.L22:
+ 154:.\main.c      ****     for(i = 0;i < 8;i++)
+ 354              		.loc 1 154 0 is_stmt 0 discriminator 1
+ 355 0086 7B68     		ldr	r3, [r7, #4]
+ 356 0088 072B     		cmp	r3, #7
+ 357 008a E0DD     		ble	.L25
+ 158:.\main.c      ****     
+ 159:.\main.c      ****     }
+ 160:.\main.c      ****        
+ 161:.\main.c      ****     // Sends the buffer to client 
+ 162:.\main.c      ****     USBFS_LoadInEP(EP3, Bulk_OUT_Buffer, 8);
+ 358              		.loc 1 162 0 is_stmt 1
+ 359 008c 4FF00300 		mov	r0, #3
+ 360 0090 40F20001 		movw	r1, #:lower16:Bulk_OUT_Buffer
+ 361 0094 C0F20001 		movt	r1, #:upper16:Bulk_OUT_Buffer
+ 362 0098 4FF00802 		mov	r2, #8
+ 363 009c FFF7FEFF 		bl	USBFS_LoadInEP
+ 163:.\main.c      ****     /* Re-arm the OUT Endpoint */
+ 164:.\main.c      ****     USBFS_EnableOutEP(EP4);
+ 364              		.loc 1 164 0
+ 365 00a0 4FF00400 		mov	r0, #4
+ 366 00a4 FFF7FEFF 		bl	USBFS_EnableOutEP
+ 367              	.L20:
+ 368              	.LBE3:
+ 165:.\main.c      **** 
+ 166:.\main.c      ****     }
+ 167:.\main.c      ****     
+ 168:.\main.c      **** // /* Check to see if OUT Endpoint has data. If so, read EP4 buffer and load back into EP3 for loop
+ 169:.\main.c      **** // if(USBFS_bGetEPState(EP4) == USBFS_OUT_BUFFER_FULL)
+ 170:.\main.c      **** // {
+ 171:.\main.c      **** //     /* Determine the number of bytes received */
+ 172:.\main.c      **** //     EP4_Count = USBFS_wGetEPCount(EP4);
+ 173:.\main.c      **** //     /* Read data from OUT endpoint and store in Bulk_OUT_Buffer */
+ 174:.\main.c      **** //     USBFS_ReadOutEP(EP4, Bulk_OUT_Buffer, EP4_Count);
+ 175:.\main.c      **** //     /* Create loopback by reloading data received into IN endpoint */
+ 176:.\main.c      **** //     USBFS_LoadInEP(EP3, Bulk_OUT_Buffer, EP4_Count);
+ 177:.\main.c      **** //     /* Re-arm the OUT Endpoint */
+ 178:.\main.c      **** //     USBFS_EnableOutEP(EP4);
+ 179:.\main.c      **** // }
+ 180:.\main.c      **** }
+ 369              		.loc 1 180 0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 11
+
+
+ 370 00a8 07F10807 		add	r7, r7, #8
+ 371 00ac BD46     		mov	sp, r7
+ 372 00ae 80BD     		pop	{r7, pc}
+ 373              		.cfi_endproc
+ 374              	.LFE58:
+ 375              		.size	Bulk_Transfer, .-Bulk_Transfer
+ 376              		.section	.text.Isochronous_Transfer,"ax",%progbits
+ 377              		.align	2
+ 378              		.global	Isochronous_Transfer
+ 379              		.thumb
+ 380              		.thumb_func
+ 381              		.type	Isochronous_Transfer, %function
+ 382              	Isochronous_Transfer:
+ 383              	.LFB59:
+ 181:.\main.c      **** 
+ 182:.\main.c      **** void Isochronous_Transfer (void)
+ 183:.\main.c      **** {
+ 384              		.loc 1 183 0
+ 385              		.cfi_startproc
+ 386              		@ args = 0, pretend = 0, frame = 0
+ 387              		@ frame_needed = 1, uses_anonymous_args = 0
+ 388 0000 80B5     		push	{r7, lr}
+ 389              	.LCFI8:
+ 390              		.cfi_def_cfa_offset 8
+ 391              		.cfi_offset 7, -8
+ 392              		.cfi_offset 14, -4
+ 393 0002 00AF     		add	r7, sp, #0
+ 394              	.LCFI9:
+ 395              		.cfi_def_cfa_register 7
+ 184:.\main.c      ****  /* Check to see if OUT Endpoint has data. If so, read EP6 buffer and load back into EP5 for loopba
+ 185:.\main.c      ****  if(USBFS_bGetEPState(EP6) == USBFS_OUT_BUFFER_FULL)
+ 396              		.loc 1 185 0
+ 397 0004 4FF00600 		mov	r0, #6
+ 398 0008 FFF7FEFF 		bl	USBFS_GetEPState
+ 399 000c 0346     		mov	r3, r0
+ 400 000e 012B     		cmp	r3, #1
+ 401 0010 2AD1     		bne	.L26
+ 186:.\main.c      ****  {
+ 187:.\main.c      ****      /* Determine the number of bytes received */
+ 188:.\main.c      ****      EP6_Count = USBFS_wGetEPCount(EP6);
+ 402              		.loc 1 188 0
+ 403 0012 4FF00600 		mov	r0, #6
+ 404 0016 FFF7FEFF 		bl	USBFS_GetEPCount
+ 405 001a 0346     		mov	r3, r0
+ 406 001c DAB2     		uxtb	r2, r3
+ 407 001e 40F20003 		movw	r3, #:lower16:EP6_Count
+ 408 0022 C0F20003 		movt	r3, #:upper16:EP6_Count
+ 409 0026 1A70     		strb	r2, [r3, #0]
+ 189:.\main.c      ****      /* Read data from OUT endpoint and store in Isochronous_OUT_Buffer */
+ 190:.\main.c      ****      USBFS_ReadOutEP(EP6, Isochronous_OUT_Buffer, EP6_Count);
+ 410              		.loc 1 190 0
+ 411 0028 40F20003 		movw	r3, #:lower16:EP6_Count
+ 412 002c C0F20003 		movt	r3, #:upper16:EP6_Count
+ 413 0030 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 414 0032 4FF00600 		mov	r0, #6
+ 415 0036 40F20001 		movw	r1, #:lower16:Isochronous_OUT_Buffer
+ 416 003a C0F20001 		movt	r1, #:upper16:Isochronous_OUT_Buffer
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 12
+
+
+ 417 003e 1A46     		mov	r2, r3
+ 418 0040 FFF7FEFF 		bl	USBFS_ReadOutEP
+ 191:.\main.c      ****       /* Create loopback by reloading data received into IN endpoint */
+ 192:.\main.c      ****      USBFS_LoadInEP(EP5, Isochronous_OUT_Buffer, EP6_Count);
+ 419              		.loc 1 192 0
+ 420 0044 40F20003 		movw	r3, #:lower16:EP6_Count
+ 421 0048 C0F20003 		movt	r3, #:upper16:EP6_Count
+ 422 004c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 423 004e 4FF00500 		mov	r0, #5
+ 424 0052 40F20001 		movw	r1, #:lower16:Isochronous_OUT_Buffer
+ 425 0056 C0F20001 		movt	r1, #:upper16:Isochronous_OUT_Buffer
+ 426 005a 1A46     		mov	r2, r3
+ 427 005c FFF7FEFF 		bl	USBFS_LoadInEP
+ 193:.\main.c      ****      /* Re-arm the OUT Endpoint */
+ 194:.\main.c      ****      USBFS_EnableOutEP(EP6);
+ 428              		.loc 1 194 0
+ 429 0060 4FF00600 		mov	r0, #6
+ 430 0064 FFF7FEFF 		bl	USBFS_EnableOutEP
+ 431              	.L26:
+ 195:.\main.c      ****  }
+ 196:.\main.c      **** }...
+ 432              		.loc 1 196 0
+ 433 0068 80BD     		pop	{r7, pc}
+ 434              		.cfi_endproc
+ 435              	.LFE59:
+ 436              		.size	Isochronous_Transfer, .-Isochronous_Transfer
+ 437 006a 00BF     		.text
+ 438              	.Letext0:
+ 439              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 440              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 441              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 442              		.section	.debug_info,"",%progbits
+ 443              	.Ldebug_info0:
+ 444 0000 EE010000 		.4byte	0x1ee
+ 445 0004 0200     		.2byte	0x2
+ 446 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 447 000a 04       		.byte	0x4
+ 448 000b 01       		.uleb128 0x1
+ 449 000c 94010000 		.4byte	.LASF27
+ 450 0010 01       		.byte	0x1
+ 451 0011 7C000000 		.4byte	.LASF28
+ 452 0015 33000000 		.4byte	.LASF29
+ 453 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 454 001d 00000000 		.4byte	0
+ 455 0021 00000000 		.4byte	0
+ 456 0025 00000000 		.4byte	.Ldebug_line0
+ 457 0029 02       		.uleb128 0x2
+ 458 002a 01       		.byte	0x1
+ 459 002b 06       		.byte	0x6
+ 460 002c FA010000 		.4byte	.LASF0
+ 461 0030 02       		.uleb128 0x2
+ 462 0031 01       		.byte	0x1
+ 463 0032 08       		.byte	0x8
+ 464 0033 F6000000 		.4byte	.LASF1
+ 465 0037 02       		.uleb128 0x2
+ 466 0038 02       		.byte	0x2
+ 467 0039 05       		.byte	0x5
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 13
+
+
+ 468 003a 84010000 		.4byte	.LASF2
+ 469 003e 02       		.uleb128 0x2
+ 470 003f 02       		.byte	0x2
+ 471 0040 07       		.byte	0x7
+ 472 0041 D6000000 		.4byte	.LASF3
+ 473 0045 03       		.uleb128 0x3
+ 474 0046 4F010000 		.4byte	.LASF9
+ 475 004a 02       		.byte	0x2
+ 476 004b 4F       		.byte	0x4f
+ 477 004c 50000000 		.4byte	0x50
+ 478 0050 02       		.uleb128 0x2
+ 479 0051 04       		.byte	0x4
+ 480 0052 05       		.byte	0x5
+ 481 0053 F1010000 		.4byte	.LASF4
+ 482 0057 02       		.uleb128 0x2
+ 483 0058 04       		.byte	0x4
+ 484 0059 07       		.byte	0x7
+ 485 005a C4000000 		.4byte	.LASF5
+ 486 005e 02       		.uleb128 0x2
+ 487 005f 08       		.byte	0x8
+ 488 0060 05       		.byte	0x5
+ 489 0061 00000000 		.4byte	.LASF6
+ 490 0065 02       		.uleb128 0x2
+ 491 0066 08       		.byte	0x8
+ 492 0067 07       		.byte	0x7
+ 493 0068 27010000 		.4byte	.LASF7
+ 494 006c 04       		.uleb128 0x4
+ 495 006d 04       		.byte	0x4
+ 496 006e 05       		.byte	0x5
+ 497 006f 696E7400 		.ascii	"int\000"
+ 498 0073 02       		.uleb128 0x2
+ 499 0074 04       		.byte	0x4
+ 500 0075 07       		.byte	0x7
+ 501 0076 1A010000 		.4byte	.LASF8
+ 502 007a 03       		.uleb128 0x3
+ 503 007b 8E010000 		.4byte	.LASF10
+ 504 007f 03       		.byte	0x3
+ 505 0080 5B       		.byte	0x5b
+ 506 0081 30000000 		.4byte	0x30
+ 507 0085 02       		.uleb128 0x2
+ 508 0086 04       		.byte	0x4
+ 509 0087 04       		.byte	0x4
+ 510 0088 85000000 		.4byte	.LASF11
+ 511 008c 02       		.uleb128 0x2
+ 512 008d 08       		.byte	0x8
+ 513 008e 04       		.byte	0x4
+ 514 008f 04010000 		.4byte	.LASF12
+ 515 0093 02       		.uleb128 0x2
+ 516 0094 01       		.byte	0x1
+ 517 0095 08       		.byte	0x8
+ 518 0096 7F010000 		.4byte	.LASF13
+ 519 009a 03       		.uleb128 0x3
+ 520 009b B5000000 		.4byte	.LASF14
+ 521 009f 03       		.byte	0x3
+ 522 00a0 F0       		.byte	0xf0
+ 523 00a1 A5000000 		.4byte	0xa5
+ 524 00a5 05       		.uleb128 0x5
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 14
+
+
+ 525 00a6 7A000000 		.4byte	0x7a
+ 526 00aa 02       		.uleb128 0x2
+ 527 00ab 04       		.byte	0x4
+ 528 00ac 07       		.byte	0x7
+ 529 00ad 57010000 		.4byte	.LASF15
+ 530 00b1 06       		.uleb128 0x6
+ 531 00b2 01       		.byte	0x1
+ 532 00b3 0B010000 		.4byte	.LASF30
+ 533 00b7 01       		.byte	0x1
+ 534 00b8 25       		.byte	0x25
+ 535 00b9 01       		.byte	0x1
+ 536 00ba 6C000000 		.4byte	0x6c
+ 537 00be 00000000 		.4byte	.LFB56
+ 538 00c2 F4000000 		.4byte	.LFE56
+ 539 00c6 00000000 		.4byte	.LLST0
+ 540 00ca 01       		.byte	0x1
+ 541 00cb 07       		.uleb128 0x7
+ 542 00cc 01       		.byte	0x1
+ 543 00cd 8B000000 		.4byte	.LASF16
+ 544 00d1 01       		.byte	0x1
+ 545 00d2 65       		.byte	0x65
+ 546 00d3 01       		.byte	0x1
+ 547 00d4 00000000 		.4byte	.LFB57
+ 548 00d8 A6000000 		.4byte	.LFE57
+ 549 00dc 2C000000 		.4byte	.LLST1
+ 550 00e0 01       		.byte	0x1
+ 551 00e1 FC000000 		.4byte	0xfc
+ 552 00e5 08       		.uleb128 0x8
+ 553 00e6 14000000 		.4byte	.LBB2
+ 554 00ea 9E000000 		.4byte	.LBE2
+ 555 00ee 09       		.uleb128 0x9
+ 556 00ef 6900     		.ascii	"i\000"
+ 557 00f1 01       		.byte	0x1
+ 558 00f2 70       		.byte	0x70
+ 559 00f3 6C000000 		.4byte	0x6c
+ 560 00f7 02       		.byte	0x2
+ 561 00f8 91       		.byte	0x91
+ 562 00f9 74       		.sleb128 -12
+ 563 00fa 00       		.byte	0
+ 564 00fb 00       		.byte	0
+ 565 00fc 07       		.uleb128 0x7
+ 566 00fd 01       		.byte	0x1
+ 567 00fe 06020000 		.4byte	.LASF17
+ 568 0102 01       		.byte	0x1
+ 569 0103 8E       		.byte	0x8e
+ 570 0104 01       		.byte	0x1
+ 571 0105 00000000 		.4byte	.LFB58
+ 572 0109 B0000000 		.4byte	.LFE58
+ 573 010d 64000000 		.4byte	.LLST2
+ 574 0111 01       		.byte	0x1
+ 575 0112 2D010000 		.4byte	0x12d
+ 576 0116 08       		.uleb128 0x8
+ 577 0117 14000000 		.4byte	.LBB3
+ 578 011b A8000000 		.4byte	.LBE3
+ 579 011f 09       		.uleb128 0x9
+ 580 0120 6900     		.ascii	"i\000"
+ 581 0122 01       		.byte	0x1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 15
+
+
+ 582 0123 99       		.byte	0x99
+ 583 0124 6C000000 		.4byte	0x6c
+ 584 0128 02       		.byte	0x2
+ 585 0129 91       		.byte	0x91
+ 586 012a 74       		.sleb128 -12
+ 587 012b 00       		.byte	0
+ 588 012c 00       		.byte	0
+ 589 012d 0A       		.uleb128 0xa
+ 590 012e 01       		.byte	0x1
+ 591 012f 60010000 		.4byte	.LASF31
+ 592 0133 01       		.byte	0x1
+ 593 0134 B6       		.byte	0xb6
+ 594 0135 01       		.byte	0x1
+ 595 0136 00000000 		.4byte	.LFB59
+ 596 013a 6A000000 		.4byte	.LFE59
+ 597 013e 9C000000 		.4byte	.LLST3
+ 598 0142 01       		.byte	0x1
+ 599 0143 0B       		.uleb128 0xb
+ 600 0144 DD010000 		.4byte	.LASF18
+ 601 0148 01       		.byte	0x1
+ 602 0149 18       		.byte	0x18
+ 603 014a A5000000 		.4byte	0xa5
+ 604 014e 01       		.byte	0x1
+ 605 014f 01       		.byte	0x1
+ 606 0150 0C       		.uleb128 0xc
+ 607 0151 E9000000 		.4byte	.LASF19
+ 608 0155 04       		.byte	0x4
+ 609 0156 1606     		.2byte	0x616
+ 610 0158 5E010000 		.4byte	0x15e
+ 611 015c 01       		.byte	0x1
+ 612 015d 01       		.byte	0x1
+ 613 015e 05       		.uleb128 0x5
+ 614 015f 45000000 		.4byte	0x45
+ 615 0163 0D       		.uleb128 0xd
+ 616 0164 3E010000 		.4byte	.LASF20
+ 617 0168 01       		.byte	0x1
+ 618 0169 1A       		.byte	0x1a
+ 619 016a 7A000000 		.4byte	0x7a
+ 620 016e 01       		.byte	0x1
+ 621 016f 05       		.byte	0x5
+ 622 0170 03       		.byte	0x3
+ 623 0171 00000000 		.4byte	AltSettingNumber
+ 624 0175 0E       		.uleb128 0xe
+ 625 0176 7A000000 		.4byte	0x7a
+ 626 017a 85010000 		.4byte	0x185
+ 627 017e 0F       		.uleb128 0xf
+ 628 017f AA000000 		.4byte	0xaa
+ 629 0183 07       		.byte	0x7
+ 630 0184 00       		.byte	0
+ 631 0185 0D       		.uleb128 0xd
+ 632 0186 1E000000 		.4byte	.LASF21
+ 633 018a 01       		.byte	0x1
+ 634 018b 1E       		.byte	0x1e
+ 635 018c 75010000 		.4byte	0x175
+ 636 0190 01       		.byte	0x1
+ 637 0191 05       		.byte	0x5
+ 638 0192 03       		.byte	0x3
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 16
+
+
+ 639 0193 00000000 		.4byte	Interrupt_OUT_Buffer
+ 640 0197 0D       		.uleb128 0xd
+ 641 0198 BA000000 		.4byte	.LASF22
+ 642 019c 01       		.byte	0x1
+ 643 019d 1E       		.byte	0x1e
+ 644 019e 7A000000 		.4byte	0x7a
+ 645 01a2 01       		.byte	0x1
+ 646 01a3 05       		.byte	0x5
+ 647 01a4 03       		.byte	0x3
+ 648 01a5 00000000 		.4byte	EP2_Count
+ 649 01a9 0D       		.uleb128 0xd
+ 650 01aa 0E000000 		.4byte	.LASF23
+ 651 01ae 01       		.byte	0x1
+ 652 01af 1F       		.byte	0x1f
+ 653 01b0 75010000 		.4byte	0x175
+ 654 01b4 01       		.byte	0x1
+ 655 01b5 05       		.byte	0x5
+ 656 01b6 03       		.byte	0x3
+ 657 01b7 00000000 		.4byte	Bulk_OUT_Buffer
+ 658 01bb 0D       		.uleb128 0xd
+ 659 01bc 10010000 		.4byte	.LASF24
+ 660 01c0 01       		.byte	0x1
+ 661 01c1 1F       		.byte	0x1f
+ 662 01c2 7A000000 		.4byte	0x7a
+ 663 01c6 01       		.byte	0x1
+ 664 01c7 05       		.byte	0x5
+ 665 01c8 03       		.byte	0x3
+ 666 01c9 00000000 		.4byte	EP4_Count
+ 667 01cd 0D       		.uleb128 0xd
+ 668 01ce 9E000000 		.4byte	.LASF25
+ 669 01d2 01       		.byte	0x1
+ 670 01d3 20       		.byte	0x20
+ 671 01d4 75010000 		.4byte	0x175
+ 672 01d8 01       		.byte	0x1
+ 673 01d9 05       		.byte	0x5
+ 674 01da 03       		.byte	0x3
+ 675 01db 00000000 		.4byte	Isochronous_OUT_Buffer
+ 676 01df 0D       		.uleb128 0xd
+ 677 01e0 75010000 		.4byte	.LASF26
+ 678 01e4 01       		.byte	0x1
+ 679 01e5 20       		.byte	0x20
+ 680 01e6 7A000000 		.4byte	0x7a
+ 681 01ea 01       		.byte	0x1
+ 682 01eb 05       		.byte	0x5
+ 683 01ec 03       		.byte	0x3
+ 684 01ed 00000000 		.4byte	EP6_Count
+ 685 01f1 00       		.byte	0
+ 686              		.section	.debug_abbrev,"",%progbits
+ 687              	.Ldebug_abbrev0:
+ 688 0000 01       		.uleb128 0x1
+ 689 0001 11       		.uleb128 0x11
+ 690 0002 01       		.byte	0x1
+ 691 0003 25       		.uleb128 0x25
+ 692 0004 0E       		.uleb128 0xe
+ 693 0005 13       		.uleb128 0x13
+ 694 0006 0B       		.uleb128 0xb
+ 695 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 17
+
+
+ 696 0008 0E       		.uleb128 0xe
+ 697 0009 1B       		.uleb128 0x1b
+ 698 000a 0E       		.uleb128 0xe
+ 699 000b 55       		.uleb128 0x55
+ 700 000c 06       		.uleb128 0x6
+ 701 000d 11       		.uleb128 0x11
+ 702 000e 01       		.uleb128 0x1
+ 703 000f 52       		.uleb128 0x52
+ 704 0010 01       		.uleb128 0x1
+ 705 0011 10       		.uleb128 0x10
+ 706 0012 06       		.uleb128 0x6
+ 707 0013 00       		.byte	0
+ 708 0014 00       		.byte	0
+ 709 0015 02       		.uleb128 0x2
+ 710 0016 24       		.uleb128 0x24
+ 711 0017 00       		.byte	0
+ 712 0018 0B       		.uleb128 0xb
+ 713 0019 0B       		.uleb128 0xb
+ 714 001a 3E       		.uleb128 0x3e
+ 715 001b 0B       		.uleb128 0xb
+ 716 001c 03       		.uleb128 0x3
+ 717 001d 0E       		.uleb128 0xe
+ 718 001e 00       		.byte	0
+ 719 001f 00       		.byte	0
+ 720 0020 03       		.uleb128 0x3
+ 721 0021 16       		.uleb128 0x16
+ 722 0022 00       		.byte	0
+ 723 0023 03       		.uleb128 0x3
+ 724 0024 0E       		.uleb128 0xe
+ 725 0025 3A       		.uleb128 0x3a
+ 726 0026 0B       		.uleb128 0xb
+ 727 0027 3B       		.uleb128 0x3b
+ 728 0028 0B       		.uleb128 0xb
+ 729 0029 49       		.uleb128 0x49
+ 730 002a 13       		.uleb128 0x13
+ 731 002b 00       		.byte	0
+ 732 002c 00       		.byte	0
+ 733 002d 04       		.uleb128 0x4
+ 734 002e 24       		.uleb128 0x24
+ 735 002f 00       		.byte	0
+ 736 0030 0B       		.uleb128 0xb
+ 737 0031 0B       		.uleb128 0xb
+ 738 0032 3E       		.uleb128 0x3e
+ 739 0033 0B       		.uleb128 0xb
+ 740 0034 03       		.uleb128 0x3
+ 741 0035 08       		.uleb128 0x8
+ 742 0036 00       		.byte	0
+ 743 0037 00       		.byte	0
+ 744 0038 05       		.uleb128 0x5
+ 745 0039 35       		.uleb128 0x35
+ 746 003a 00       		.byte	0
+ 747 003b 49       		.uleb128 0x49
+ 748 003c 13       		.uleb128 0x13
+ 749 003d 00       		.byte	0
+ 750 003e 00       		.byte	0
+ 751 003f 06       		.uleb128 0x6
+ 752 0040 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 18
+
+
+ 753 0041 00       		.byte	0
+ 754 0042 3F       		.uleb128 0x3f
+ 755 0043 0C       		.uleb128 0xc
+ 756 0044 03       		.uleb128 0x3
+ 757 0045 0E       		.uleb128 0xe
+ 758 0046 3A       		.uleb128 0x3a
+ 759 0047 0B       		.uleb128 0xb
+ 760 0048 3B       		.uleb128 0x3b
+ 761 0049 0B       		.uleb128 0xb
+ 762 004a 27       		.uleb128 0x27
+ 763 004b 0C       		.uleb128 0xc
+ 764 004c 49       		.uleb128 0x49
+ 765 004d 13       		.uleb128 0x13
+ 766 004e 11       		.uleb128 0x11
+ 767 004f 01       		.uleb128 0x1
+ 768 0050 12       		.uleb128 0x12
+ 769 0051 01       		.uleb128 0x1
+ 770 0052 40       		.uleb128 0x40
+ 771 0053 06       		.uleb128 0x6
+ 772 0054 9642     		.uleb128 0x2116
+ 773 0056 0C       		.uleb128 0xc
+ 774 0057 00       		.byte	0
+ 775 0058 00       		.byte	0
+ 776 0059 07       		.uleb128 0x7
+ 777 005a 2E       		.uleb128 0x2e
+ 778 005b 01       		.byte	0x1
+ 779 005c 3F       		.uleb128 0x3f
+ 780 005d 0C       		.uleb128 0xc
+ 781 005e 03       		.uleb128 0x3
+ 782 005f 0E       		.uleb128 0xe
+ 783 0060 3A       		.uleb128 0x3a
+ 784 0061 0B       		.uleb128 0xb
+ 785 0062 3B       		.uleb128 0x3b
+ 786 0063 0B       		.uleb128 0xb
+ 787 0064 27       		.uleb128 0x27
+ 788 0065 0C       		.uleb128 0xc
+ 789 0066 11       		.uleb128 0x11
+ 790 0067 01       		.uleb128 0x1
+ 791 0068 12       		.uleb128 0x12
+ 792 0069 01       		.uleb128 0x1
+ 793 006a 40       		.uleb128 0x40
+ 794 006b 06       		.uleb128 0x6
+ 795 006c 9642     		.uleb128 0x2116
+ 796 006e 0C       		.uleb128 0xc
+ 797 006f 01       		.uleb128 0x1
+ 798 0070 13       		.uleb128 0x13
+ 799 0071 00       		.byte	0
+ 800 0072 00       		.byte	0
+ 801 0073 08       		.uleb128 0x8
+ 802 0074 0B       		.uleb128 0xb
+ 803 0075 01       		.byte	0x1
+ 804 0076 11       		.uleb128 0x11
+ 805 0077 01       		.uleb128 0x1
+ 806 0078 12       		.uleb128 0x12
+ 807 0079 01       		.uleb128 0x1
+ 808 007a 00       		.byte	0
+ 809 007b 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 19
+
+
+ 810 007c 09       		.uleb128 0x9
+ 811 007d 34       		.uleb128 0x34
+ 812 007e 00       		.byte	0
+ 813 007f 03       		.uleb128 0x3
+ 814 0080 08       		.uleb128 0x8
+ 815 0081 3A       		.uleb128 0x3a
+ 816 0082 0B       		.uleb128 0xb
+ 817 0083 3B       		.uleb128 0x3b
+ 818 0084 0B       		.uleb128 0xb
+ 819 0085 49       		.uleb128 0x49
+ 820 0086 13       		.uleb128 0x13
+ 821 0087 02       		.uleb128 0x2
+ 822 0088 0A       		.uleb128 0xa
+ 823 0089 00       		.byte	0
+ 824 008a 00       		.byte	0
+ 825 008b 0A       		.uleb128 0xa
+ 826 008c 2E       		.uleb128 0x2e
+ 827 008d 00       		.byte	0
+ 828 008e 3F       		.uleb128 0x3f
+ 829 008f 0C       		.uleb128 0xc
+ 830 0090 03       		.uleb128 0x3
+ 831 0091 0E       		.uleb128 0xe
+ 832 0092 3A       		.uleb128 0x3a
+ 833 0093 0B       		.uleb128 0xb
+ 834 0094 3B       		.uleb128 0x3b
+ 835 0095 0B       		.uleb128 0xb
+ 836 0096 27       		.uleb128 0x27
+ 837 0097 0C       		.uleb128 0xc
+ 838 0098 11       		.uleb128 0x11
+ 839 0099 01       		.uleb128 0x1
+ 840 009a 12       		.uleb128 0x12
+ 841 009b 01       		.uleb128 0x1
+ 842 009c 40       		.uleb128 0x40
+ 843 009d 06       		.uleb128 0x6
+ 844 009e 9642     		.uleb128 0x2116
+ 845 00a0 0C       		.uleb128 0xc
+ 846 00a1 00       		.byte	0
+ 847 00a2 00       		.byte	0
+ 848 00a3 0B       		.uleb128 0xb
+ 849 00a4 34       		.uleb128 0x34
+ 850 00a5 00       		.byte	0
+ 851 00a6 03       		.uleb128 0x3
+ 852 00a7 0E       		.uleb128 0xe
+ 853 00a8 3A       		.uleb128 0x3a
+ 854 00a9 0B       		.uleb128 0xb
+ 855 00aa 3B       		.uleb128 0x3b
+ 856 00ab 0B       		.uleb128 0xb
+ 857 00ac 49       		.uleb128 0x49
+ 858 00ad 13       		.uleb128 0x13
+ 859 00ae 3F       		.uleb128 0x3f
+ 860 00af 0C       		.uleb128 0xc
+ 861 00b0 3C       		.uleb128 0x3c
+ 862 00b1 0C       		.uleb128 0xc
+ 863 00b2 00       		.byte	0
+ 864 00b3 00       		.byte	0
+ 865 00b4 0C       		.uleb128 0xc
+ 866 00b5 34       		.uleb128 0x34
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 20
+
+
+ 867 00b6 00       		.byte	0
+ 868 00b7 03       		.uleb128 0x3
+ 869 00b8 0E       		.uleb128 0xe
+ 870 00b9 3A       		.uleb128 0x3a
+ 871 00ba 0B       		.uleb128 0xb
+ 872 00bb 3B       		.uleb128 0x3b
+ 873 00bc 05       		.uleb128 0x5
+ 874 00bd 49       		.uleb128 0x49
+ 875 00be 13       		.uleb128 0x13
+ 876 00bf 3F       		.uleb128 0x3f
+ 877 00c0 0C       		.uleb128 0xc
+ 878 00c1 3C       		.uleb128 0x3c
+ 879 00c2 0C       		.uleb128 0xc
+ 880 00c3 00       		.byte	0
+ 881 00c4 00       		.byte	0
+ 882 00c5 0D       		.uleb128 0xd
+ 883 00c6 34       		.uleb128 0x34
+ 884 00c7 00       		.byte	0
+ 885 00c8 03       		.uleb128 0x3
+ 886 00c9 0E       		.uleb128 0xe
+ 887 00ca 3A       		.uleb128 0x3a
+ 888 00cb 0B       		.uleb128 0xb
+ 889 00cc 3B       		.uleb128 0x3b
+ 890 00cd 0B       		.uleb128 0xb
+ 891 00ce 49       		.uleb128 0x49
+ 892 00cf 13       		.uleb128 0x13
+ 893 00d0 3F       		.uleb128 0x3f
+ 894 00d1 0C       		.uleb128 0xc
+ 895 00d2 02       		.uleb128 0x2
+ 896 00d3 0A       		.uleb128 0xa
+ 897 00d4 00       		.byte	0
+ 898 00d5 00       		.byte	0
+ 899 00d6 0E       		.uleb128 0xe
+ 900 00d7 01       		.uleb128 0x1
+ 901 00d8 01       		.byte	0x1
+ 902 00d9 49       		.uleb128 0x49
+ 903 00da 13       		.uleb128 0x13
+ 904 00db 01       		.uleb128 0x1
+ 905 00dc 13       		.uleb128 0x13
+ 906 00dd 00       		.byte	0
+ 907 00de 00       		.byte	0
+ 908 00df 0F       		.uleb128 0xf
+ 909 00e0 21       		.uleb128 0x21
+ 910 00e1 00       		.byte	0
+ 911 00e2 49       		.uleb128 0x49
+ 912 00e3 13       		.uleb128 0x13
+ 913 00e4 2F       		.uleb128 0x2f
+ 914 00e5 0B       		.uleb128 0xb
+ 915 00e6 00       		.byte	0
+ 916 00e7 00       		.byte	0
+ 917 00e8 00       		.byte	0
+ 918              		.section	.debug_loc,"",%progbits
+ 919              	.Ldebug_loc0:
+ 920              	.LLST0:
+ 921 0000 00000000 		.4byte	.LFB56
+ 922 0004 02000000 		.4byte	.LCFI0
+ 923 0008 0200     		.2byte	0x2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 21
+
+
+ 924 000a 7D       		.byte	0x7d
+ 925 000b 00       		.sleb128 0
+ 926 000c 02000000 		.4byte	.LCFI0
+ 927 0010 04000000 		.4byte	.LCFI1
+ 928 0014 0200     		.2byte	0x2
+ 929 0016 7D       		.byte	0x7d
+ 930 0017 08       		.sleb128 8
+ 931 0018 04000000 		.4byte	.LCFI1
+ 932 001c F4000000 		.4byte	.LFE56
+ 933 0020 0200     		.2byte	0x2
+ 934 0022 77       		.byte	0x77
+ 935 0023 08       		.sleb128 8
+ 936 0024 00000000 		.4byte	0
+ 937 0028 00000000 		.4byte	0
+ 938              	.LLST1:
+ 939 002c 00000000 		.4byte	.LFB57
+ 940 0030 02000000 		.4byte	.LCFI2
+ 941 0034 0200     		.2byte	0x2
+ 942 0036 7D       		.byte	0x7d
+ 943 0037 00       		.sleb128 0
+ 944 0038 02000000 		.4byte	.LCFI2
+ 945 003c 04000000 		.4byte	.LCFI3
+ 946 0040 0200     		.2byte	0x2
+ 947 0042 7D       		.byte	0x7d
+ 948 0043 08       		.sleb128 8
+ 949 0044 04000000 		.4byte	.LCFI3
+ 950 0048 06000000 		.4byte	.LCFI4
+ 951 004c 0200     		.2byte	0x2
+ 952 004e 7D       		.byte	0x7d
+ 953 004f 10       		.sleb128 16
+ 954 0050 06000000 		.4byte	.LCFI4
+ 955 0054 A6000000 		.4byte	.LFE57
+ 956 0058 0200     		.2byte	0x2
+ 957 005a 77       		.byte	0x77
+ 958 005b 10       		.sleb128 16
+ 959 005c 00000000 		.4byte	0
+ 960 0060 00000000 		.4byte	0
+ 961              	.LLST2:
+ 962 0064 00000000 		.4byte	.LFB58
+ 963 0068 02000000 		.4byte	.LCFI5
+ 964 006c 0200     		.2byte	0x2
+ 965 006e 7D       		.byte	0x7d
+ 966 006f 00       		.sleb128 0
+ 967 0070 02000000 		.4byte	.LCFI5
+ 968 0074 04000000 		.4byte	.LCFI6
+ 969 0078 0200     		.2byte	0x2
+ 970 007a 7D       		.byte	0x7d
+ 971 007b 08       		.sleb128 8
+ 972 007c 04000000 		.4byte	.LCFI6
+ 973 0080 06000000 		.4byte	.LCFI7
+ 974 0084 0200     		.2byte	0x2
+ 975 0086 7D       		.byte	0x7d
+ 976 0087 10       		.sleb128 16
+ 977 0088 06000000 		.4byte	.LCFI7
+ 978 008c B0000000 		.4byte	.LFE58
+ 979 0090 0200     		.2byte	0x2
+ 980 0092 77       		.byte	0x77
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 22
+
+
+ 981 0093 10       		.sleb128 16
+ 982 0094 00000000 		.4byte	0
+ 983 0098 00000000 		.4byte	0
+ 984              	.LLST3:
+ 985 009c 00000000 		.4byte	.LFB59
+ 986 00a0 02000000 		.4byte	.LCFI8
+ 987 00a4 0200     		.2byte	0x2
+ 988 00a6 7D       		.byte	0x7d
+ 989 00a7 00       		.sleb128 0
+ 990 00a8 02000000 		.4byte	.LCFI8
+ 991 00ac 04000000 		.4byte	.LCFI9
+ 992 00b0 0200     		.2byte	0x2
+ 993 00b2 7D       		.byte	0x7d
+ 994 00b3 08       		.sleb128 8
+ 995 00b4 04000000 		.4byte	.LCFI9
+ 996 00b8 6A000000 		.4byte	.LFE59
+ 997 00bc 0200     		.2byte	0x2
+ 998 00be 77       		.byte	0x77
+ 999 00bf 08       		.sleb128 8
+ 1000 00c0 00000000 		.4byte	0
+ 1001 00c4 00000000 		.4byte	0
+ 1002              		.section	.debug_aranges,"",%progbits
+ 1003 0000 34000000 		.4byte	0x34
+ 1004 0004 0200     		.2byte	0x2
+ 1005 0006 00000000 		.4byte	.Ldebug_info0
+ 1006 000a 04       		.byte	0x4
+ 1007 000b 00       		.byte	0
+ 1008 000c 0000     		.2byte	0
+ 1009 000e 0000     		.2byte	0
+ 1010 0010 00000000 		.4byte	.LFB56
+ 1011 0014 F4000000 		.4byte	.LFE56-.LFB56
+ 1012 0018 00000000 		.4byte	.LFB57
+ 1013 001c A6000000 		.4byte	.LFE57-.LFB57
+ 1014 0020 00000000 		.4byte	.LFB58
+ 1015 0024 B0000000 		.4byte	.LFE58-.LFB58
+ 1016 0028 00000000 		.4byte	.LFB59
+ 1017 002c 6A000000 		.4byte	.LFE59-.LFB59
+ 1018 0030 00000000 		.4byte	0
+ 1019 0034 00000000 		.4byte	0
+ 1020              		.section	.debug_ranges,"",%progbits
+ 1021              	.Ldebug_ranges0:
+ 1022 0000 00000000 		.4byte	.LFB56
+ 1023 0004 F4000000 		.4byte	.LFE56
+ 1024 0008 00000000 		.4byte	.LFB57
+ 1025 000c A6000000 		.4byte	.LFE57
+ 1026 0010 00000000 		.4byte	.LFB58
+ 1027 0014 B0000000 		.4byte	.LFE58
+ 1028 0018 00000000 		.4byte	.LFB59
+ 1029 001c 6A000000 		.4byte	.LFE59
+ 1030 0020 00000000 		.4byte	0
+ 1031 0024 00000000 		.4byte	0
+ 1032              		.section	.debug_line,"",%progbits
+ 1033              	.Ldebug_line0:
+ 1034 0000 B2010000 		.section	.debug_str,"MS",%progbits,1
+ 1034      0200F900 
+ 1034      00000201 
+ 1034      FB0E0D00 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 23
+
+
+ 1034      01010101 
+ 1035              	.LASF6:
+ 1036 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1036      206C6F6E 
+ 1036      6720696E 
+ 1036      7400
+ 1037              	.LASF23:
+ 1038 000e 42756C6B 		.ascii	"Bulk_OUT_Buffer\000"
+ 1038      5F4F5554 
+ 1038      5F427566 
+ 1038      66657200 
+ 1039              	.LASF21:
+ 1040 001e 496E7465 		.ascii	"Interrupt_OUT_Buffer\000"
+ 1040      72727570 
+ 1040      745F4F55 
+ 1040      545F4275 
+ 1040      66666572 
+ 1041              	.LASF29:
+ 1042 0033 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 1042      73657273 
+ 1042      5C566963 
+ 1042      746F7220 
+ 1042      5275656C 
+ 1043 0060 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 1043      54657374 
+ 1043      65555342 
+ 1043      5C546573 
+ 1043      74655553 
+ 1044              	.LASF28:
+ 1045 007c 2E5C6D61 		.ascii	".\\main.c\000"
+ 1045      696E2E63 
+ 1045      00
+ 1046              	.LASF11:
+ 1047 0085 666C6F61 		.ascii	"float\000"
+ 1047      7400
+ 1048              	.LASF16:
+ 1049 008b 496E7465 		.ascii	"Interrupt_Transfer\000"
+ 1049      72727570 
+ 1049      745F5472 
+ 1049      616E7366 
+ 1049      657200
+ 1050              	.LASF25:
+ 1051 009e 49736F63 		.ascii	"Isochronous_OUT_Buffer\000"
+ 1051      68726F6E 
+ 1051      6F75735F 
+ 1051      4F55545F 
+ 1051      42756666 
+ 1052              	.LASF14:
+ 1053 00b5 72656738 		.ascii	"reg8\000"
+ 1053      00
+ 1054              	.LASF22:
+ 1055 00ba 4550325F 		.ascii	"EP2_Count\000"
+ 1055      436F756E 
+ 1055      7400
+ 1056              	.LASF5:
+ 1057 00c4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1057      20756E73 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 24
+
+
+ 1057      69676E65 
+ 1057      6420696E 
+ 1057      7400
+ 1058              	.LASF3:
+ 1059 00d6 73686F72 		.ascii	"short unsigned int\000"
+ 1059      7420756E 
+ 1059      7369676E 
+ 1059      65642069 
+ 1059      6E7400
+ 1060              	.LASF19:
+ 1061 00e9 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1061      52784275 
+ 1061      66666572 
+ 1061      00
+ 1062              	.LASF1:
+ 1063 00f6 756E7369 		.ascii	"unsigned char\000"
+ 1063      676E6564 
+ 1063      20636861 
+ 1063      7200
+ 1064              	.LASF12:
+ 1065 0104 646F7562 		.ascii	"double\000"
+ 1065      6C6500
+ 1066              	.LASF30:
+ 1067 010b 6D61696E 		.ascii	"main\000"
+ 1067      00
+ 1068              	.LASF24:
+ 1069 0110 4550345F 		.ascii	"EP4_Count\000"
+ 1069      436F756E 
+ 1069      7400
+ 1070              	.LASF8:
+ 1071 011a 756E7369 		.ascii	"unsigned int\000"
+ 1071      676E6564 
+ 1071      20696E74 
+ 1071      00
+ 1072              	.LASF7:
+ 1073 0127 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1073      206C6F6E 
+ 1073      6720756E 
+ 1073      7369676E 
+ 1073      65642069 
+ 1074              	.LASF20:
+ 1075 013e 416C7453 		.ascii	"AltSettingNumber\000"
+ 1075      65747469 
+ 1075      6E674E75 
+ 1075      6D626572 
+ 1075      00
+ 1076              	.LASF9:
+ 1077 014f 696E7433 		.ascii	"int32_t\000"
+ 1077      325F7400 
+ 1078              	.LASF15:
+ 1079 0157 73697A65 		.ascii	"sizetype\000"
+ 1079      74797065 
+ 1079      00
+ 1080              	.LASF31:
+ 1081 0160 49736F63 		.ascii	"Isochronous_Transfer\000"
+ 1081      68726F6E 
+ 1081      6F75735F 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc329r6Z.s 			page 25
+
+
+ 1081      5472616E 
+ 1081      73666572 
+ 1082              	.LASF26:
+ 1083 0175 4550365F 		.ascii	"EP6_Count\000"
+ 1083      436F756E 
+ 1083      7400
+ 1084              	.LASF13:
+ 1085 017f 63686172 		.ascii	"char\000"
+ 1085      00
+ 1086              	.LASF2:
+ 1087 0184 73686F72 		.ascii	"short int\000"
+ 1087      7420696E 
+ 1087      7400
+ 1088              	.LASF10:
+ 1089 018e 75696E74 		.ascii	"uint8\000"
+ 1089      3800
+ 1090              	.LASF27:
+ 1091 0194 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1091      4320342E 
+ 1091      372E3320 
+ 1091      32303133 
+ 1091      30333132 
+ 1092 01c7 616E6368 		.ascii	"anch revision 196615]\000"
+ 1092      20726576 
+ 1092      6973696F 
+ 1092      6E203139 
+ 1092      36363135 
+ 1093              	.LASF18:
+ 1094 01dd 55534246 		.ascii	"USBFS_deviceAddress\000"
+ 1094      535F6465 
+ 1094      76696365 
+ 1094      41646472 
+ 1094      65737300 
+ 1095              	.LASF4:
+ 1096 01f1 6C6F6E67 		.ascii	"long int\000"
+ 1096      20696E74 
+ 1096      00
+ 1097              	.LASF0:
+ 1098 01fa 7369676E 		.ascii	"signed char\000"
+ 1098      65642063 
+ 1098      68617200 
+ 1099              	.LASF17:
+ 1100 0206 42756C6B 		.ascii	"Bulk_Transfer\000"
+ 1100      5F547261 
+ 1100      6E736665 
+ 1100      7200
+ 1101              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

@@ -1,0 +1,1287 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"USBFS_descr.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	USBFS_DEVICE0_DESCR
+  19              		.section	.rodata
+  20              		.align	2
+  21              		.type	USBFS_DEVICE0_DESCR, %object
+  22              		.size	USBFS_DEVICE0_DESCR, 18
+  23              	USBFS_DEVICE0_DESCR:
+  24 0000 12       		.byte	18
+  25 0001 01       		.byte	1
+  26 0002 00       		.byte	0
+  27 0003 02       		.byte	2
+  28 0004 FF       		.byte	-1
+  29 0005 00       		.byte	0
+  30 0006 00       		.byte	0
+  31 0007 08       		.byte	8
+  32 0008 B4       		.byte	-76
+  33 0009 04       		.byte	4
+  34 000a 75       		.byte	117
+  35 000b E1       		.byte	-31
+  36 000c 00       		.byte	0
+  37 000d 00       		.byte	0
+  38 000e 01       		.byte	1
+  39 000f 02       		.byte	2
+  40 0010 00       		.byte	0
+  41 0011 01       		.byte	1
+  42              		.global	USBFS_DEVICE0_CONFIGURATION0_DESCR
+  43 0012 0000     		.align	2
+  44              		.type	USBFS_DEVICE0_CONFIGURATION0_DESCR, %object
+  45              		.size	USBFS_DEVICE0_CONFIGURATION0_DESCR, 87
+  46              	USBFS_DEVICE0_CONFIGURATION0_DESCR:
+  47 0014 09       		.byte	9
+  48 0015 02       		.byte	2
+  49 0016 57       		.byte	87
+  50 0017 00       		.byte	0
+  51 0018 01       		.byte	1
+  52 0019 01       		.byte	1
+  53 001a 03       		.byte	3
+  54 001b 80       		.byte	-128
+  55 001c 28       		.byte	40
+  56 001d 09       		.byte	9
+  57 001e 04       		.byte	4
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 2
+
+
+  58 001f 00       		.byte	0
+  59 0020 00       		.byte	0
+  60 0021 00       		.byte	0
+  61 0022 FF       		.byte	-1
+  62 0023 00       		.byte	0
+  63 0024 00       		.byte	0
+  64 0025 05       		.byte	5
+  65 0026 09       		.byte	9
+  66 0027 04       		.byte	4
+  67 0028 00       		.byte	0
+  68 0029 01       		.byte	1
+  69 002a 02       		.byte	2
+  70 002b FF       		.byte	-1
+  71 002c 00       		.byte	0
+  72 002d 00       		.byte	0
+  73 002e 09       		.byte	9
+  74 002f 07       		.byte	7
+  75 0030 05       		.byte	5
+  76 0031 81       		.byte	-127
+  77 0032 02       		.byte	2
+  78 0033 08       		.byte	8
+  79 0034 00       		.byte	0
+  80 0035 0A       		.byte	10
+  81 0036 07       		.byte	7
+  82 0037 05       		.byte	5
+  83 0038 02       		.byte	2
+  84 0039 02       		.byte	2
+  85 003a 08       		.byte	8
+  86 003b 00       		.byte	0
+  87 003c 0A       		.byte	10
+  88 003d 09       		.byte	9
+  89 003e 04       		.byte	4
+  90 003f 00       		.byte	0
+  91 0040 02       		.byte	2
+  92 0041 02       		.byte	2
+  93 0042 FF       		.byte	-1
+  94 0043 00       		.byte	0
+  95 0044 00       		.byte	0
+  96 0045 07       		.byte	7
+  97 0046 07       		.byte	7
+  98 0047 05       		.byte	5
+  99 0048 83       		.byte	-125
+ 100 0049 02       		.byte	2
+ 101 004a 08       		.byte	8
+ 102 004b 00       		.byte	0
+ 103 004c 0A       		.byte	10
+ 104 004d 07       		.byte	7
+ 105 004e 05       		.byte	5
+ 106 004f 04       		.byte	4
+ 107 0050 02       		.byte	2
+ 108 0051 08       		.byte	8
+ 109 0052 00       		.byte	0
+ 110 0053 0A       		.byte	10
+ 111 0054 09       		.byte	9
+ 112 0055 04       		.byte	4
+ 113 0056 00       		.byte	0
+ 114 0057 03       		.byte	3
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 3
+
+
+ 115 0058 02       		.byte	2
+ 116 0059 FF       		.byte	-1
+ 117 005a 00       		.byte	0
+ 118 005b 00       		.byte	0
+ 119 005c 08       		.byte	8
+ 120 005d 07       		.byte	7
+ 121 005e 05       		.byte	5
+ 122 005f 85       		.byte	-123
+ 123 0060 01       		.byte	1
+ 124 0061 08       		.byte	8
+ 125 0062 00       		.byte	0
+ 126 0063 01       		.byte	1
+ 127 0064 07       		.byte	7
+ 128 0065 05       		.byte	5
+ 129 0066 06       		.byte	6
+ 130 0067 01       		.byte	1
+ 131 0068 08       		.byte	8
+ 132 0069 00       		.byte	0
+ 133 006a 01       		.byte	1
+ 134              		.global	USBFS_STRING_DESCRIPTORS
+ 135 006b 00       		.align	2
+ 136              		.type	USBFS_STRING_DESCRIPTORS, %object
+ 137              		.size	USBFS_STRING_DESCRIPTORS, 307
+ 138              	USBFS_STRING_DESCRIPTORS:
+ 139 006c 04       		.byte	4
+ 140 006d 03       		.byte	3
+ 141 006e 09       		.byte	9
+ 142 006f 04       		.byte	4
+ 143 0070 2C       		.byte	44
+ 144 0071 03       		.byte	3
+ 145 0072 43       		.byte	67
+ 146 0073 00       		.byte	0
+ 147 0074 79       		.byte	121
+ 148 0075 00       		.byte	0
+ 149 0076 70       		.byte	112
+ 150 0077 00       		.byte	0
+ 151 0078 72       		.byte	114
+ 152 0079 00       		.byte	0
+ 153 007a 65       		.byte	101
+ 154 007b 00       		.byte	0
+ 155 007c 73       		.byte	115
+ 156 007d 00       		.byte	0
+ 157 007e 73       		.byte	115
+ 158 007f 00       		.byte	0
+ 159 0080 20       		.byte	32
+ 160 0081 00       		.byte	0
+ 161 0082 53       		.byte	83
+ 162 0083 00       		.byte	0
+ 163 0084 65       		.byte	101
+ 164 0085 00       		.byte	0
+ 165 0086 6D       		.byte	109
+ 166 0087 00       		.byte	0
+ 167 0088 69       		.byte	105
+ 168 0089 00       		.byte	0
+ 169 008a 63       		.byte	99
+ 170 008b 00       		.byte	0
+ 171 008c 6F       		.byte	111
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 4
+
+
+ 172 008d 00       		.byte	0
+ 173 008e 6E       		.byte	110
+ 174 008f 00       		.byte	0
+ 175 0090 64       		.byte	100
+ 176 0091 00       		.byte	0
+ 177 0092 75       		.byte	117
+ 178 0093 00       		.byte	0
+ 179 0094 63       		.byte	99
+ 180 0095 00       		.byte	0
+ 181 0096 74       		.byte	116
+ 182 0097 00       		.byte	0
+ 183 0098 6F       		.byte	111
+ 184 0099 00       		.byte	0
+ 185 009a 72       		.byte	114
+ 186 009b 00       		.byte	0
+ 187 009c 14       		.byte	20
+ 188 009d 03       		.byte	3
+ 189 009e 54       		.byte	84
+ 190 009f 00       		.byte	0
+ 191 00a0 65       		.byte	101
+ 192 00a1 00       		.byte	0
+ 193 00a2 73       		.byte	115
+ 194 00a3 00       		.byte	0
+ 195 00a4 74       		.byte	116
+ 196 00a5 00       		.byte	0
+ 197 00a6 65       		.byte	101
+ 198 00a7 00       		.byte	0
+ 199 00a8 20       		.byte	32
+ 200 00a9 00       		.byte	0
+ 201 00aa 55       		.byte	85
+ 202 00ab 00       		.byte	0
+ 203 00ac 53       		.byte	83
+ 204 00ad 00       		.byte	0
+ 205 00ae 42       		.byte	66
+ 206 00af 00       		.byte	0
+ 207 00b0 20       		.byte	32
+ 208 00b1 03       		.byte	3
+ 209 00b2 43       		.byte	67
+ 210 00b3 00       		.byte	0
+ 211 00b4 6F       		.byte	111
+ 212 00b5 00       		.byte	0
+ 213 00b6 6E       		.byte	110
+ 214 00b7 00       		.byte	0
+ 215 00b8 66       		.byte	102
+ 216 00b9 00       		.byte	0
+ 217 00ba 69       		.byte	105
+ 218 00bb 00       		.byte	0
+ 219 00bc 67       		.byte	103
+ 220 00bd 00       		.byte	0
+ 221 00be 75       		.byte	117
+ 222 00bf 00       		.byte	0
+ 223 00c0 72       		.byte	114
+ 224 00c1 00       		.byte	0
+ 225 00c2 61       		.byte	97
+ 226 00c3 00       		.byte	0
+ 227 00c4 74       		.byte	116
+ 228 00c5 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 5
+
+
+ 229 00c6 69       		.byte	105
+ 230 00c7 00       		.byte	0
+ 231 00c8 6F       		.byte	111
+ 232 00c9 00       		.byte	0
+ 233 00ca 6E       		.byte	110
+ 234 00cb 00       		.byte	0
+ 235 00cc 20       		.byte	32
+ 236 00cd 00       		.byte	0
+ 237 00ce 31       		.byte	49
+ 238 00cf 00       		.byte	0
+ 239 00d0 1A       		.byte	26
+ 240 00d1 03       		.byte	3
+ 241 00d2 5A       		.byte	90
+ 242 00d3 00       		.byte	0
+ 243 00d4 65       		.byte	101
+ 244 00d5 00       		.byte	0
+ 245 00d6 72       		.byte	114
+ 246 00d7 00       		.byte	0
+ 247 00d8 6F       		.byte	111
+ 248 00d9 00       		.byte	0
+ 249 00da 42       		.byte	66
+ 250 00db 00       		.byte	0
+ 251 00dc 61       		.byte	97
+ 252 00dd 00       		.byte	0
+ 253 00de 6E       		.byte	110
+ 254 00df 00       		.byte	0
+ 255 00e0 64       		.byte	100
+ 256 00e1 00       		.byte	0
+ 257 00e2 69       		.byte	105
+ 258 00e3 00       		.byte	0
+ 259 00e4 77       		.byte	119
+ 260 00e5 00       		.byte	0
+ 261 00e6 74       		.byte	116
+ 262 00e7 00       		.byte	0
+ 263 00e8 68       		.byte	104
+ 264 00e9 00       		.byte	0
+ 265 00ea 1C       		.byte	28
+ 266 00eb 03       		.byte	3
+ 267 00ec 5A       		.byte	90
+ 268 00ed 00       		.byte	0
+ 269 00ee 65       		.byte	101
+ 270 00ef 00       		.byte	0
+ 271 00f0 72       		.byte	114
+ 272 00f1 00       		.byte	0
+ 273 00f2 6F       		.byte	111
+ 274 00f3 00       		.byte	0
+ 275 00f4 42       		.byte	66
+ 276 00f5 00       		.byte	0
+ 277 00f6 61       		.byte	97
+ 278 00f7 00       		.byte	0
+ 279 00f8 6E       		.byte	110
+ 280 00f9 00       		.byte	0
+ 281 00fa 64       		.byte	100
+ 282 00fb 00       		.byte	0
+ 283 00fc 77       		.byte	119
+ 284 00fd 00       		.byte	0
+ 285 00fe 69       		.byte	105
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 6
+
+
+ 286 00ff 00       		.byte	0
+ 287 0100 64       		.byte	100
+ 288 0101 00       		.byte	0
+ 289 0102 74       		.byte	116
+ 290 0103 00       		.byte	0
+ 291 0104 68       		.byte	104
+ 292 0105 00       		.byte	0
+ 293 0106 28       		.byte	40
+ 294 0107 03       		.byte	3
+ 295 0108 49       		.byte	73
+ 296 0109 00       		.byte	0
+ 297 010a 6E       		.byte	110
+ 298 010b 00       		.byte	0
+ 299 010c 74       		.byte	116
+ 300 010d 00       		.byte	0
+ 301 010e 65       		.byte	101
+ 302 010f 00       		.byte	0
+ 303 0110 72       		.byte	114
+ 304 0111 00       		.byte	0
+ 305 0112 72       		.byte	114
+ 306 0113 00       		.byte	0
+ 307 0114 75       		.byte	117
+ 308 0115 00       		.byte	0
+ 309 0116 70       		.byte	112
+ 310 0117 00       		.byte	0
+ 311 0118 74       		.byte	116
+ 312 0119 00       		.byte	0
+ 313 011a 20       		.byte	32
+ 314 011b 00       		.byte	0
+ 315 011c 49       		.byte	73
+ 316 011d 00       		.byte	0
+ 317 011e 6E       		.byte	110
+ 318 011f 00       		.byte	0
+ 319 0120 74       		.byte	116
+ 320 0121 00       		.byte	0
+ 321 0122 65       		.byte	101
+ 322 0123 00       		.byte	0
+ 323 0124 72       		.byte	114
+ 324 0125 00       		.byte	0
+ 325 0126 66       		.byte	102
+ 326 0127 00       		.byte	0
+ 327 0128 61       		.byte	97
+ 328 0129 00       		.byte	0
+ 329 012a 63       		.byte	99
+ 330 012b 00       		.byte	0
+ 331 012c 65       		.byte	101
+ 332 012d 00       		.byte	0
+ 333 012e 1E       		.byte	30
+ 334 012f 03       		.byte	3
+ 335 0130 42       		.byte	66
+ 336 0131 00       		.byte	0
+ 337 0132 75       		.byte	117
+ 338 0133 00       		.byte	0
+ 339 0134 6C       		.byte	108
+ 340 0135 00       		.byte	0
+ 341 0136 6B       		.byte	107
+ 342 0137 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 7
+
+
+ 343 0138 20       		.byte	32
+ 344 0139 00       		.byte	0
+ 345 013a 49       		.byte	73
+ 346 013b 00       		.byte	0
+ 347 013c 6E       		.byte	110
+ 348 013d 00       		.byte	0
+ 349 013e 74       		.byte	116
+ 350 013f 00       		.byte	0
+ 351 0140 65       		.byte	101
+ 352 0141 00       		.byte	0
+ 353 0142 72       		.byte	114
+ 354 0143 00       		.byte	0
+ 355 0144 66       		.byte	102
+ 356 0145 00       		.byte	0
+ 357 0146 61       		.byte	97
+ 358 0147 00       		.byte	0
+ 359 0148 63       		.byte	99
+ 360 0149 00       		.byte	0
+ 361 014a 65       		.byte	101
+ 362 014b 00       		.byte	0
+ 363 014c 2C       		.byte	44
+ 364 014d 03       		.byte	3
+ 365 014e 49       		.byte	73
+ 366 014f 00       		.byte	0
+ 367 0150 73       		.byte	115
+ 368 0151 00       		.byte	0
+ 369 0152 6F       		.byte	111
+ 370 0153 00       		.byte	0
+ 371 0154 63       		.byte	99
+ 372 0155 00       		.byte	0
+ 373 0156 68       		.byte	104
+ 374 0157 00       		.byte	0
+ 375 0158 72       		.byte	114
+ 376 0159 00       		.byte	0
+ 377 015a 6F       		.byte	111
+ 378 015b 00       		.byte	0
+ 379 015c 6E       		.byte	110
+ 380 015d 00       		.byte	0
+ 381 015e 6F       		.byte	111
+ 382 015f 00       		.byte	0
+ 383 0160 75       		.byte	117
+ 384 0161 00       		.byte	0
+ 385 0162 73       		.byte	115
+ 386 0163 00       		.byte	0
+ 387 0164 20       		.byte	32
+ 388 0165 00       		.byte	0
+ 389 0166 49       		.byte	73
+ 390 0167 00       		.byte	0
+ 391 0168 6E       		.byte	110
+ 392 0169 00       		.byte	0
+ 393 016a 74       		.byte	116
+ 394 016b 00       		.byte	0
+ 395 016c 65       		.byte	101
+ 396 016d 00       		.byte	0
+ 397 016e 72       		.byte	114
+ 398 016f 00       		.byte	0
+ 399 0170 66       		.byte	102
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 8
+
+
+ 400 0171 00       		.byte	0
+ 401 0172 61       		.byte	97
+ 402 0173 00       		.byte	0
+ 403 0174 63       		.byte	99
+ 404 0175 00       		.byte	0
+ 405 0176 65       		.byte	101
+ 406 0177 00       		.byte	0
+ 407 0178 26       		.byte	38
+ 408 0179 03       		.byte	3
+ 409 017a 42       		.byte	66
+ 410 017b 00       		.byte	0
+ 411 017c 75       		.byte	117
+ 412 017d 00       		.byte	0
+ 413 017e 6C       		.byte	108
+ 414 017f 00       		.byte	0
+ 415 0180 6B       		.byte	107
+ 416 0181 00       		.byte	0
+ 417 0182 20       		.byte	32
+ 418 0183 00       		.byte	0
+ 419 0184 49       		.byte	73
+ 420 0185 00       		.byte	0
+ 421 0186 6E       		.byte	110
+ 422 0187 00       		.byte	0
+ 423 0188 74       		.byte	116
+ 424 0189 00       		.byte	0
+ 425 018a 65       		.byte	101
+ 426 018b 00       		.byte	0
+ 427 018c 72       		.byte	114
+ 428 018d 00       		.byte	0
+ 429 018e 66       		.byte	102
+ 430 018f 00       		.byte	0
+ 431 0190 61       		.byte	97
+ 432 0191 00       		.byte	0
+ 433 0192 63       		.byte	99
+ 434 0193 00       		.byte	0
+ 435 0194 65       		.byte	101
+ 436 0195 00       		.byte	0
+ 437 0196 20       		.byte	32
+ 438 0197 00       		.byte	0
+ 439 0198 41       		.byte	65
+ 440 0199 00       		.byte	0
+ 441 019a 44       		.byte	68
+ 442 019b 00       		.byte	0
+ 443 019c 43       		.byte	67
+ 444 019d 00       		.byte	0
+ 445 019e 00       		.byte	0
+ 446              		.global	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 447 019f 00       		.align	2
+ 448              		.type	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE, %object
+ 449              		.size	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE, 48
+ 450              	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE:
+ 451 01a0 00       		.byte	0
+ 452 01a1 01       		.byte	1
+ 453 01a2 81       		.byte	-127
+ 454 01a3 02       		.byte	2
+ 455 01a4 0800     		.short	8
+ 456 01a6 FF       		.byte	-1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 9
+
+
+ 457 01a7 00       		.space	1
+ 458 01a8 00       		.byte	0
+ 459 01a9 01       		.byte	1
+ 460 01aa 02       		.byte	2
+ 461 01ab 02       		.byte	2
+ 462 01ac 0800     		.short	8
+ 463 01ae FF       		.byte	-1
+ 464 01af 00       		.space	1
+ 465 01b0 00       		.byte	0
+ 466 01b1 02       		.byte	2
+ 467 01b2 83       		.byte	-125
+ 468 01b3 02       		.byte	2
+ 469 01b4 0800     		.short	8
+ 470 01b6 FF       		.byte	-1
+ 471 01b7 00       		.space	1
+ 472 01b8 00       		.byte	0
+ 473 01b9 02       		.byte	2
+ 474 01ba 04       		.byte	4
+ 475 01bb 02       		.byte	2
+ 476 01bc 0800     		.short	8
+ 477 01be FF       		.byte	-1
+ 478 01bf 00       		.space	1
+ 479 01c0 00       		.byte	0
+ 480 01c1 03       		.byte	3
+ 481 01c2 85       		.byte	-123
+ 482 01c3 01       		.byte	1
+ 483 01c4 0800     		.short	8
+ 484 01c6 FF       		.byte	-1
+ 485 01c7 00       		.space	1
+ 486 01c8 00       		.byte	0
+ 487 01c9 03       		.byte	3
+ 488 01ca 06       		.byte	6
+ 489 01cb 01       		.byte	1
+ 490 01cc 0800     		.short	8
+ 491 01ce FF       		.byte	-1
+ 492 01cf 00       		.space	1
+ 493              		.global	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 494              		.align	2
+ 495              		.type	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS, %object
+ 496              		.size	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS, 1
+ 497              	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS:
+ 498 01d0 FF       		.byte	-1
+ 499              		.global	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 500 01d1 000000   		.align	2
+ 501              		.type	USBFS_DEVICE0_CONFIGURATION0_TABLE, %object
+ 502              		.size	USBFS_DEVICE0_CONFIGURATION0_TABLE, 32
+ 503              	USBFS_DEVICE0_CONFIGURATION0_TABLE:
+ 504 01d4 01       		.byte	1
+ 505 01d5 000000   		.space	3
+ 506 01d8 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_DESCR
+ 507 01dc 06       		.byte	6
+ 508 01dd 000000   		.space	3
+ 509 01e0 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 510 01e4 00       		.byte	0
+ 511 01e5 000000   		.space	3
+ 512 01e8 00000000 		.word	0
+ 513 01ec 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 10
+
+
+ 514 01ed 000000   		.space	3
+ 515 01f0 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 516              		.global	USBFS_DEVICE0_TABLE
+ 517              		.align	2
+ 518              		.type	USBFS_DEVICE0_TABLE, %object
+ 519              		.size	USBFS_DEVICE0_TABLE, 16
+ 520              	USBFS_DEVICE0_TABLE:
+ 521 01f4 01       		.byte	1
+ 522 01f5 000000   		.space	3
+ 523 01f8 00000000 		.word	USBFS_DEVICE0_DESCR
+ 524 01fc 01       		.byte	1
+ 525 01fd 000000   		.space	3
+ 526 0200 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 527              		.global	USBFS_TABLE
+ 528              		.align	2
+ 529              		.type	USBFS_TABLE, %object
+ 530              		.size	USBFS_TABLE, 8
+ 531              	USBFS_TABLE:
+ 532 0204 01       		.byte	1
+ 533 0205 000000   		.space	3
+ 534 0208 00000000 		.word	USBFS_DEVICE0_TABLE
+ 535              		.text
+ 536              	.Letext0:
+ 537              		.file 1 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 538              		.file 2 ".\\Generated_Source\\PSoC5\\USBFS.h"
+ 539              		.file 3 ".\\Generated_Source\\PSoC5\\USBFS_descr.c"
+ 540              		.section	.debug_info,"",%progbits
+ 541              	.Ldebug_info0:
+ 542 0000 6D020000 		.4byte	0x26d
+ 543 0004 0200     		.2byte	0x2
+ 544 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 545 000a 04       		.byte	0x4
+ 546 000b 01       		.uleb128 0x1
+ 547 000c 49020000 		.4byte	.LASF32
+ 548 0010 01       		.byte	0x1
+ 549 0011 07020000 		.4byte	.LASF33
+ 550 0015 4D000000 		.4byte	.LASF34
+ 551 0019 00000000 		.4byte	.Ldebug_line0
+ 552 001d 02       		.uleb128 0x2
+ 553 001e 01       		.byte	0x1
+ 554 001f 06       		.byte	0x6
+ 555 0020 A5020000 		.4byte	.LASF0
+ 556 0024 02       		.uleb128 0x2
+ 557 0025 01       		.byte	0x1
+ 558 0026 08       		.byte	0x8
+ 559 0027 1A010000 		.4byte	.LASF1
+ 560 002b 02       		.uleb128 0x2
+ 561 002c 02       		.byte	0x2
+ 562 002d 05       		.byte	0x5
+ 563 002e 39020000 		.4byte	.LASF2
+ 564 0032 02       		.uleb128 0x2
+ 565 0033 02       		.byte	0x2
+ 566 0034 07       		.byte	0x7
+ 567 0035 96000000 		.4byte	.LASF3
+ 568 0039 02       		.uleb128 0x2
+ 569 003a 04       		.byte	0x4
+ 570 003b 05       		.byte	0x5
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 11
+
+
+ 571 003c 9C020000 		.4byte	.LASF4
+ 572 0040 02       		.uleb128 0x2
+ 573 0041 04       		.byte	0x4
+ 574 0042 07       		.byte	0x7
+ 575 0043 88010000 		.4byte	.LASF5
+ 576 0047 02       		.uleb128 0x2
+ 577 0048 08       		.byte	0x8
+ 578 0049 05       		.byte	0x5
+ 579 004a E8010000 		.4byte	.LASF6
+ 580 004e 02       		.uleb128 0x2
+ 581 004f 08       		.byte	0x8
+ 582 0050 07       		.byte	0x7
+ 583 0051 A7010000 		.4byte	.LASF7
+ 584 0055 03       		.uleb128 0x3
+ 585 0056 04       		.byte	0x4
+ 586 0057 05       		.byte	0x5
+ 587 0058 696E7400 		.ascii	"int\000"
+ 588 005c 02       		.uleb128 0x2
+ 589 005d 04       		.byte	0x4
+ 590 005e 07       		.byte	0x7
+ 591 005f 9A010000 		.4byte	.LASF8
+ 592 0063 04       		.uleb128 0x4
+ 593 0064 43020000 		.4byte	.LASF9
+ 594 0068 01       		.byte	0x1
+ 595 0069 5B       		.byte	0x5b
+ 596 006a 24000000 		.4byte	0x24
+ 597 006e 04       		.uleb128 0x4
+ 598 006f 2F010000 		.4byte	.LASF10
+ 599 0073 01       		.byte	0x1
+ 600 0074 5C       		.byte	0x5c
+ 601 0075 32000000 		.4byte	0x32
+ 602 0079 02       		.uleb128 0x2
+ 603 007a 04       		.byte	0x4
+ 604 007b 04       		.byte	0x4
+ 605 007c A9000000 		.4byte	.LASF11
+ 606 0080 02       		.uleb128 0x2
+ 607 0081 08       		.byte	0x8
+ 608 0082 04       		.byte	0x4
+ 609 0083 28010000 		.4byte	.LASF12
+ 610 0087 02       		.uleb128 0x2
+ 611 0088 01       		.byte	0x1
+ 612 0089 08       		.byte	0x8
+ 613 008a 02020000 		.4byte	.LASF13
+ 614 008e 02       		.uleb128 0x2
+ 615 008f 04       		.byte	0x4
+ 616 0090 07       		.byte	0x7
+ 617 0091 DF010000 		.4byte	.LASF14
+ 618 0095 05       		.uleb128 0x5
+ 619 0096 08       		.byte	0x8
+ 620 0097 02       		.byte	0x2
+ 621 0098 83       		.byte	0x83
+ 622 0099 F2000000 		.4byte	0xf2
+ 623 009d 06       		.uleb128 0x6
+ 624 009e 92020000 		.4byte	.LASF15
+ 625 00a2 02       		.byte	0x2
+ 626 00a3 85       		.byte	0x85
+ 627 00a4 63000000 		.4byte	0x63
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 12
+
+
+ 628 00a8 02       		.byte	0x2
+ 629 00a9 23       		.byte	0x23
+ 630 00aa 00       		.uleb128 0
+ 631 00ab 06       		.uleb128 0x6
+ 632 00ac AF000000 		.4byte	.LASF16
+ 633 00b0 02       		.byte	0x2
+ 634 00b1 86       		.byte	0x86
+ 635 00b2 63000000 		.4byte	0x63
+ 636 00b6 02       		.byte	0x2
+ 637 00b7 23       		.byte	0x23
+ 638 00b8 01       		.uleb128 0x1
+ 639 00b9 06       		.uleb128 0x6
+ 640 00ba 01010000 		.4byte	.LASF17
+ 641 00be 02       		.byte	0x2
+ 642 00bf 87       		.byte	0x87
+ 643 00c0 63000000 		.4byte	0x63
+ 644 00c4 02       		.byte	0x2
+ 645 00c5 23       		.byte	0x23
+ 646 00c6 02       		.uleb128 0x2
+ 647 00c7 06       		.uleb128 0x6
+ 648 00c8 D3000000 		.4byte	.LASF18
+ 649 00cc 02       		.byte	0x2
+ 650 00cd 88       		.byte	0x88
+ 651 00ce 63000000 		.4byte	0x63
+ 652 00d2 02       		.byte	0x2
+ 653 00d3 23       		.byte	0x23
+ 654 00d4 03       		.uleb128 0x3
+ 655 00d5 06       		.uleb128 0x6
+ 656 00d6 2E020000 		.4byte	.LASF19
+ 657 00da 02       		.byte	0x2
+ 658 00db 89       		.byte	0x89
+ 659 00dc 6E000000 		.4byte	0x6e
+ 660 00e0 02       		.byte	0x2
+ 661 00e1 23       		.byte	0x23
+ 662 00e2 04       		.uleb128 0x4
+ 663 00e3 06       		.uleb128 0x6
+ 664 00e4 B1020000 		.4byte	.LASF20
+ 665 00e8 02       		.byte	0x2
+ 666 00e9 8A       		.byte	0x8a
+ 667 00ea 63000000 		.4byte	0x63
+ 668 00ee 02       		.byte	0x2
+ 669 00ef 23       		.byte	0x23
+ 670 00f0 06       		.uleb128 0x6
+ 671 00f1 00       		.byte	0
+ 672 00f2 04       		.uleb128 0x4
+ 673 00f3 C5010000 		.4byte	.LASF21
+ 674 00f7 02       		.byte	0x2
+ 675 00f8 8B       		.byte	0x8b
+ 676 00f9 95000000 		.4byte	0x95
+ 677 00fd 05       		.uleb128 0x5
+ 678 00fe 08       		.byte	0x8
+ 679 00ff 02       		.byte	0x2
+ 680 0100 9B       		.byte	0x9b
+ 681 0101 20010000 		.4byte	0x120
+ 682 0105 07       		.uleb128 0x7
+ 683 0106 6300     		.ascii	"c\000"
+ 684 0108 02       		.byte	0x2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 13
+
+
+ 685 0109 9D       		.byte	0x9d
+ 686 010a 63000000 		.4byte	0x63
+ 687 010e 02       		.byte	0x2
+ 688 010f 23       		.byte	0x23
+ 689 0110 00       		.uleb128 0
+ 690 0111 06       		.uleb128 0x6
+ 691 0112 BE010000 		.4byte	.LASF22
+ 692 0116 02       		.byte	0x2
+ 693 0117 9E       		.byte	0x9e
+ 694 0118 20010000 		.4byte	0x120
+ 695 011c 02       		.byte	0x2
+ 696 011d 23       		.byte	0x23
+ 697 011e 04       		.uleb128 0x4
+ 698 011f 00       		.byte	0
+ 699 0120 08       		.uleb128 0x8
+ 700 0121 04       		.byte	0x4
+ 701 0122 26010000 		.4byte	0x126
+ 702 0126 09       		.uleb128 0x9
+ 703 0127 04       		.uleb128 0x4
+ 704 0128 F6010000 		.4byte	.LASF23
+ 705 012c 02       		.byte	0x2
+ 706 012d 9F       		.byte	0x9f
+ 707 012e FD000000 		.4byte	0xfd
+ 708 0132 0A       		.uleb128 0xa
+ 709 0133 63000000 		.4byte	0x63
+ 710 0137 42010000 		.4byte	0x142
+ 711 013b 0B       		.uleb128 0xb
+ 712 013c 8E000000 		.4byte	0x8e
+ 713 0140 11       		.byte	0x11
+ 714 0141 00       		.byte	0
+ 715 0142 0C       		.uleb128 0xc
+ 716 0143 00000000 		.4byte	.LASF24
+ 717 0147 03       		.byte	0x3
+ 718 0148 26       		.byte	0x26
+ 719 0149 54010000 		.4byte	0x154
+ 720 014d 01       		.byte	0x1
+ 721 014e 05       		.byte	0x5
+ 722 014f 03       		.byte	0x3
+ 723 0150 00000000 		.4byte	USBFS_DEVICE0_DESCR
+ 724 0154 0D       		.uleb128 0xd
+ 725 0155 32010000 		.4byte	0x132
+ 726 0159 0A       		.uleb128 0xa
+ 727 015a 63000000 		.4byte	0x63
+ 728 015e 69010000 		.4byte	0x169
+ 729 0162 0B       		.uleb128 0xb
+ 730 0163 8E000000 		.4byte	0x8e
+ 731 0167 56       		.byte	0x56
+ 732 0168 00       		.byte	0
+ 733 0169 0C       		.uleb128 0xc
+ 734 016a 65010000 		.4byte	.LASF25
+ 735 016e 03       		.byte	0x3
+ 736 016f 39       		.byte	0x39
+ 737 0170 7B010000 		.4byte	0x17b
+ 738 0174 01       		.byte	0x1
+ 739 0175 05       		.byte	0x5
+ 740 0176 03       		.byte	0x3
+ 741 0177 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_DESCR
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 14
+
+
+ 742 017b 0D       		.uleb128 0xd
+ 743 017c 59010000 		.4byte	0x159
+ 744 0180 0A       		.uleb128 0xa
+ 745 0181 F2000000 		.4byte	0xf2
+ 746 0185 90010000 		.4byte	0x190
+ 747 0189 0B       		.uleb128 0xb
+ 748 018a 8E000000 		.4byte	0x8e
+ 749 018e 05       		.byte	0x5
+ 750 018f 00       		.byte	0
+ 751 0190 0E       		.uleb128 0xe
+ 752 0191 36010000 		.4byte	.LASF26
+ 753 0195 03       		.byte	0x3
+ 754 0196 0F01     		.2byte	0x10f
+ 755 0198 A3010000 		.4byte	0x1a3
+ 756 019c 01       		.byte	0x1
+ 757 019d 05       		.byte	0x5
+ 758 019e 03       		.byte	0x3
+ 759 019f 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 760 01a3 0D       		.uleb128 0xd
+ 761 01a4 80010000 		.4byte	0x180
+ 762 01a8 0A       		.uleb128 0xa
+ 763 01a9 63000000 		.4byte	0x63
+ 764 01ad B8010000 		.4byte	0x1b8
+ 765 01b1 0B       		.uleb128 0xb
+ 766 01b2 8E000000 		.4byte	0x8e
+ 767 01b6 00       		.byte	0
+ 768 01b7 00       		.byte	0
+ 769 01b8 0E       		.uleb128 0xe
+ 770 01b9 14000000 		.4byte	.LASF27
+ 771 01bd 03       		.byte	0x3
+ 772 01be 1801     		.2byte	0x118
+ 773 01c0 CB010000 		.4byte	0x1cb
+ 774 01c4 01       		.byte	0x1
+ 775 01c5 05       		.byte	0x5
+ 776 01c6 03       		.byte	0x3
+ 777 01c7 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 778 01cb 0D       		.uleb128 0xd
+ 779 01cc A8010000 		.4byte	0x1a8
+ 780 01d0 0A       		.uleb128 0xa
+ 781 01d1 27010000 		.4byte	0x127
+ 782 01d5 E0010000 		.4byte	0x1e0
+ 783 01d9 0B       		.uleb128 0xb
+ 784 01da 8E000000 		.4byte	0x8e
+ 785 01de 03       		.byte	0x3
+ 786 01df 00       		.byte	0
+ 787 01e0 0E       		.uleb128 0xe
+ 788 01e1 DE000000 		.4byte	.LASF28
+ 789 01e5 03       		.byte	0x3
+ 790 01e6 2001     		.2byte	0x120
+ 791 01e8 F3010000 		.4byte	0x1f3
+ 792 01ec 01       		.byte	0x1
+ 793 01ed 05       		.byte	0x5
+ 794 01ee 03       		.byte	0x3
+ 795 01ef 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 796 01f3 0D       		.uleb128 0xd
+ 797 01f4 D0010000 		.4byte	0x1d0
+ 798 01f8 0A       		.uleb128 0xa
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 15
+
+
+ 799 01f9 27010000 		.4byte	0x127
+ 800 01fd 08020000 		.4byte	0x208
+ 801 0201 0B       		.uleb128 0xb
+ 802 0202 8E000000 		.4byte	0x8e
+ 803 0206 01       		.byte	0x1
+ 804 0207 00       		.byte	0
+ 805 0208 0E       		.uleb128 0xe
+ 806 0209 06010000 		.4byte	.LASF29
+ 807 020d 03       		.byte	0x3
+ 808 020e 2A01     		.2byte	0x12a
+ 809 0210 1B020000 		.4byte	0x21b
+ 810 0214 01       		.byte	0x1
+ 811 0215 05       		.byte	0x5
+ 812 0216 03       		.byte	0x3
+ 813 0217 00000000 		.4byte	USBFS_DEVICE0_TABLE
+ 814 021b 0D       		.uleb128 0xd
+ 815 021c F8010000 		.4byte	0x1f8
+ 816 0220 0A       		.uleb128 0xa
+ 817 0221 27010000 		.4byte	0x127
+ 818 0225 30020000 		.4byte	0x230
+ 819 0229 0B       		.uleb128 0xb
+ 820 022a 8E000000 		.4byte	0x8e
+ 821 022e 00       		.byte	0
+ 822 022f 00       		.byte	0
+ 823 0230 0E       		.uleb128 0xe
+ 824 0231 41000000 		.4byte	.LASF30
+ 825 0235 03       		.byte	0x3
+ 826 0236 3101     		.2byte	0x131
+ 827 0238 43020000 		.4byte	0x243
+ 828 023c 01       		.byte	0x1
+ 829 023d 05       		.byte	0x5
+ 830 023e 03       		.byte	0x3
+ 831 023f 00000000 		.4byte	USBFS_TABLE
+ 832 0243 0D       		.uleb128 0xd
+ 833 0244 20020000 		.4byte	0x220
+ 834 0248 0A       		.uleb128 0xa
+ 835 0249 63000000 		.4byte	0x63
+ 836 024d 59020000 		.4byte	0x259
+ 837 0251 0F       		.uleb128 0xf
+ 838 0252 8E000000 		.4byte	0x8e
+ 839 0256 3201     		.2byte	0x132
+ 840 0258 00       		.byte	0
+ 841 0259 0C       		.uleb128 0xc
+ 842 025a BA000000 		.4byte	.LASF31
+ 843 025e 03       		.byte	0x3
+ 844 025f AD       		.byte	0xad
+ 845 0260 6B020000 		.4byte	0x26b
+ 846 0264 01       		.byte	0x1
+ 847 0265 05       		.byte	0x5
+ 848 0266 03       		.byte	0x3
+ 849 0267 00000000 		.4byte	USBFS_STRING_DESCRIPTORS
+ 850 026b 0D       		.uleb128 0xd
+ 851 026c 48020000 		.4byte	0x248
+ 852 0270 00       		.byte	0
+ 853              		.section	.debug_abbrev,"",%progbits
+ 854              	.Ldebug_abbrev0:
+ 855 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 16
+
+
+ 856 0001 11       		.uleb128 0x11
+ 857 0002 01       		.byte	0x1
+ 858 0003 25       		.uleb128 0x25
+ 859 0004 0E       		.uleb128 0xe
+ 860 0005 13       		.uleb128 0x13
+ 861 0006 0B       		.uleb128 0xb
+ 862 0007 03       		.uleb128 0x3
+ 863 0008 0E       		.uleb128 0xe
+ 864 0009 1B       		.uleb128 0x1b
+ 865 000a 0E       		.uleb128 0xe
+ 866 000b 10       		.uleb128 0x10
+ 867 000c 06       		.uleb128 0x6
+ 868 000d 00       		.byte	0
+ 869 000e 00       		.byte	0
+ 870 000f 02       		.uleb128 0x2
+ 871 0010 24       		.uleb128 0x24
+ 872 0011 00       		.byte	0
+ 873 0012 0B       		.uleb128 0xb
+ 874 0013 0B       		.uleb128 0xb
+ 875 0014 3E       		.uleb128 0x3e
+ 876 0015 0B       		.uleb128 0xb
+ 877 0016 03       		.uleb128 0x3
+ 878 0017 0E       		.uleb128 0xe
+ 879 0018 00       		.byte	0
+ 880 0019 00       		.byte	0
+ 881 001a 03       		.uleb128 0x3
+ 882 001b 24       		.uleb128 0x24
+ 883 001c 00       		.byte	0
+ 884 001d 0B       		.uleb128 0xb
+ 885 001e 0B       		.uleb128 0xb
+ 886 001f 3E       		.uleb128 0x3e
+ 887 0020 0B       		.uleb128 0xb
+ 888 0021 03       		.uleb128 0x3
+ 889 0022 08       		.uleb128 0x8
+ 890 0023 00       		.byte	0
+ 891 0024 00       		.byte	0
+ 892 0025 04       		.uleb128 0x4
+ 893 0026 16       		.uleb128 0x16
+ 894 0027 00       		.byte	0
+ 895 0028 03       		.uleb128 0x3
+ 896 0029 0E       		.uleb128 0xe
+ 897 002a 3A       		.uleb128 0x3a
+ 898 002b 0B       		.uleb128 0xb
+ 899 002c 3B       		.uleb128 0x3b
+ 900 002d 0B       		.uleb128 0xb
+ 901 002e 49       		.uleb128 0x49
+ 902 002f 13       		.uleb128 0x13
+ 903 0030 00       		.byte	0
+ 904 0031 00       		.byte	0
+ 905 0032 05       		.uleb128 0x5
+ 906 0033 13       		.uleb128 0x13
+ 907 0034 01       		.byte	0x1
+ 908 0035 0B       		.uleb128 0xb
+ 909 0036 0B       		.uleb128 0xb
+ 910 0037 3A       		.uleb128 0x3a
+ 911 0038 0B       		.uleb128 0xb
+ 912 0039 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 17
+
+
+ 913 003a 0B       		.uleb128 0xb
+ 914 003b 01       		.uleb128 0x1
+ 915 003c 13       		.uleb128 0x13
+ 916 003d 00       		.byte	0
+ 917 003e 00       		.byte	0
+ 918 003f 06       		.uleb128 0x6
+ 919 0040 0D       		.uleb128 0xd
+ 920 0041 00       		.byte	0
+ 921 0042 03       		.uleb128 0x3
+ 922 0043 0E       		.uleb128 0xe
+ 923 0044 3A       		.uleb128 0x3a
+ 924 0045 0B       		.uleb128 0xb
+ 925 0046 3B       		.uleb128 0x3b
+ 926 0047 0B       		.uleb128 0xb
+ 927 0048 49       		.uleb128 0x49
+ 928 0049 13       		.uleb128 0x13
+ 929 004a 38       		.uleb128 0x38
+ 930 004b 0A       		.uleb128 0xa
+ 931 004c 00       		.byte	0
+ 932 004d 00       		.byte	0
+ 933 004e 07       		.uleb128 0x7
+ 934 004f 0D       		.uleb128 0xd
+ 935 0050 00       		.byte	0
+ 936 0051 03       		.uleb128 0x3
+ 937 0052 08       		.uleb128 0x8
+ 938 0053 3A       		.uleb128 0x3a
+ 939 0054 0B       		.uleb128 0xb
+ 940 0055 3B       		.uleb128 0x3b
+ 941 0056 0B       		.uleb128 0xb
+ 942 0057 49       		.uleb128 0x49
+ 943 0058 13       		.uleb128 0x13
+ 944 0059 38       		.uleb128 0x38
+ 945 005a 0A       		.uleb128 0xa
+ 946 005b 00       		.byte	0
+ 947 005c 00       		.byte	0
+ 948 005d 08       		.uleb128 0x8
+ 949 005e 0F       		.uleb128 0xf
+ 950 005f 00       		.byte	0
+ 951 0060 0B       		.uleb128 0xb
+ 952 0061 0B       		.uleb128 0xb
+ 953 0062 49       		.uleb128 0x49
+ 954 0063 13       		.uleb128 0x13
+ 955 0064 00       		.byte	0
+ 956 0065 00       		.byte	0
+ 957 0066 09       		.uleb128 0x9
+ 958 0067 26       		.uleb128 0x26
+ 959 0068 00       		.byte	0
+ 960 0069 00       		.byte	0
+ 961 006a 00       		.byte	0
+ 962 006b 0A       		.uleb128 0xa
+ 963 006c 01       		.uleb128 0x1
+ 964 006d 01       		.byte	0x1
+ 965 006e 49       		.uleb128 0x49
+ 966 006f 13       		.uleb128 0x13
+ 967 0070 01       		.uleb128 0x1
+ 968 0071 13       		.uleb128 0x13
+ 969 0072 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 18
+
+
+ 970 0073 00       		.byte	0
+ 971 0074 0B       		.uleb128 0xb
+ 972 0075 21       		.uleb128 0x21
+ 973 0076 00       		.byte	0
+ 974 0077 49       		.uleb128 0x49
+ 975 0078 13       		.uleb128 0x13
+ 976 0079 2F       		.uleb128 0x2f
+ 977 007a 0B       		.uleb128 0xb
+ 978 007b 00       		.byte	0
+ 979 007c 00       		.byte	0
+ 980 007d 0C       		.uleb128 0xc
+ 981 007e 34       		.uleb128 0x34
+ 982 007f 00       		.byte	0
+ 983 0080 03       		.uleb128 0x3
+ 984 0081 0E       		.uleb128 0xe
+ 985 0082 3A       		.uleb128 0x3a
+ 986 0083 0B       		.uleb128 0xb
+ 987 0084 3B       		.uleb128 0x3b
+ 988 0085 0B       		.uleb128 0xb
+ 989 0086 49       		.uleb128 0x49
+ 990 0087 13       		.uleb128 0x13
+ 991 0088 3F       		.uleb128 0x3f
+ 992 0089 0C       		.uleb128 0xc
+ 993 008a 02       		.uleb128 0x2
+ 994 008b 0A       		.uleb128 0xa
+ 995 008c 00       		.byte	0
+ 996 008d 00       		.byte	0
+ 997 008e 0D       		.uleb128 0xd
+ 998 008f 26       		.uleb128 0x26
+ 999 0090 00       		.byte	0
+ 1000 0091 49       		.uleb128 0x49
+ 1001 0092 13       		.uleb128 0x13
+ 1002 0093 00       		.byte	0
+ 1003 0094 00       		.byte	0
+ 1004 0095 0E       		.uleb128 0xe
+ 1005 0096 34       		.uleb128 0x34
+ 1006 0097 00       		.byte	0
+ 1007 0098 03       		.uleb128 0x3
+ 1008 0099 0E       		.uleb128 0xe
+ 1009 009a 3A       		.uleb128 0x3a
+ 1010 009b 0B       		.uleb128 0xb
+ 1011 009c 3B       		.uleb128 0x3b
+ 1012 009d 05       		.uleb128 0x5
+ 1013 009e 49       		.uleb128 0x49
+ 1014 009f 13       		.uleb128 0x13
+ 1015 00a0 3F       		.uleb128 0x3f
+ 1016 00a1 0C       		.uleb128 0xc
+ 1017 00a2 02       		.uleb128 0x2
+ 1018 00a3 0A       		.uleb128 0xa
+ 1019 00a4 00       		.byte	0
+ 1020 00a5 00       		.byte	0
+ 1021 00a6 0F       		.uleb128 0xf
+ 1022 00a7 21       		.uleb128 0x21
+ 1023 00a8 00       		.byte	0
+ 1024 00a9 49       		.uleb128 0x49
+ 1025 00aa 13       		.uleb128 0x13
+ 1026 00ab 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 19
+
+
+ 1027 00ac 05       		.uleb128 0x5
+ 1028 00ad 00       		.byte	0
+ 1029 00ae 00       		.byte	0
+ 1030 00af 00       		.byte	0
+ 1031              		.section	.debug_aranges,"",%progbits
+ 1032 0000 14000000 		.4byte	0x14
+ 1033 0004 0200     		.2byte	0x2
+ 1034 0006 00000000 		.4byte	.Ldebug_info0
+ 1035 000a 04       		.byte	0x4
+ 1036 000b 00       		.byte	0
+ 1037 000c 0000     		.2byte	0
+ 1038 000e 0000     		.2byte	0
+ 1039 0010 00000000 		.4byte	0
+ 1040 0014 00000000 		.4byte	0
+ 1041              		.section	.debug_line,"",%progbits
+ 1042              	.Ldebug_line0:
+ 1043 0000 5B000000 		.section	.debug_str,"MS",%progbits,1
+ 1043      02005500 
+ 1043      00000201 
+ 1043      FB0E0D00 
+ 1043      01010101 
+ 1044              	.LASF24:
+ 1045 0000 55534246 		.ascii	"USBFS_DEVICE0_DESCR\000"
+ 1045      535F4445 
+ 1045      56494345 
+ 1045      305F4445 
+ 1045      53435200 
+ 1046              	.LASF27:
+ 1047 0014 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS\000"
+ 1047      535F4445 
+ 1047      56494345 
+ 1047      305F434F 
+ 1047      4E464947 
+ 1048              	.LASF30:
+ 1049 0041 55534246 		.ascii	"USBFS_TABLE\000"
+ 1049      535F5441 
+ 1049      424C4500 
+ 1050              	.LASF34:
+ 1051 004d 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 1051      73657273 
+ 1051      5C566963 
+ 1051      746F7220 
+ 1051      5275656C 
+ 1052 007a 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 1052      54657374 
+ 1052      65555342 
+ 1052      5C546573 
+ 1052      74655553 
+ 1053              	.LASF3:
+ 1054 0096 73686F72 		.ascii	"short unsigned int\000"
+ 1054      7420756E 
+ 1054      7369676E 
+ 1054      65642069 
+ 1054      6E7400
+ 1055              	.LASF11:
+ 1056 00a9 666C6F61 		.ascii	"float\000"
+ 1056      7400
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 20
+
+
+ 1057              	.LASF16:
+ 1058 00af 616C7453 		.ascii	"altSetting\000"
+ 1058      65747469 
+ 1058      6E6700
+ 1059              	.LASF31:
+ 1060 00ba 55534246 		.ascii	"USBFS_STRING_DESCRIPTORS\000"
+ 1060      535F5354 
+ 1060      52494E47 
+ 1060      5F444553 
+ 1060      43524950 
+ 1061              	.LASF18:
+ 1062 00d3 61747472 		.ascii	"attributes\000"
+ 1062      69627574 
+ 1062      657300
+ 1063              	.LASF28:
+ 1064 00de 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_TABLE\000"
+ 1064      535F4445 
+ 1064      56494345 
+ 1064      305F434F 
+ 1064      4E464947 
+ 1065              	.LASF17:
+ 1066 0101 61646472 		.ascii	"addr\000"
+ 1066      00
+ 1067              	.LASF29:
+ 1068 0106 55534246 		.ascii	"USBFS_DEVICE0_TABLE\000"
+ 1068      535F4445 
+ 1068      56494345 
+ 1068      305F5441 
+ 1068      424C4500 
+ 1069              	.LASF1:
+ 1070 011a 756E7369 		.ascii	"unsigned char\000"
+ 1070      676E6564 
+ 1070      20636861 
+ 1070      7200
+ 1071              	.LASF12:
+ 1072 0128 646F7562 		.ascii	"double\000"
+ 1072      6C6500
+ 1073              	.LASF10:
+ 1074 012f 75696E74 		.ascii	"uint16\000"
+ 1074      313600
+ 1075              	.LASF26:
+ 1076 0136 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE\000"
+ 1076      535F4445 
+ 1076      56494345 
+ 1076      305F434F 
+ 1076      4E464947 
+ 1077              	.LASF25:
+ 1078 0165 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_DESCR\000"
+ 1078      535F4445 
+ 1078      56494345 
+ 1078      305F434F 
+ 1078      4E464947 
+ 1079              	.LASF5:
+ 1080 0188 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1080      20756E73 
+ 1080      69676E65 
+ 1080      6420696E 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 21
+
+
+ 1080      7400
+ 1081              	.LASF8:
+ 1082 019a 756E7369 		.ascii	"unsigned int\000"
+ 1082      676E6564 
+ 1082      20696E74 
+ 1082      00
+ 1083              	.LASF7:
+ 1084 01a7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1084      206C6F6E 
+ 1084      6720756E 
+ 1084      7369676E 
+ 1084      65642069 
+ 1085              	.LASF22:
+ 1086 01be 705F6C69 		.ascii	"p_list\000"
+ 1086      737400
+ 1087              	.LASF21:
+ 1088 01c5 545F5553 		.ascii	"T_USBFS_EP_SETTINGS_BLOCK\000"
+ 1088      4246535F 
+ 1088      45505F53 
+ 1088      45545449 
+ 1088      4E47535F 
+ 1089              	.LASF14:
+ 1090 01df 73697A65 		.ascii	"sizetype\000"
+ 1090      74797065 
+ 1090      00
+ 1091              	.LASF6:
+ 1092 01e8 6C6F6E67 		.ascii	"long long int\000"
+ 1092      206C6F6E 
+ 1092      6720696E 
+ 1092      7400
+ 1093              	.LASF23:
+ 1094 01f6 545F5553 		.ascii	"T_USBFS_LUT\000"
+ 1094      4246535F 
+ 1094      4C555400 
+ 1095              	.LASF13:
+ 1096 0202 63686172 		.ascii	"char\000"
+ 1096      00
+ 1097              	.LASF33:
+ 1098 0207 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\USBFS_descr.c\000"
+ 1098      6E657261 
+ 1098      7465645F 
+ 1098      536F7572 
+ 1098      63655C50 
+ 1099              	.LASF19:
+ 1100 022e 62756666 		.ascii	"bufferSize\000"
+ 1100      65725369 
+ 1100      7A6500
+ 1101              	.LASF2:
+ 1102 0239 73686F72 		.ascii	"short int\000"
+ 1102      7420696E 
+ 1102      7400
+ 1103              	.LASF9:
+ 1104 0243 75696E74 		.ascii	"uint8\000"
+ 1104      3800
+ 1105              	.LASF32:
+ 1106 0249 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1106      4320342E 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc4hYB6e.s 			page 22
+
+
+ 1106      372E3320 
+ 1106      32303133 
+ 1106      30333132 
+ 1107 027c 616E6368 		.ascii	"anch revision 196615]\000"
+ 1107      20726576 
+ 1107      6973696F 
+ 1107      6E203139 
+ 1107      36363135 
+ 1108              	.LASF15:
+ 1109 0292 696E7465 		.ascii	"interface\000"
+ 1109      72666163 
+ 1109      6500
+ 1110              	.LASF4:
+ 1111 029c 6C6F6E67 		.ascii	"long int\000"
+ 1111      20696E74 
+ 1111      00
+ 1112              	.LASF0:
+ 1113 02a5 7369676E 		.ascii	"signed char\000"
+ 1113      65642063 
+ 1113      68617200 
+ 1114              	.LASF20:
+ 1115 02b1 624D6973 		.ascii	"bMisc\000"
+ 1115      6300
+ 1116              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

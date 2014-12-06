@@ -1,0 +1,672 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"WaveDAC8_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	WaveDAC8_backup:
+  21 0000 00       		.space	1
+  22 0001 000000   		.section	.text.WaveDAC8_Sleep,"ax",%progbits
+  23              		.align	2
+  24              		.global	WaveDAC8_Sleep
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	WaveDAC8_Sleep, %function
+  28              	WaveDAC8_Sleep:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC5\\WaveDAC8_PM.c"
+   1:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * File Name: WaveDAC8_PM.c  
+   3:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Version 2.0
+   4:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+   5:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  This file provides the power manager source code to the API for 
+   7:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  the WaveDAC8 component.
+   8:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+   9:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** ********************************************************************************
+  10:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  11:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  12:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  13:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * the software package with which this file was provided.
+  14:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *******************************************************************************/
+  15:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  16:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** #include "WaveDAC8.h"
+  17:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  18:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** static WaveDAC8_BACKUP_STRUCT  WaveDAC8_backup;
+  19:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  20:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  21:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** /*******************************************************************************
+  22:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Function Name: WaveDAC8_Sleep
+  23:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** ********************************************************************************
+  24:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  25:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Summary:
+  26:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  Stops the component and saves its configuration. Should be called 
+  27:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  just prior to entering sleep.
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 2
+
+
+  28:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  
+  29:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Parameters:  
+  30:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  None
+  31:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  32:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Return: 
+  33:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  None
+  34:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  35:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Global variables:
+  36:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  WaveDAC8_backup:  The structure field 'enableState' is modified 
+  37:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  depending on the enable state of the block before entering to sleep mode.
+  38:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  39:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Reentrant:
+  40:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  No
+  41:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  42:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *******************************************************************************/
+  43:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** void WaveDAC8_Sleep(void) 
+  44:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** {
+  31              		.loc 1 44 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 00AF     		add	r7, sp, #0
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_register 7
+  45:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	/* Save DAC8's enable state */
+  46:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  47:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	WaveDAC8_backup.enableState = (WaveDAC8_VDAC8_ACT_PWR_EN == 
+  48:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 		(WaveDAC8_VDAC8_PWRMGR_REG & WaveDAC8_VDAC8_ACT_PWR_EN)) ? 1u : 0u ;
+  43              		.loc 1 48 0
+  44 0004 44F2A833 		movw	r3, #17320
+  45 0008 C4F20003 		movt	r3, 16384
+  46 000c 1B78     		ldrb	r3, [r3, #0]
+  47 000e DBB2     		uxtb	r3, r3
+  47:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	WaveDAC8_backup.enableState = (WaveDAC8_VDAC8_ACT_PWR_EN == 
+  48              		.loc 1 47 0
+  49 0010 03F00103 		and	r3, r3, #1
+  50 0014 DAB2     		uxtb	r2, r3
+  51 0016 40F20003 		movw	r3, #:lower16:WaveDAC8_backup
+  52 001a C0F20003 		movt	r3, #:upper16:WaveDAC8_backup
+  53 001e 1A70     		strb	r2, [r3, #0]
+  49:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	
+  50:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	WaveDAC8_Stop();
+  54              		.loc 1 50 0
+  55 0020 FFF7FEFF 		bl	WaveDAC8_Stop
+  51:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	WaveDAC8_SaveConfig();
+  56              		.loc 1 51 0
+  57 0024 FFF7FEFF 		bl	WaveDAC8_VDAC8_SaveConfig
+  52:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** }
+  58              		.loc 1 52 0
+  59 0028 80BD     		pop	{r7, pc}
+  60              		.cfi_endproc
+  61              	.LFE0:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 3
+
+
+  62              		.size	WaveDAC8_Sleep, .-WaveDAC8_Sleep
+  63 002a 00BF     		.section	.text.WaveDAC8_Wakeup,"ax",%progbits
+  64              		.align	2
+  65              		.global	WaveDAC8_Wakeup
+  66              		.thumb
+  67              		.thumb_func
+  68              		.type	WaveDAC8_Wakeup, %function
+  69              	WaveDAC8_Wakeup:
+  70              	.LFB1:
+  53:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  54:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  55:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** /*******************************************************************************
+  56:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Function Name: WaveDAC8_Wakeup
+  57:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** ********************************************************************************
+  58:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  59:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Summary:
+  60:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  Restores the component configuration. Should be called
+  61:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  just after awaking from sleep.
+  62:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  
+  63:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Parameters:  
+  64:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  None
+  65:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  66:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Return: 
+  67:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  void
+  68:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  69:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Global variables:
+  70:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  WaveDAC8_backup:  The structure field 'enableState' is used to 
+  71:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  restore the enable state of block after wakeup from sleep mode.
+  72:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  73:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** * Reentrant:
+  74:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *  No
+  75:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *
+  76:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** *******************************************************************************/
+  77:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** void WaveDAC8_Wakeup(void) 
+  78:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** {
+  71              		.loc 1 78 0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 1, uses_anonymous_args = 0
+  75 0000 80B5     		push	{r7, lr}
+  76              	.LCFI2:
+  77              		.cfi_def_cfa_offset 8
+  78              		.cfi_offset 7, -8
+  79              		.cfi_offset 14, -4
+  80 0002 00AF     		add	r7, sp, #0
+  81              	.LCFI3:
+  82              		.cfi_def_cfa_register 7
+  79:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	WaveDAC8_RestoreConfig();
+  83              		.loc 1 79 0
+  84 0004 FFF7FEFF 		bl	WaveDAC8_VDAC8_RestoreConfig
+  80:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 
+  81:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	if(WaveDAC8_backup.enableState == 1u)
+  85              		.loc 1 81 0
+  86 0008 40F20003 		movw	r3, #:lower16:WaveDAC8_backup
+  87 000c C0F20003 		movt	r3, #:upper16:WaveDAC8_backup
+  88 0010 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+  89 0012 012B     		cmp	r3, #1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 4
+
+
+  90 0014 01D1     		bne	.L2
+  82:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	{
+  83:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 		WaveDAC8_Enable();
+  91              		.loc 1 83 0
+  92 0016 FFF7FEFF 		bl	WaveDAC8_Enable
+  93              	.L2:
+  84:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** 	}
+  85:.\Generated_Source\PSoC5/WaveDAC8_PM.c **** }
+  94              		.loc 1 85 0
+  95 001a 80BD     		pop	{r7, pc}
+  96              		.cfi_endproc
+  97              	.LFE1:
+  98              		.size	WaveDAC8_Wakeup, .-WaveDAC8_Wakeup
+  99              		.text
+ 100              	.Letext0:
+ 101              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 102              		.file 3 ".\\Generated_Source\\PSoC5\\WaveDAC8.h"
+ 103              		.section	.debug_info,"",%progbits
+ 104              	.Ldebug_info0:
+ 105 0000 02010000 		.4byte	0x102
+ 106 0004 0200     		.2byte	0x2
+ 107 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 108 000a 04       		.byte	0x4
+ 109 000b 01       		.uleb128 0x1
+ 110 000c 37000000 		.4byte	.LASF18
+ 111 0010 01       		.byte	0x1
+ 112 0011 8E010000 		.4byte	.LASF19
+ 113 0015 AD000000 		.4byte	.LASF20
+ 114 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 115 001d 00000000 		.4byte	0
+ 116 0021 00000000 		.4byte	0
+ 117 0025 00000000 		.4byte	.Ldebug_line0
+ 118 0029 02       		.uleb128 0x2
+ 119 002a 01       		.byte	0x1
+ 120 002b 06       		.byte	0x6
+ 121 002c 48010000 		.4byte	.LASF0
+ 122 0030 02       		.uleb128 0x2
+ 123 0031 01       		.byte	0x1
+ 124 0032 08       		.byte	0x8
+ 125 0033 F6000000 		.4byte	.LASF1
+ 126 0037 02       		.uleb128 0x2
+ 127 0038 02       		.byte	0x2
+ 128 0039 05       		.byte	0x5
+ 129 003a 12010000 		.4byte	.LASF2
+ 130 003e 02       		.uleb128 0x2
+ 131 003f 02       		.byte	0x2
+ 132 0040 07       		.byte	0x7
+ 133 0041 35010000 		.4byte	.LASF3
+ 134 0045 02       		.uleb128 0x2
+ 135 0046 04       		.byte	0x4
+ 136 0047 05       		.byte	0x5
+ 137 0048 09010000 		.4byte	.LASF4
+ 138 004c 02       		.uleb128 0x2
+ 139 004d 04       		.byte	0x4
+ 140 004e 07       		.byte	0x7
+ 141 004f 1C010000 		.4byte	.LASF5
+ 142 0053 02       		.uleb128 0x2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 5
+
+
+ 143 0054 08       		.byte	0x8
+ 144 0055 05       		.byte	0x5
+ 145 0056 00000000 		.4byte	.LASF6
+ 146 005a 02       		.uleb128 0x2
+ 147 005b 08       		.byte	0x8
+ 148 005c 07       		.byte	0x7
+ 149 005d 96000000 		.4byte	.LASF7
+ 150 0061 03       		.uleb128 0x3
+ 151 0062 04       		.byte	0x4
+ 152 0063 05       		.byte	0x5
+ 153 0064 696E7400 		.ascii	"int\000"
+ 154 0068 02       		.uleb128 0x2
+ 155 0069 04       		.byte	0x4
+ 156 006a 07       		.byte	0x7
+ 157 006b 2A000000 		.4byte	.LASF8
+ 158 006f 04       		.uleb128 0x4
+ 159 0070 80000000 		.4byte	.LASF12
+ 160 0074 02       		.byte	0x2
+ 161 0075 5B       		.byte	0x5b
+ 162 0076 30000000 		.4byte	0x30
+ 163 007a 02       		.uleb128 0x2
+ 164 007b 04       		.byte	0x4
+ 165 007c 04       		.byte	0x4
+ 166 007d 54010000 		.4byte	.LASF9
+ 167 0081 02       		.uleb128 0x2
+ 168 0082 08       		.byte	0x8
+ 169 0083 04       		.byte	0x4
+ 170 0084 2E010000 		.4byte	.LASF10
+ 171 0088 02       		.uleb128 0x2
+ 172 0089 01       		.byte	0x1
+ 173 008a 08       		.byte	0x8
+ 174 008b 04010000 		.4byte	.LASF11
+ 175 008f 04       		.uleb128 0x4
+ 176 0090 80010000 		.4byte	.LASF13
+ 177 0094 02       		.byte	0x2
+ 178 0095 F0       		.byte	0xf0
+ 179 0096 9A000000 		.4byte	0x9a
+ 180 009a 05       		.uleb128 0x5
+ 181 009b 6F000000 		.4byte	0x6f
+ 182 009f 02       		.uleb128 0x2
+ 183 00a0 04       		.byte	0x4
+ 184 00a1 07       		.byte	0x7
+ 185 00a2 85010000 		.4byte	.LASF14
+ 186 00a6 06       		.uleb128 0x6
+ 187 00a7 01       		.byte	0x1
+ 188 00a8 03       		.byte	0x3
+ 189 00a9 5D       		.byte	0x5d
+ 190 00aa BD000000 		.4byte	0xbd
+ 191 00ae 07       		.uleb128 0x7
+ 192 00af 1E000000 		.4byte	.LASF21
+ 193 00b3 03       		.byte	0x3
+ 194 00b4 5F       		.byte	0x5f
+ 195 00b5 6F000000 		.4byte	0x6f
+ 196 00b9 02       		.byte	0x2
+ 197 00ba 23       		.byte	0x23
+ 198 00bb 00       		.uleb128 0
+ 199 00bc 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 6
+
+
+ 200 00bd 04       		.uleb128 0x4
+ 201 00be 5A010000 		.4byte	.LASF15
+ 202 00c2 03       		.byte	0x3
+ 203 00c3 60       		.byte	0x60
+ 204 00c4 A6000000 		.4byte	0xa6
+ 205 00c8 08       		.uleb128 0x8
+ 206 00c9 01       		.byte	0x1
+ 207 00ca 71010000 		.4byte	.LASF16
+ 208 00ce 01       		.byte	0x1
+ 209 00cf 2B       		.byte	0x2b
+ 210 00d0 01       		.byte	0x1
+ 211 00d1 00000000 		.4byte	.LFB0
+ 212 00d5 2A000000 		.4byte	.LFE0
+ 213 00d9 00000000 		.4byte	.LLST0
+ 214 00dd 01       		.byte	0x1
+ 215 00de 08       		.uleb128 0x8
+ 216 00df 01       		.byte	0x1
+ 217 00e0 86000000 		.4byte	.LASF17
+ 218 00e4 01       		.byte	0x1
+ 219 00e5 4D       		.byte	0x4d
+ 220 00e6 01       		.byte	0x1
+ 221 00e7 00000000 		.4byte	.LFB1
+ 222 00eb 1C000000 		.4byte	.LFE1
+ 223 00ef 2C000000 		.4byte	.LLST1
+ 224 00f3 01       		.byte	0x1
+ 225 00f4 09       		.uleb128 0x9
+ 226 00f5 0E000000 		.4byte	.LASF22
+ 227 00f9 01       		.byte	0x1
+ 228 00fa 12       		.byte	0x12
+ 229 00fb BD000000 		.4byte	0xbd
+ 230 00ff 05       		.byte	0x5
+ 231 0100 03       		.byte	0x3
+ 232 0101 00000000 		.4byte	WaveDAC8_backup
+ 233 0105 00       		.byte	0
+ 234              		.section	.debug_abbrev,"",%progbits
+ 235              	.Ldebug_abbrev0:
+ 236 0000 01       		.uleb128 0x1
+ 237 0001 11       		.uleb128 0x11
+ 238 0002 01       		.byte	0x1
+ 239 0003 25       		.uleb128 0x25
+ 240 0004 0E       		.uleb128 0xe
+ 241 0005 13       		.uleb128 0x13
+ 242 0006 0B       		.uleb128 0xb
+ 243 0007 03       		.uleb128 0x3
+ 244 0008 0E       		.uleb128 0xe
+ 245 0009 1B       		.uleb128 0x1b
+ 246 000a 0E       		.uleb128 0xe
+ 247 000b 55       		.uleb128 0x55
+ 248 000c 06       		.uleb128 0x6
+ 249 000d 11       		.uleb128 0x11
+ 250 000e 01       		.uleb128 0x1
+ 251 000f 52       		.uleb128 0x52
+ 252 0010 01       		.uleb128 0x1
+ 253 0011 10       		.uleb128 0x10
+ 254 0012 06       		.uleb128 0x6
+ 255 0013 00       		.byte	0
+ 256 0014 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 7
+
+
+ 257 0015 02       		.uleb128 0x2
+ 258 0016 24       		.uleb128 0x24
+ 259 0017 00       		.byte	0
+ 260 0018 0B       		.uleb128 0xb
+ 261 0019 0B       		.uleb128 0xb
+ 262 001a 3E       		.uleb128 0x3e
+ 263 001b 0B       		.uleb128 0xb
+ 264 001c 03       		.uleb128 0x3
+ 265 001d 0E       		.uleb128 0xe
+ 266 001e 00       		.byte	0
+ 267 001f 00       		.byte	0
+ 268 0020 03       		.uleb128 0x3
+ 269 0021 24       		.uleb128 0x24
+ 270 0022 00       		.byte	0
+ 271 0023 0B       		.uleb128 0xb
+ 272 0024 0B       		.uleb128 0xb
+ 273 0025 3E       		.uleb128 0x3e
+ 274 0026 0B       		.uleb128 0xb
+ 275 0027 03       		.uleb128 0x3
+ 276 0028 08       		.uleb128 0x8
+ 277 0029 00       		.byte	0
+ 278 002a 00       		.byte	0
+ 279 002b 04       		.uleb128 0x4
+ 280 002c 16       		.uleb128 0x16
+ 281 002d 00       		.byte	0
+ 282 002e 03       		.uleb128 0x3
+ 283 002f 0E       		.uleb128 0xe
+ 284 0030 3A       		.uleb128 0x3a
+ 285 0031 0B       		.uleb128 0xb
+ 286 0032 3B       		.uleb128 0x3b
+ 287 0033 0B       		.uleb128 0xb
+ 288 0034 49       		.uleb128 0x49
+ 289 0035 13       		.uleb128 0x13
+ 290 0036 00       		.byte	0
+ 291 0037 00       		.byte	0
+ 292 0038 05       		.uleb128 0x5
+ 293 0039 35       		.uleb128 0x35
+ 294 003a 00       		.byte	0
+ 295 003b 49       		.uleb128 0x49
+ 296 003c 13       		.uleb128 0x13
+ 297 003d 00       		.byte	0
+ 298 003e 00       		.byte	0
+ 299 003f 06       		.uleb128 0x6
+ 300 0040 13       		.uleb128 0x13
+ 301 0041 01       		.byte	0x1
+ 302 0042 0B       		.uleb128 0xb
+ 303 0043 0B       		.uleb128 0xb
+ 304 0044 3A       		.uleb128 0x3a
+ 305 0045 0B       		.uleb128 0xb
+ 306 0046 3B       		.uleb128 0x3b
+ 307 0047 0B       		.uleb128 0xb
+ 308 0048 01       		.uleb128 0x1
+ 309 0049 13       		.uleb128 0x13
+ 310 004a 00       		.byte	0
+ 311 004b 00       		.byte	0
+ 312 004c 07       		.uleb128 0x7
+ 313 004d 0D       		.uleb128 0xd
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 8
+
+
+ 314 004e 00       		.byte	0
+ 315 004f 03       		.uleb128 0x3
+ 316 0050 0E       		.uleb128 0xe
+ 317 0051 3A       		.uleb128 0x3a
+ 318 0052 0B       		.uleb128 0xb
+ 319 0053 3B       		.uleb128 0x3b
+ 320 0054 0B       		.uleb128 0xb
+ 321 0055 49       		.uleb128 0x49
+ 322 0056 13       		.uleb128 0x13
+ 323 0057 38       		.uleb128 0x38
+ 324 0058 0A       		.uleb128 0xa
+ 325 0059 00       		.byte	0
+ 326 005a 00       		.byte	0
+ 327 005b 08       		.uleb128 0x8
+ 328 005c 2E       		.uleb128 0x2e
+ 329 005d 00       		.byte	0
+ 330 005e 3F       		.uleb128 0x3f
+ 331 005f 0C       		.uleb128 0xc
+ 332 0060 03       		.uleb128 0x3
+ 333 0061 0E       		.uleb128 0xe
+ 334 0062 3A       		.uleb128 0x3a
+ 335 0063 0B       		.uleb128 0xb
+ 336 0064 3B       		.uleb128 0x3b
+ 337 0065 0B       		.uleb128 0xb
+ 338 0066 27       		.uleb128 0x27
+ 339 0067 0C       		.uleb128 0xc
+ 340 0068 11       		.uleb128 0x11
+ 341 0069 01       		.uleb128 0x1
+ 342 006a 12       		.uleb128 0x12
+ 343 006b 01       		.uleb128 0x1
+ 344 006c 40       		.uleb128 0x40
+ 345 006d 06       		.uleb128 0x6
+ 346 006e 9642     		.uleb128 0x2116
+ 347 0070 0C       		.uleb128 0xc
+ 348 0071 00       		.byte	0
+ 349 0072 00       		.byte	0
+ 350 0073 09       		.uleb128 0x9
+ 351 0074 34       		.uleb128 0x34
+ 352 0075 00       		.byte	0
+ 353 0076 03       		.uleb128 0x3
+ 354 0077 0E       		.uleb128 0xe
+ 355 0078 3A       		.uleb128 0x3a
+ 356 0079 0B       		.uleb128 0xb
+ 357 007a 3B       		.uleb128 0x3b
+ 358 007b 0B       		.uleb128 0xb
+ 359 007c 49       		.uleb128 0x49
+ 360 007d 13       		.uleb128 0x13
+ 361 007e 02       		.uleb128 0x2
+ 362 007f 0A       		.uleb128 0xa
+ 363 0080 00       		.byte	0
+ 364 0081 00       		.byte	0
+ 365 0082 00       		.byte	0
+ 366              		.section	.debug_loc,"",%progbits
+ 367              	.Ldebug_loc0:
+ 368              	.LLST0:
+ 369 0000 00000000 		.4byte	.LFB0
+ 370 0004 02000000 		.4byte	.LCFI0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 9
+
+
+ 371 0008 0200     		.2byte	0x2
+ 372 000a 7D       		.byte	0x7d
+ 373 000b 00       		.sleb128 0
+ 374 000c 02000000 		.4byte	.LCFI0
+ 375 0010 04000000 		.4byte	.LCFI1
+ 376 0014 0200     		.2byte	0x2
+ 377 0016 7D       		.byte	0x7d
+ 378 0017 08       		.sleb128 8
+ 379 0018 04000000 		.4byte	.LCFI1
+ 380 001c 2A000000 		.4byte	.LFE0
+ 381 0020 0200     		.2byte	0x2
+ 382 0022 77       		.byte	0x77
+ 383 0023 08       		.sleb128 8
+ 384 0024 00000000 		.4byte	0
+ 385 0028 00000000 		.4byte	0
+ 386              	.LLST1:
+ 387 002c 00000000 		.4byte	.LFB1
+ 388 0030 02000000 		.4byte	.LCFI2
+ 389 0034 0200     		.2byte	0x2
+ 390 0036 7D       		.byte	0x7d
+ 391 0037 00       		.sleb128 0
+ 392 0038 02000000 		.4byte	.LCFI2
+ 393 003c 04000000 		.4byte	.LCFI3
+ 394 0040 0200     		.2byte	0x2
+ 395 0042 7D       		.byte	0x7d
+ 396 0043 08       		.sleb128 8
+ 397 0044 04000000 		.4byte	.LCFI3
+ 398 0048 1C000000 		.4byte	.LFE1
+ 399 004c 0200     		.2byte	0x2
+ 400 004e 77       		.byte	0x77
+ 401 004f 08       		.sleb128 8
+ 402 0050 00000000 		.4byte	0
+ 403 0054 00000000 		.4byte	0
+ 404              		.section	.debug_aranges,"",%progbits
+ 405 0000 24000000 		.4byte	0x24
+ 406 0004 0200     		.2byte	0x2
+ 407 0006 00000000 		.4byte	.Ldebug_info0
+ 408 000a 04       		.byte	0x4
+ 409 000b 00       		.byte	0
+ 410 000c 0000     		.2byte	0
+ 411 000e 0000     		.2byte	0
+ 412 0010 00000000 		.4byte	.LFB0
+ 413 0014 2A000000 		.4byte	.LFE0-.LFB0
+ 414 0018 00000000 		.4byte	.LFB1
+ 415 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 416 0020 00000000 		.4byte	0
+ 417 0024 00000000 		.4byte	0
+ 418              		.section	.debug_ranges,"",%progbits
+ 419              	.Ldebug_ranges0:
+ 420 0000 00000000 		.4byte	.LFB0
+ 421 0004 2A000000 		.4byte	.LFE0
+ 422 0008 00000000 		.4byte	.LFB1
+ 423 000c 1C000000 		.4byte	.LFE1
+ 424 0010 00000000 		.4byte	0
+ 425 0014 00000000 		.4byte	0
+ 426              		.section	.debug_line,"",%progbits
+ 427              	.Ldebug_line0:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 10
+
+
+ 428 0000 86000000 		.section	.debug_str,"MS",%progbits,1
+ 428      02005800 
+ 428      00000201 
+ 428      FB0E0D00 
+ 428      01010101 
+ 429              	.LASF6:
+ 430 0000 6C6F6E67 		.ascii	"long long int\000"
+ 430      206C6F6E 
+ 430      6720696E 
+ 430      7400
+ 431              	.LASF22:
+ 432 000e 57617665 		.ascii	"WaveDAC8_backup\000"
+ 432      44414338 
+ 432      5F626163 
+ 432      6B757000 
+ 433              	.LASF21:
+ 434 001e 656E6162 		.ascii	"enableState\000"
+ 434      6C655374 
+ 434      61746500 
+ 435              	.LASF8:
+ 436 002a 756E7369 		.ascii	"unsigned int\000"
+ 436      676E6564 
+ 436      20696E74 
+ 436      00
+ 437              	.LASF18:
+ 438 0037 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 438      4320342E 
+ 438      372E3320 
+ 438      32303133 
+ 438      30333132 
+ 439 006a 616E6368 		.ascii	"anch revision 196615]\000"
+ 439      20726576 
+ 439      6973696F 
+ 439      6E203139 
+ 439      36363135 
+ 440              	.LASF12:
+ 441 0080 75696E74 		.ascii	"uint8\000"
+ 441      3800
+ 442              	.LASF17:
+ 443 0086 57617665 		.ascii	"WaveDAC8_Wakeup\000"
+ 443      44414338 
+ 443      5F57616B 
+ 443      65757000 
+ 444              	.LASF7:
+ 445 0096 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 445      206C6F6E 
+ 445      6720756E 
+ 445      7369676E 
+ 445      65642069 
+ 446              	.LASF20:
+ 447 00ad 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 447      73657273 
+ 447      5C566963 
+ 447      746F7220 
+ 447      5275656C 
+ 448 00da 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 448      54657374 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 11
+
+
+ 448      65555342 
+ 448      5C546573 
+ 448      74655553 
+ 449              	.LASF1:
+ 450 00f6 756E7369 		.ascii	"unsigned char\000"
+ 450      676E6564 
+ 450      20636861 
+ 450      7200
+ 451              	.LASF11:
+ 452 0104 63686172 		.ascii	"char\000"
+ 452      00
+ 453              	.LASF4:
+ 454 0109 6C6F6E67 		.ascii	"long int\000"
+ 454      20696E74 
+ 454      00
+ 455              	.LASF2:
+ 456 0112 73686F72 		.ascii	"short int\000"
+ 456      7420696E 
+ 456      7400
+ 457              	.LASF5:
+ 458 011c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 458      20756E73 
+ 458      69676E65 
+ 458      6420696E 
+ 458      7400
+ 459              	.LASF10:
+ 460 012e 646F7562 		.ascii	"double\000"
+ 460      6C6500
+ 461              	.LASF3:
+ 462 0135 73686F72 		.ascii	"short unsigned int\000"
+ 462      7420756E 
+ 462      7369676E 
+ 462      65642069 
+ 462      6E7400
+ 463              	.LASF0:
+ 464 0148 7369676E 		.ascii	"signed char\000"
+ 464      65642063 
+ 464      68617200 
+ 465              	.LASF9:
+ 466 0154 666C6F61 		.ascii	"float\000"
+ 466      7400
+ 467              	.LASF15:
+ 468 015a 57617665 		.ascii	"WaveDAC8_BACKUP_STRUCT\000"
+ 468      44414338 
+ 468      5F424143 
+ 468      4B55505F 
+ 468      53545255 
+ 469              	.LASF16:
+ 470 0171 57617665 		.ascii	"WaveDAC8_Sleep\000"
+ 470      44414338 
+ 470      5F536C65 
+ 470      657000
+ 471              	.LASF13:
+ 472 0180 72656738 		.ascii	"reg8\000"
+ 472      00
+ 473              	.LASF14:
+ 474 0185 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccL8HYSe.s 			page 12
+
+
+ 474      74797065 
+ 474      00
+ 475              	.LASF19:
+ 476 018e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC8_PM.c\000"
+ 476      6E657261 
+ 476      7465645F 
+ 476      536F7572 
+ 476      63655C50 
+ 477              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

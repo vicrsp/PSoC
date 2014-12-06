@@ -1,0 +1,368 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Filter_Coefficients.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	Filter_ChannelABiquadCoefficients
+  19              		.section	.rodata
+  20              		.align	2
+  21              		.type	Filter_ChannelABiquadCoefficients, %object
+  22              		.size	Filter_ChannelABiquadCoefficients, 20
+  23              	Filter_ChannelABiquadCoefficients:
+  24 0000 91       		.byte	-111
+  25 0001 F9       		.byte	-7
+  26 0002 3F       		.byte	63
+  27 0003 00       		.byte	0
+  28 0004 3A       		.byte	58
+  29 0005 31       		.byte	49
+  30 0006 80       		.byte	-128
+  31 0007 00       		.byte	0
+  32 0008 91       		.byte	-111
+  33 0009 F9       		.byte	-7
+  34 000a 3F       		.byte	63
+  35 000b 00       		.byte	0
+  36 000c C6       		.byte	-58
+  37 000d CE       		.byte	-50
+  38 000e 7F       		.byte	127
+  39 000f 00       		.byte	0
+  40 0010 DD       		.byte	-35
+  41 0011 0C       		.byte	12
+  42 0012 C0       		.byte	-64
+  43 0013 00       		.byte	0
+  44              		.text
+  45              	.Letext0:
+  46              		.file 1 ".\\Generated_Source\\PSoC5\\cytypes.h"
+  47              		.file 2 ".\\Generated_Source\\PSoC5\\Filter_Coefficients.c"
+  48              		.section	.debug_info,"",%progbits
+  49              	.Ldebug_info0:
+  50 0000 AE000000 		.4byte	0xae
+  51 0004 0200     		.2byte	0x2
+  52 0006 00000000 		.4byte	.Ldebug_abbrev0
+  53 000a 04       		.byte	0x4
+  54 000b 01       		.uleb128 0x1
+  55 000c 1B000000 		.4byte	.LASF13
+  56 0010 01       		.byte	0x1
+  57 0011 1E010000 		.4byte	.LASF14
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 2
+
+
+  58 0015 93000000 		.4byte	.LASF15
+  59 0019 00000000 		.4byte	.Ldebug_line0
+  60 001d 02       		.uleb128 0x2
+  61 001e 01       		.byte	0x1
+  62 001f 06       		.byte	0x6
+  63 0020 12010000 		.4byte	.LASF0
+  64 0024 02       		.uleb128 0x2
+  65 0025 01       		.byte	0x1
+  66 0026 08       		.byte	0x8
+  67 0027 DC000000 		.4byte	.LASF1
+  68 002b 02       		.uleb128 0x2
+  69 002c 02       		.byte	0x2
+  70 002d 05       		.byte	0x5
+  71 002e 53010000 		.4byte	.LASF2
+  72 0032 02       		.uleb128 0x2
+  73 0033 02       		.byte	0x2
+  74 0034 07       		.byte	0x7
+  75 0035 FF000000 		.4byte	.LASF3
+  76 0039 03       		.uleb128 0x3
+  77 003a 04       		.byte	0x4
+  78 003b 05       		.byte	0x5
+  79 003c 696E7400 		.ascii	"int\000"
+  80 0040 02       		.uleb128 0x2
+  81 0041 04       		.byte	0x4
+  82 0042 07       		.byte	0x7
+  83 0043 0E000000 		.4byte	.LASF4
+  84 0047 02       		.uleb128 0x2
+  85 0048 08       		.byte	0x8
+  86 0049 05       		.byte	0x5
+  87 004a 00000000 		.4byte	.LASF5
+  88 004e 02       		.uleb128 0x2
+  89 004f 08       		.byte	0x8
+  90 0050 07       		.byte	0x7
+  91 0051 7C000000 		.4byte	.LASF6
+  92 0055 02       		.uleb128 0x2
+  93 0056 04       		.byte	0x4
+  94 0057 05       		.byte	0x5
+  95 0058 EF000000 		.4byte	.LASF7
+  96 005c 02       		.uleb128 0x2
+  97 005d 04       		.byte	0x4
+  98 005e 07       		.byte	0x7
+  99 005f 7F010000 		.4byte	.LASF8
+ 100 0063 02       		.uleb128 0x2
+ 101 0064 04       		.byte	0x4
+ 102 0065 07       		.byte	0x7
+ 103 0066 6A000000 		.4byte	.LASF9
+ 104 006a 02       		.uleb128 0x2
+ 105 006b 01       		.byte	0x1
+ 106 006c 08       		.byte	0x8
+ 107 006d EA000000 		.4byte	.LASF10
+ 108 0071 04       		.uleb128 0x4
+ 109 0072 64000000 		.4byte	.LASF16
+ 110 0076 01       		.byte	0x1
+ 111 0077 5B       		.byte	0x5b
+ 112 0078 24000000 		.4byte	0x24
+ 113 007c 02       		.uleb128 0x2
+ 114 007d 04       		.byte	0x4
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 3
+
+
+ 115 007e 04       		.byte	0x4
+ 116 007f 4D010000 		.4byte	.LASF11
+ 117 0083 02       		.uleb128 0x2
+ 118 0084 08       		.byte	0x8
+ 119 0085 04       		.byte	0x4
+ 120 0086 F8000000 		.4byte	.LASF12
+ 121 008a 05       		.uleb128 0x5
+ 122 008b 71000000 		.4byte	0x71
+ 123 008f 9A000000 		.4byte	0x9a
+ 124 0093 06       		.uleb128 0x6
+ 125 0094 5C000000 		.4byte	0x5c
+ 126 0098 13       		.byte	0x13
+ 127 0099 00       		.byte	0
+ 128 009a 07       		.uleb128 0x7
+ 129 009b 5D010000 		.4byte	.LASF17
+ 130 009f 02       		.byte	0x2
+ 131 00a0 11       		.byte	0x11
+ 132 00a1 AC000000 		.4byte	0xac
+ 133 00a5 01       		.byte	0x1
+ 134 00a6 05       		.byte	0x5
+ 135 00a7 03       		.byte	0x3
+ 136 00a8 00000000 		.4byte	Filter_ChannelABiquadCoefficients
+ 137 00ac 08       		.uleb128 0x8
+ 138 00ad 8A000000 		.4byte	0x8a
+ 139 00b1 00       		.byte	0
+ 140              		.section	.debug_abbrev,"",%progbits
+ 141              	.Ldebug_abbrev0:
+ 142 0000 01       		.uleb128 0x1
+ 143 0001 11       		.uleb128 0x11
+ 144 0002 01       		.byte	0x1
+ 145 0003 25       		.uleb128 0x25
+ 146 0004 0E       		.uleb128 0xe
+ 147 0005 13       		.uleb128 0x13
+ 148 0006 0B       		.uleb128 0xb
+ 149 0007 03       		.uleb128 0x3
+ 150 0008 0E       		.uleb128 0xe
+ 151 0009 1B       		.uleb128 0x1b
+ 152 000a 0E       		.uleb128 0xe
+ 153 000b 10       		.uleb128 0x10
+ 154 000c 06       		.uleb128 0x6
+ 155 000d 00       		.byte	0
+ 156 000e 00       		.byte	0
+ 157 000f 02       		.uleb128 0x2
+ 158 0010 24       		.uleb128 0x24
+ 159 0011 00       		.byte	0
+ 160 0012 0B       		.uleb128 0xb
+ 161 0013 0B       		.uleb128 0xb
+ 162 0014 3E       		.uleb128 0x3e
+ 163 0015 0B       		.uleb128 0xb
+ 164 0016 03       		.uleb128 0x3
+ 165 0017 0E       		.uleb128 0xe
+ 166 0018 00       		.byte	0
+ 167 0019 00       		.byte	0
+ 168 001a 03       		.uleb128 0x3
+ 169 001b 24       		.uleb128 0x24
+ 170 001c 00       		.byte	0
+ 171 001d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 4
+
+
+ 172 001e 0B       		.uleb128 0xb
+ 173 001f 3E       		.uleb128 0x3e
+ 174 0020 0B       		.uleb128 0xb
+ 175 0021 03       		.uleb128 0x3
+ 176 0022 08       		.uleb128 0x8
+ 177 0023 00       		.byte	0
+ 178 0024 00       		.byte	0
+ 179 0025 04       		.uleb128 0x4
+ 180 0026 16       		.uleb128 0x16
+ 181 0027 00       		.byte	0
+ 182 0028 03       		.uleb128 0x3
+ 183 0029 0E       		.uleb128 0xe
+ 184 002a 3A       		.uleb128 0x3a
+ 185 002b 0B       		.uleb128 0xb
+ 186 002c 3B       		.uleb128 0x3b
+ 187 002d 0B       		.uleb128 0xb
+ 188 002e 49       		.uleb128 0x49
+ 189 002f 13       		.uleb128 0x13
+ 190 0030 00       		.byte	0
+ 191 0031 00       		.byte	0
+ 192 0032 05       		.uleb128 0x5
+ 193 0033 01       		.uleb128 0x1
+ 194 0034 01       		.byte	0x1
+ 195 0035 49       		.uleb128 0x49
+ 196 0036 13       		.uleb128 0x13
+ 197 0037 01       		.uleb128 0x1
+ 198 0038 13       		.uleb128 0x13
+ 199 0039 00       		.byte	0
+ 200 003a 00       		.byte	0
+ 201 003b 06       		.uleb128 0x6
+ 202 003c 21       		.uleb128 0x21
+ 203 003d 00       		.byte	0
+ 204 003e 49       		.uleb128 0x49
+ 205 003f 13       		.uleb128 0x13
+ 206 0040 2F       		.uleb128 0x2f
+ 207 0041 0B       		.uleb128 0xb
+ 208 0042 00       		.byte	0
+ 209 0043 00       		.byte	0
+ 210 0044 07       		.uleb128 0x7
+ 211 0045 34       		.uleb128 0x34
+ 212 0046 00       		.byte	0
+ 213 0047 03       		.uleb128 0x3
+ 214 0048 0E       		.uleb128 0xe
+ 215 0049 3A       		.uleb128 0x3a
+ 216 004a 0B       		.uleb128 0xb
+ 217 004b 3B       		.uleb128 0x3b
+ 218 004c 0B       		.uleb128 0xb
+ 219 004d 49       		.uleb128 0x49
+ 220 004e 13       		.uleb128 0x13
+ 221 004f 3F       		.uleb128 0x3f
+ 222 0050 0C       		.uleb128 0xc
+ 223 0051 02       		.uleb128 0x2
+ 224 0052 0A       		.uleb128 0xa
+ 225 0053 00       		.byte	0
+ 226 0054 00       		.byte	0
+ 227 0055 08       		.uleb128 0x8
+ 228 0056 26       		.uleb128 0x26
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 5
+
+
+ 229 0057 00       		.byte	0
+ 230 0058 49       		.uleb128 0x49
+ 231 0059 13       		.uleb128 0x13
+ 232 005a 00       		.byte	0
+ 233 005b 00       		.byte	0
+ 234 005c 00       		.byte	0
+ 235              		.section	.debug_aranges,"",%progbits
+ 236 0000 14000000 		.4byte	0x14
+ 237 0004 0200     		.2byte	0x2
+ 238 0006 00000000 		.4byte	.Ldebug_info0
+ 239 000a 04       		.byte	0x4
+ 240 000b 00       		.byte	0
+ 241 000c 0000     		.2byte	0
+ 242 000e 0000     		.2byte	0
+ 243 0010 00000000 		.4byte	0
+ 244 0014 00000000 		.4byte	0
+ 245              		.section	.debug_line,"",%progbits
+ 246              	.Ldebug_line0:
+ 247 0000 58000000 		.section	.debug_str,"MS",%progbits,1
+ 247      02005200 
+ 247      00000201 
+ 247      FB0E0D00 
+ 247      01010101 
+ 248              	.LASF5:
+ 249 0000 6C6F6E67 		.ascii	"long long int\000"
+ 249      206C6F6E 
+ 249      6720696E 
+ 249      7400
+ 250              	.LASF4:
+ 251 000e 756E7369 		.ascii	"unsigned int\000"
+ 251      676E6564 
+ 251      20696E74 
+ 251      00
+ 252              	.LASF13:
+ 253 001b 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 253      4320342E 
+ 253      372E3320 
+ 253      32303133 
+ 253      30333132 
+ 254 004e 616E6368 		.ascii	"anch revision 196615]\000"
+ 254      20726576 
+ 254      6973696F 
+ 254      6E203139 
+ 254      36363135 
+ 255              	.LASF16:
+ 256 0064 75696E74 		.ascii	"uint8\000"
+ 256      3800
+ 257              	.LASF9:
+ 258 006a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 258      20756E73 
+ 258      69676E65 
+ 258      6420696E 
+ 258      7400
+ 259              	.LASF6:
+ 260 007c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 260      206C6F6E 
+ 260      6720756E 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 6
+
+
+ 260      7369676E 
+ 260      65642069 
+ 261              	.LASF15:
+ 262 0093 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 262      73657273 
+ 262      5C566963 
+ 262      746F7220 
+ 262      5275656C 
+ 263 00c0 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 263      54657374 
+ 263      65555342 
+ 263      5C546573 
+ 263      74655553 
+ 264              	.LASF1:
+ 265 00dc 756E7369 		.ascii	"unsigned char\000"
+ 265      676E6564 
+ 265      20636861 
+ 265      7200
+ 266              	.LASF10:
+ 267 00ea 63686172 		.ascii	"char\000"
+ 267      00
+ 268              	.LASF7:
+ 269 00ef 6C6F6E67 		.ascii	"long int\000"
+ 269      20696E74 
+ 269      00
+ 270              	.LASF12:
+ 271 00f8 646F7562 		.ascii	"double\000"
+ 271      6C6500
+ 272              	.LASF3:
+ 273 00ff 73686F72 		.ascii	"short unsigned int\000"
+ 273      7420756E 
+ 273      7369676E 
+ 273      65642069 
+ 273      6E7400
+ 274              	.LASF0:
+ 275 0112 7369676E 		.ascii	"signed char\000"
+ 275      65642063 
+ 275      68617200 
+ 276              	.LASF14:
+ 277 011e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Filter_Coefficients.c\000"
+ 277      6E657261 
+ 277      7465645F 
+ 277      536F7572 
+ 277      63655C50 
+ 278              	.LASF11:
+ 279 014d 666C6F61 		.ascii	"float\000"
+ 279      7400
+ 280              	.LASF2:
+ 281 0153 73686F72 		.ascii	"short int\000"
+ 281      7420696E 
+ 281      7400
+ 282              	.LASF17:
+ 283 015d 46696C74 		.ascii	"Filter_ChannelABiquadCoefficients\000"
+ 283      65725F43 
+ 283      68616E6E 
+ 283      656C4142 
+ 283      69717561 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\cc9aQmJA.s 			page 7
+
+
+ 284              	.LASF8:
+ 285 017f 73697A65 		.ascii	"sizetype\000"
+ 285      74797065 
+ 285      00
+ 286              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

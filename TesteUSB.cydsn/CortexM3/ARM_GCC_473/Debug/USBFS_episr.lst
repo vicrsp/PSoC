@@ -1,0 +1,2020 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"USBFS_episr.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.USBFS_EP_1_ISR,"ax",%progbits
+  19              		.align	2
+  20              		.global	USBFS_EP_1_ISR
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	USBFS_EP_1_ISR, %function
+  24              	USBFS_EP_1_ISR:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\USBFS_episr.c"
+   1:.\Generated_Source\PSoC5/USBFS_episr.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/USBFS_episr.c **** * File Name: USBFS_episr.c
+   3:.\Generated_Source\PSoC5/USBFS_episr.c **** * Version 2.70
+   4:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+   5:.\Generated_Source\PSoC5/USBFS_episr.c **** * Description:
+   6:.\Generated_Source\PSoC5/USBFS_episr.c **** *  Data endpoint Interrupt Service Routines
+   7:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+   8:.\Generated_Source\PSoC5/USBFS_episr.c **** * Note:
+   9:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+  10:.\Generated_Source\PSoC5/USBFS_episr.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/USBFS_episr.c **** * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/USBFS_episr.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC5/USBFS_episr.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC5/USBFS_episr.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/USBFS_episr.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  17:.\Generated_Source\PSoC5/USBFS_episr.c **** #include "USBFS.h"
+  18:.\Generated_Source\PSoC5/USBFS_episr.c **** #include "USBFS_pvt.h"
+  19:.\Generated_Source\PSoC5/USBFS_episr.c **** #if (defined(USBFS_ENABLE_MIDI_STREAMING) && (USBFS_ENABLE_MIDI_API != 0u))
+  20:.\Generated_Source\PSoC5/USBFS_episr.c ****     #include "USBFS_midi.h"
+  21:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif /* (defined(USBFS_ENABLE_MIDI_STREAMING) && (USBFS_ENABLE_MIDI_API != 0u)) */
+  22:.\Generated_Source\PSoC5/USBFS_episr.c **** #if ((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u))
+  23:.\Generated_Source\PSoC5/USBFS_episr.c ****     #include "USBFS_EP8_DMA_Done_SR.h"
+  24:.\Generated_Source\PSoC5/USBFS_episr.c ****     #include "USBFS_EP17_DMA_Done_SR.h"
+  25:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif /* (USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u) */
+  26:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  27:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  28:.\Generated_Source\PSoC5/USBFS_episr.c **** /***************************************
+  29:.\Generated_Source\PSoC5/USBFS_episr.c **** * Custom Declarations
+  30:.\Generated_Source\PSoC5/USBFS_episr.c **** ***************************************/
+  31:.\Generated_Source\PSoC5/USBFS_episr.c **** /* `#START CUSTOM_DECLARATIONS` Place your declaration here */
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  33:.\Generated_Source\PSoC5/USBFS_episr.c **** /* `#END` */
+  34:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  35:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  36:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP1_ISR_REMOVE == 0u)
+  37:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  38:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  39:.\Generated_Source\PSoC5/USBFS_episr.c ****     /******************************************************************************
+  40:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_1_ISR
+  41:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************
+  42:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+  43:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+  44:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 1 Interrupt Service Routine
+  45:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+  46:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+  47:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+  48:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+  49:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+  50:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+  51:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+  52:.\Generated_Source\PSoC5/USBFS_episr.c ****     ******************************************************************************/
+  53:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_1_ISR)
+  54:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+  27              		.loc 1 54 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 7, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_register 7
+  55:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT)  && \
+  56:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+  57:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+  58:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+  59:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  60:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP1_USER_CODE` Place your code here */
+  61:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  62:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+  63:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  64:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+  65:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+  66:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+  67:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+  68:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+  69:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  70:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP1_CR0_PTR); /* Must read the mode reg */
+  39              		.loc 1 70 0
+  40 0004 46F20E03 		movw	r3, #24590
+  41 0008 C4F20003 		movt	r3, 16384
+  42 000c 1B78     		ldrb	r3, [r3, #0]
+  71:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+  72:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP1].attrib & USBFS_EP_TYPE_MASK) !=
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 3
+
+
+  43              		.loc 1 72 0
+  44 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+  45 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+  46 0016 1B7B     		ldrb	r3, [r3, #12]
+  47 0018 DBB2     		uxtb	r3, r3
+  48 001a 03F00303 		and	r3, r3, #3
+  49 001e 012B     		cmp	r3, #1
+  50 0020 0FD0     		beq	.L2
+  73:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+  74:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+  75:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP1].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+  51              		.loc 1 75 0
+  52 0022 40F20003 		movw	r3, #:lower16:USBFS_EP
+  53 0026 C0F20003 		movt	r3, #:upper16:USBFS_EP
+  54 002a DB7B     		ldrb	r3, [r3, #15]
+  55 002c DBB2     		uxtb	r3, r3
+  56 002e 83F07F03 		eor	r3, r3, #127
+  57 0032 6FEA0303 		mvn	r3, r3
+  58 0036 DAB2     		uxtb	r2, r3
+  59 0038 40F20003 		movw	r3, #:lower16:USBFS_EP
+  60 003c C0F20003 		movt	r3, #:upper16:USBFS_EP
+  61 0040 DA73     		strb	r2, [r3, #15]
+  62              	.L2:
+  76:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+  77:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP1].apiEpState = USBFS_EVENT_PENDING;
+  63              		.loc 1 77 0
+  64 0042 40F20003 		movw	r3, #:lower16:USBFS_EP
+  65 0046 C0F20003 		movt	r3, #:upper16:USBFS_EP
+  66 004a 4FF00102 		mov	r2, #1
+  67 004e 5A73     		strb	r2, [r3, #13]
+  78:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR) &
+  68              		.loc 1 78 0
+  69 0050 46F20B03 		movw	r3, #24587
+  70 0054 C4F20003 		movt	r3, 16384
+  71 0058 46F20B02 		movw	r2, #24587
+  72 005c C4F20002 		movt	r2, 16384
+  73 0060 1278     		ldrb	r2, [r2, #0]
+  74 0062 D2B2     		uxtb	r2, r2
+  75 0064 22F00102 		bic	r2, r2, #1
+  76 0068 D2B2     		uxtb	r2, r2
+  77 006a 1A70     		strb	r2, [r3, #0]
+  79:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                     (uint8)~USBFS_SIE_EP_INT_EP1_MA
+  80:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  81:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+  82:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+  83:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP1)
+  84:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+  85:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+  86:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+  87:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+  88:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  89:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP1_END_USER_CODE` Place your code here */
+  90:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  91:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+  92:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  93:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+  94:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 4
+
+
+  95:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+  96:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+  97:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+  78              		.loc 1 97 0
+  79 006c BD46     		mov	sp, r7
+  80 006e 80BC     		pop	{r7}
+  81 0070 7047     		bx	lr
+  82              		.cfi_endproc
+  83              	.LFE0:
+  84              		.size	USBFS_EP_1_ISR, .-USBFS_EP_1_ISR
+  85 0072 00BF     		.section	.text.USBFS_EP_2_ISR,"ax",%progbits
+  86              		.align	2
+  87              		.global	USBFS_EP_2_ISR
+  88              		.thumb
+  89              		.thumb_func
+  90              		.type	USBFS_EP_2_ISR, %function
+  91              	USBFS_EP_2_ISR:
+  92              	.LFB1:
+  98:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+  99:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP1_ISR_REMOVE */
+ 100:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 101:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 102:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP2_ISR_REMOVE == 0u)
+ 103:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 104:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 105:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_2_ISR
+ 106:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 107:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 108:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 109:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 2 Interrupt Service Routine
+ 110:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 111:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 112:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 113:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 114:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 115:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 116:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 117:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 118:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_2_ISR)
+ 119:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+  93              		.loc 1 119 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 1, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+  98 0000 80B4     		push	{r7}
+  99              	.LCFI2:
+ 100              		.cfi_def_cfa_offset 4
+ 101              		.cfi_offset 7, -4
+ 102 0002 00AF     		add	r7, sp, #0
+ 103              	.LCFI3:
+ 104              		.cfi_def_cfa_register 7
+ 120:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 121:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 122:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 123:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 124:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 5
+
+
+ 125:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP2_USER_CODE` Place your code here */
+ 126:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 127:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 128:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 129:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 130:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 131:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 132:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 133:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 134:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 135:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP2_CR0_PTR); /* Must read the mode reg */
+ 105              		.loc 1 135 0
+ 106 0004 46F21E03 		movw	r3, #24606
+ 107 0008 C4F20003 		movt	r3, 16384
+ 108 000c 1B78     		ldrb	r3, [r3, #0]
+ 136:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 137:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP2].attrib & USBFS_EP_TYPE_MASK) !=
+ 109              		.loc 1 137 0
+ 110 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 111 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 112 0016 1B7E     		ldrb	r3, [r3, #24]
+ 113 0018 DBB2     		uxtb	r3, r3
+ 114 001a 03F00303 		and	r3, r3, #3
+ 115 001e 012B     		cmp	r3, #1
+ 116 0020 0FD0     		beq	.L4
+ 138:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 139:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 140:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP2].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 117              		.loc 1 140 0
+ 118 0022 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 119 0026 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 120 002a DB7E     		ldrb	r3, [r3, #27]
+ 121 002c DBB2     		uxtb	r3, r3
+ 122 002e 83F07F03 		eor	r3, r3, #127
+ 123 0032 6FEA0303 		mvn	r3, r3
+ 124 0036 DAB2     		uxtb	r2, r3
+ 125 0038 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 126 003c C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 127 0040 DA76     		strb	r2, [r3, #27]
+ 128              	.L4:
+ 141:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 142:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP2].apiEpState = USBFS_EVENT_PENDING;
+ 129              		.loc 1 142 0
+ 130 0042 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 131 0046 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 132 004a 4FF00102 		mov	r2, #1
+ 133 004e 5A76     		strb	r2, [r3, #25]
+ 143:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 134              		.loc 1 143 0
+ 135 0050 46F20B03 		movw	r3, #24587
+ 136 0054 C4F20003 		movt	r3, 16384
+ 137 0058 46F20B02 		movw	r2, #24587
+ 138 005c C4F20002 		movt	r2, 16384
+ 139 0060 1278     		ldrb	r2, [r2, #0]
+ 140 0062 D2B2     		uxtb	r2, r2
+ 141 0064 22F00202 		bic	r2, r2, #2
+ 142 0068 D2B2     		uxtb	r2, r2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 6
+
+
+ 143 006a 1A70     		strb	r2, [r3, #0]
+ 144:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 145:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 146:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 147:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 148:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP2)
+ 149:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 150:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 151:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 152:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 153:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 154:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP2_END_USER_CODE` Place your code here */
+ 155:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 156:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 157:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 158:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 159:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 160:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 161:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 162:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 144              		.loc 1 162 0
+ 145 006c BD46     		mov	sp, r7
+ 146 006e 80BC     		pop	{r7}
+ 147 0070 7047     		bx	lr
+ 148              		.cfi_endproc
+ 149              	.LFE1:
+ 150              		.size	USBFS_EP_2_ISR, .-USBFS_EP_2_ISR
+ 151 0072 00BF     		.section	.text.USBFS_EP_3_ISR,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	USBFS_EP_3_ISR
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	USBFS_EP_3_ISR, %function
+ 157              	USBFS_EP_3_ISR:
+ 158              	.LFB2:
+ 163:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 164:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP2_ISR_REMOVE */
+ 165:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 166:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 167:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP3_ISR_REMOVE == 0u)
+ 168:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 169:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 170:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_3_ISR
+ 171:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 172:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 173:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 174:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 3 Interrupt Service Routine
+ 175:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 176:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 177:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 178:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 179:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 180:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 181:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 182:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 183:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_3_ISR)
+ 184:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 7
+
+
+ 159              		.loc 1 184 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 1, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164 0000 80B4     		push	{r7}
+ 165              	.LCFI4:
+ 166              		.cfi_def_cfa_offset 4
+ 167              		.cfi_offset 7, -4
+ 168 0002 00AF     		add	r7, sp, #0
+ 169              	.LCFI5:
+ 170              		.cfi_def_cfa_register 7
+ 185:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 186:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 187:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 188:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 189:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 190:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP3_USER_CODE` Place your code here */
+ 191:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 192:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 193:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 194:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 195:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 196:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 197:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 198:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 199:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 200:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP3_CR0_PTR); /* Must read the mode reg */
+ 171              		.loc 1 200 0
+ 172 0004 46F22E03 		movw	r3, #24622
+ 173 0008 C4F20003 		movt	r3, 16384
+ 174 000c 1B78     		ldrb	r3, [r3, #0]
+ 201:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 202:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP3].attrib & USBFS_EP_TYPE_MASK) !=
+ 175              		.loc 1 202 0
+ 176 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 177 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 178 0016 93F82430 		ldrb	r3, [r3, #36]
+ 179 001a DBB2     		uxtb	r3, r3
+ 180 001c 03F00303 		and	r3, r3, #3
+ 181 0020 012B     		cmp	r3, #1
+ 182 0022 11D0     		beq	.L6
+ 203:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 204:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 205:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP3].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 183              		.loc 1 205 0
+ 184 0024 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 185 0028 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 186 002c 93F82730 		ldrb	r3, [r3, #39]
+ 187 0030 DBB2     		uxtb	r3, r3
+ 188 0032 83F07F03 		eor	r3, r3, #127
+ 189 0036 6FEA0303 		mvn	r3, r3
+ 190 003a DAB2     		uxtb	r2, r3
+ 191 003c 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 192 0040 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 193 0044 83F82720 		strb	r2, [r3, #39]
+ 194              	.L6:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 8
+
+
+ 206:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 207:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP3].apiEpState = USBFS_EVENT_PENDING;
+ 195              		.loc 1 207 0
+ 196 0048 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 197 004c C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 198 0050 4FF00102 		mov	r2, #1
+ 199 0054 83F82520 		strb	r2, [r3, #37]
+ 208:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 200              		.loc 1 208 0
+ 201 0058 46F20B03 		movw	r3, #24587
+ 202 005c C4F20003 		movt	r3, 16384
+ 203 0060 46F20B02 		movw	r2, #24587
+ 204 0064 C4F20002 		movt	r2, 16384
+ 205 0068 1278     		ldrb	r2, [r2, #0]
+ 206 006a D2B2     		uxtb	r2, r2
+ 207 006c 22F00402 		bic	r2, r2, #4
+ 208 0070 D2B2     		uxtb	r2, r2
+ 209 0072 1A70     		strb	r2, [r3, #0]
+ 209:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 210:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 211:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 212:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 213:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP3)
+ 214:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 215:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 216:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 217:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 218:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 219:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP3_END_USER_CODE` Place your code here */
+ 220:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 221:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 222:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 223:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 224:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 225:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 226:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 227:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 210              		.loc 1 227 0
+ 211 0074 BD46     		mov	sp, r7
+ 212 0076 80BC     		pop	{r7}
+ 213 0078 7047     		bx	lr
+ 214              		.cfi_endproc
+ 215              	.LFE2:
+ 216              		.size	USBFS_EP_3_ISR, .-USBFS_EP_3_ISR
+ 217 007a 00BF     		.section	.text.USBFS_EP_4_ISR,"ax",%progbits
+ 218              		.align	2
+ 219              		.global	USBFS_EP_4_ISR
+ 220              		.thumb
+ 221              		.thumb_func
+ 222              		.type	USBFS_EP_4_ISR, %function
+ 223              	USBFS_EP_4_ISR:
+ 224              	.LFB3:
+ 228:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 229:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP3_ISR_REMOVE */
+ 230:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 231:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 232:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP4_ISR_REMOVE == 0u)
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 9
+
+
+ 233:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 234:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 235:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_4_ISR
+ 236:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 237:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 238:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 239:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 4 Interrupt Service Routine
+ 240:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 241:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 242:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 243:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 244:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 245:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 246:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 247:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 248:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_4_ISR)
+ 249:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ 225              		.loc 1 249 0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 1, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230 0000 80B4     		push	{r7}
+ 231              	.LCFI6:
+ 232              		.cfi_def_cfa_offset 4
+ 233              		.cfi_offset 7, -4
+ 234 0002 00AF     		add	r7, sp, #0
+ 235              	.LCFI7:
+ 236              		.cfi_def_cfa_register 7
+ 250:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 251:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 252:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 253:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 254:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 255:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP4_USER_CODE` Place your code here */
+ 256:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 257:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 258:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 259:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 260:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 261:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 262:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 263:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 264:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 265:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP4_CR0_PTR); /* Must read the mode reg */
+ 237              		.loc 1 265 0
+ 238 0004 46F23E03 		movw	r3, #24638
+ 239 0008 C4F20003 		movt	r3, 16384
+ 240 000c 1B78     		ldrb	r3, [r3, #0]
+ 266:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 267:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP4].attrib & USBFS_EP_TYPE_MASK) !=
+ 241              		.loc 1 267 0
+ 242 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 243 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 244 0016 93F83030 		ldrb	r3, [r3, #48]
+ 245 001a DBB2     		uxtb	r3, r3
+ 246 001c 03F00303 		and	r3, r3, #3
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 10
+
+
+ 247 0020 012B     		cmp	r3, #1
+ 248 0022 11D0     		beq	.L8
+ 268:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 269:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 270:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP4].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 249              		.loc 1 270 0
+ 250 0024 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 251 0028 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 252 002c 93F83330 		ldrb	r3, [r3, #51]
+ 253 0030 DBB2     		uxtb	r3, r3
+ 254 0032 83F07F03 		eor	r3, r3, #127
+ 255 0036 6FEA0303 		mvn	r3, r3
+ 256 003a DAB2     		uxtb	r2, r3
+ 257 003c 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 258 0040 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 259 0044 83F83320 		strb	r2, [r3, #51]
+ 260              	.L8:
+ 271:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 272:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP4].apiEpState = USBFS_EVENT_PENDING;
+ 261              		.loc 1 272 0
+ 262 0048 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 263 004c C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 264 0050 4FF00102 		mov	r2, #1
+ 265 0054 83F83120 		strb	r2, [r3, #49]
+ 273:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 266              		.loc 1 273 0
+ 267 0058 46F20B03 		movw	r3, #24587
+ 268 005c C4F20003 		movt	r3, 16384
+ 269 0060 46F20B02 		movw	r2, #24587
+ 270 0064 C4F20002 		movt	r2, 16384
+ 271 0068 1278     		ldrb	r2, [r2, #0]
+ 272 006a D2B2     		uxtb	r2, r2
+ 273 006c 22F00802 		bic	r2, r2, #8
+ 274 0070 D2B2     		uxtb	r2, r2
+ 275 0072 1A70     		strb	r2, [r3, #0]
+ 274:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 275:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 276:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 277:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 278:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP4)
+ 279:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 280:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 281:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 282:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 283:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 284:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP4_END_USER_CODE` Place your code here */
+ 285:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 286:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 287:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 288:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 289:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 290:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 291:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 292:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 276              		.loc 1 292 0
+ 277 0074 BD46     		mov	sp, r7
+ 278 0076 80BC     		pop	{r7}
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 11
+
+
+ 279 0078 7047     		bx	lr
+ 280              		.cfi_endproc
+ 281              	.LFE3:
+ 282              		.size	USBFS_EP_4_ISR, .-USBFS_EP_4_ISR
+ 283 007a 00BF     		.section	.text.USBFS_EP_5_ISR,"ax",%progbits
+ 284              		.align	2
+ 285              		.global	USBFS_EP_5_ISR
+ 286              		.thumb
+ 287              		.thumb_func
+ 288              		.type	USBFS_EP_5_ISR, %function
+ 289              	USBFS_EP_5_ISR:
+ 290              	.LFB4:
+ 293:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 294:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP4_ISR_REMOVE */
+ 295:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 296:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 297:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP5_ISR_REMOVE == 0u)
+ 298:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 299:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 300:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_5_ISR
+ 301:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 302:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 303:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 304:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 5 Interrupt Service Routine
+ 305:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 306:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 307:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 308:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 309:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 310:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 311:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 312:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 313:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_5_ISR)
+ 314:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ 291              		.loc 1 314 0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 1, uses_anonymous_args = 0
+ 295              		@ link register save eliminated.
+ 296 0000 80B4     		push	{r7}
+ 297              	.LCFI8:
+ 298              		.cfi_def_cfa_offset 4
+ 299              		.cfi_offset 7, -4
+ 300 0002 00AF     		add	r7, sp, #0
+ 301              	.LCFI9:
+ 302              		.cfi_def_cfa_register 7
+ 315:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 316:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 317:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 318:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 319:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 320:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP5_USER_CODE` Place your code here */
+ 321:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 322:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 323:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 324:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 325:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 12
+
+
+ 326:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 327:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 328:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 329:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 330:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP5_CR0_PTR); /* Must read the mode reg */
+ 303              		.loc 1 330 0
+ 304 0004 46F24E03 		movw	r3, #24654
+ 305 0008 C4F20003 		movt	r3, 16384
+ 306 000c 1B78     		ldrb	r3, [r3, #0]
+ 331:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 332:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP5].attrib & USBFS_EP_TYPE_MASK) !=
+ 307              		.loc 1 332 0
+ 308 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 309 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 310 0016 93F83C30 		ldrb	r3, [r3, #60]
+ 311 001a DBB2     		uxtb	r3, r3
+ 312 001c 03F00303 		and	r3, r3, #3
+ 313 0020 012B     		cmp	r3, #1
+ 314 0022 11D0     		beq	.L10
+ 333:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 334:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 335:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP5].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 315              		.loc 1 335 0
+ 316 0024 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 317 0028 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 318 002c 93F83F30 		ldrb	r3, [r3, #63]
+ 319 0030 DBB2     		uxtb	r3, r3
+ 320 0032 83F07F03 		eor	r3, r3, #127
+ 321 0036 6FEA0303 		mvn	r3, r3
+ 322 003a DAB2     		uxtb	r2, r3
+ 323 003c 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 324 0040 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 325 0044 83F83F20 		strb	r2, [r3, #63]
+ 326              	.L10:
+ 336:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 337:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP5].apiEpState = USBFS_EVENT_PENDING;
+ 327              		.loc 1 337 0
+ 328 0048 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 329 004c C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 330 0050 4FF00102 		mov	r2, #1
+ 331 0054 83F83D20 		strb	r2, [r3, #61]
+ 338:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 332              		.loc 1 338 0
+ 333 0058 46F20B03 		movw	r3, #24587
+ 334 005c C4F20003 		movt	r3, 16384
+ 335 0060 46F20B02 		movw	r2, #24587
+ 336 0064 C4F20002 		movt	r2, 16384
+ 337 0068 1278     		ldrb	r2, [r2, #0]
+ 338 006a D2B2     		uxtb	r2, r2
+ 339 006c 22F01002 		bic	r2, r2, #16
+ 340 0070 D2B2     		uxtb	r2, r2
+ 341 0072 1A70     		strb	r2, [r3, #0]
+ 339:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 340:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 341:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 342:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 343:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP5)
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 13
+
+
+ 344:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 345:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 346:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 347:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 348:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 349:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP5_END_USER_CODE` Place your code here */
+ 350:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 351:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 352:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 353:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 354:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 355:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 356:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 357:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 342              		.loc 1 357 0
+ 343 0074 BD46     		mov	sp, r7
+ 344 0076 80BC     		pop	{r7}
+ 345 0078 7047     		bx	lr
+ 346              		.cfi_endproc
+ 347              	.LFE4:
+ 348              		.size	USBFS_EP_5_ISR, .-USBFS_EP_5_ISR
+ 349 007a 00BF     		.section	.text.USBFS_EP_6_ISR,"ax",%progbits
+ 350              		.align	2
+ 351              		.global	USBFS_EP_6_ISR
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.type	USBFS_EP_6_ISR, %function
+ 355              	USBFS_EP_6_ISR:
+ 356              	.LFB5:
+ 358:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP5_ISR_REMOVE */
+ 359:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 360:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 361:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP6_ISR_REMOVE == 0u)
+ 362:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 363:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 364:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_6_ISR
+ 365:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 366:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 367:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 368:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 6 Interrupt Service Routine
+ 369:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 370:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 371:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 372:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 373:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 374:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 375:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 376:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 377:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_6_ISR)
+ 378:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ 357              		.loc 1 378 0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 1, uses_anonymous_args = 0
+ 361              		@ link register save eliminated.
+ 362 0000 80B4     		push	{r7}
+ 363              	.LCFI10:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 14
+
+
+ 364              		.cfi_def_cfa_offset 4
+ 365              		.cfi_offset 7, -4
+ 366 0002 00AF     		add	r7, sp, #0
+ 367              	.LCFI11:
+ 368              		.cfi_def_cfa_register 7
+ 379:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 380:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 381:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 382:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 383:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 384:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP6_USER_CODE` Place your code here */
+ 385:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 386:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 387:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 388:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 389:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 390:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 391:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 392:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 393:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 394:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP6_CR0_PTR); /* Must read the mode reg */
+ 369              		.loc 1 394 0
+ 370 0004 46F25E03 		movw	r3, #24670
+ 371 0008 C4F20003 		movt	r3, 16384
+ 372 000c 1B78     		ldrb	r3, [r3, #0]
+ 395:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 396:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP6].attrib & USBFS_EP_TYPE_MASK) !=
+ 373              		.loc 1 396 0
+ 374 000e 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 375 0012 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 376 0016 93F84830 		ldrb	r3, [r3, #72]
+ 377 001a DBB2     		uxtb	r3, r3
+ 378 001c 03F00303 		and	r3, r3, #3
+ 379 0020 012B     		cmp	r3, #1
+ 380 0022 11D0     		beq	.L12
+ 397:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 398:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 399:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP6].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 381              		.loc 1 399 0
+ 382 0024 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 383 0028 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 384 002c 93F84B30 		ldrb	r3, [r3, #75]
+ 385 0030 DBB2     		uxtb	r3, r3
+ 386 0032 83F07F03 		eor	r3, r3, #127
+ 387 0036 6FEA0303 		mvn	r3, r3
+ 388 003a DAB2     		uxtb	r2, r3
+ 389 003c 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 390 0040 C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 391 0044 83F84B20 		strb	r2, [r3, #75]
+ 392              	.L12:
+ 400:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 401:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP6].apiEpState = USBFS_EVENT_PENDING;
+ 393              		.loc 1 401 0
+ 394 0048 40F20003 		movw	r3, #:lower16:USBFS_EP
+ 395 004c C0F20003 		movt	r3, #:upper16:USBFS_EP
+ 396 0050 4FF00102 		mov	r2, #1
+ 397 0054 83F84920 		strb	r2, [r3, #73]
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 15
+
+
+ 402:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 398              		.loc 1 402 0
+ 399 0058 46F20B03 		movw	r3, #24587
+ 400 005c C4F20003 		movt	r3, 16384
+ 401 0060 46F20B02 		movw	r2, #24587
+ 402 0064 C4F20002 		movt	r2, 16384
+ 403 0068 1278     		ldrb	r2, [r2, #0]
+ 404 006a D2B2     		uxtb	r2, r2
+ 405 006c 22F02002 		bic	r2, r2, #32
+ 406 0070 D2B2     		uxtb	r2, r2
+ 407 0072 1A70     		strb	r2, [r3, #0]
+ 403:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 404:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 405:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 406:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 407:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP6)
+ 408:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 409:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 410:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 411:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT  */
+ 412:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 413:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP6_END_USER_CODE` Place your code here */
+ 414:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 415:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 416:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 417:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 418:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 419:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 420:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 421:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 408              		.loc 1 421 0
+ 409 0074 BD46     		mov	sp, r7
+ 410 0076 80BC     		pop	{r7}
+ 411 0078 7047     		bx	lr
+ 412              		.cfi_endproc
+ 413              	.LFE5:
+ 414              		.size	USBFS_EP_6_ISR, .-USBFS_EP_6_ISR
+ 415 007a 00BF     		.section	.text.USBFS_SOF_ISR,"ax",%progbits
+ 416              		.align	2
+ 417              		.global	USBFS_SOF_ISR
+ 418              		.thumb
+ 419              		.thumb_func
+ 420              		.type	USBFS_SOF_ISR, %function
+ 421              	USBFS_SOF_ISR:
+ 422              	.LFB6:
+ 422:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 423:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP6_ISR_REMOVE */
+ 424:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 425:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 426:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP7_ISR_REMOVE == 0u)
+ 427:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 428:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 429:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_7_ISR
+ 430:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 431:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 432:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 433:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 7 Interrupt Service Routine
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 16
+
+
+ 434:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 435:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 436:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 437:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 438:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 439:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 440:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 441:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 442:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_7_ISR)
+ 443:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ 444:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 445:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 446:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 447:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 448:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 449:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP7_USER_CODE` Place your code here */
+ 450:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 451:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 452:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 453:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 454:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 455:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 456:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 457:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 458:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 459:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP7_CR0_PTR); /* Must read the mode reg */
+ 460:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 461:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP7].attrib & USBFS_EP_TYPE_MASK) !=
+ 462:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 463:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 464:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP7].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 465:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 466:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP7].apiEpState = USBFS_EVENT_PENDING;
+ 467:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 468:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 469:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 470:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 471:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 472:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP7)
+ 473:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 474:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 475:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 476:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT  */
+ 477:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 478:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP7_END_USER_CODE` Place your code here */
+ 479:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 480:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 481:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 482:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 483:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 484:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 485:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 486:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 487:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 488:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP7_ISR_REMOVE */
+ 489:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 490:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 17
+
+
+ 491:.\Generated_Source\PSoC5/USBFS_episr.c **** #if(USBFS_EP8_ISR_REMOVE == 0u)
+ 492:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 493:.\Generated_Source\PSoC5/USBFS_episr.c ****     /*******************************************************************************
+ 494:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Function Name: USBFS_EP_8_ISR
+ 495:.\Generated_Source\PSoC5/USBFS_episr.c ****     ********************************************************************************
+ 496:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 497:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Summary:
+ 498:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  Endpoint 8 Interrupt Service Routine
+ 499:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 500:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Parameters:
+ 501:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 502:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 503:.\Generated_Source\PSoC5/USBFS_episr.c ****     * Return:
+ 504:.\Generated_Source\PSoC5/USBFS_episr.c ****     *  None.
+ 505:.\Generated_Source\PSoC5/USBFS_episr.c ****     *
+ 506:.\Generated_Source\PSoC5/USBFS_episr.c ****     *******************************************************************************/
+ 507:.\Generated_Source\PSoC5/USBFS_episr.c ****     CY_ISR(USBFS_EP_8_ISR)
+ 508:.\Generated_Source\PSoC5/USBFS_episr.c ****     {
+ 509:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 510:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 511:.\Generated_Source\PSoC5/USBFS_episr.c ****             uint8 int_en;
+ 512:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 513:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 514:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP8_USER_CODE` Place your code here */
+ 515:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 516:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 517:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 518:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 519:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 520:.\Generated_Source\PSoC5/USBFS_episr.c ****             int_en = EA;
+ 521:.\Generated_Source\PSoC5/USBFS_episr.c ****             CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+ 522:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 523:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 524:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_GET_REG8(USBFS_SIE_EP8_CR0_PTR); /* Must read the mode reg */
+ 525:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* Do not toggle ISOC endpoint */
+ 526:.\Generated_Source\PSoC5/USBFS_episr.c ****         if((USBFS_EP[USBFS_EP8].attrib & USBFS_EP_TYPE_MASK) !=
+ 527:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                                     USBFS_EP_TYPE_I
+ 528:.\Generated_Source\PSoC5/USBFS_episr.c ****         {
+ 529:.\Generated_Source\PSoC5/USBFS_episr.c ****             USBFS_EP[USBFS_EP8].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 530:.\Generated_Source\PSoC5/USBFS_episr.c ****         }
+ 531:.\Generated_Source\PSoC5/USBFS_episr.c ****         USBFS_EP[USBFS_EP8].apiEpState = USBFS_EVENT_PENDING;
+ 532:.\Generated_Source\PSoC5/USBFS_episr.c ****         CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 533:.\Generated_Source\PSoC5/USBFS_episr.c ****                                                                         & (uint8)~USBFS_SIE_EP_INT_
+ 534:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 535:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 536:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT)
+ 537:.\Generated_Source\PSoC5/USBFS_episr.c ****             if(USBFS_midi_out_ep == USBFS_EP8)
+ 538:.\Generated_Source\PSoC5/USBFS_episr.c ****             {
+ 539:.\Generated_Source\PSoC5/USBFS_episr.c ****                 USBFS_MIDI_OUT_EP_Service();
+ 540:.\Generated_Source\PSoC5/USBFS_episr.c ****             }
+ 541:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 542:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 543:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#START EP8_END_USER_CODE` Place your code here */
+ 544:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 545:.\Generated_Source\PSoC5/USBFS_episr.c ****         /* `#END` */
+ 546:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 547:.\Generated_Source\PSoC5/USBFS_episr.c ****         #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 18
+
+
+ 548:.\Generated_Source\PSoC5/USBFS_episr.c ****                      USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+ 549:.\Generated_Source\PSoC5/USBFS_episr.c ****             EA = int_en;
+ 550:.\Generated_Source\PSoC5/USBFS_episr.c ****         #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+ 551:.\Generated_Source\PSoC5/USBFS_episr.c ****     }
+ 552:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 553:.\Generated_Source\PSoC5/USBFS_episr.c **** #endif   /*  USBFS_EP8_ISR_REMOVE */
+ 554:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 555:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 556:.\Generated_Source\PSoC5/USBFS_episr.c **** /*******************************************************************************
+ 557:.\Generated_Source\PSoC5/USBFS_episr.c **** * Function Name: USBFS_SOF_ISR
+ 558:.\Generated_Source\PSoC5/USBFS_episr.c **** ********************************************************************************
+ 559:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 560:.\Generated_Source\PSoC5/USBFS_episr.c **** * Summary:
+ 561:.\Generated_Source\PSoC5/USBFS_episr.c **** *  Start of Frame Interrupt Service Routine
+ 562:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 563:.\Generated_Source\PSoC5/USBFS_episr.c **** * Parameters:
+ 564:.\Generated_Source\PSoC5/USBFS_episr.c **** *  None.
+ 565:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 566:.\Generated_Source\PSoC5/USBFS_episr.c **** * Return:
+ 567:.\Generated_Source\PSoC5/USBFS_episr.c **** *  None.
+ 568:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 569:.\Generated_Source\PSoC5/USBFS_episr.c **** *******************************************************************************/
+ 570:.\Generated_Source\PSoC5/USBFS_episr.c **** CY_ISR(USBFS_SOF_ISR)
+ 571:.\Generated_Source\PSoC5/USBFS_episr.c **** {
+ 423              		.loc 1 571 0
+ 424              		.cfi_startproc
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 1, uses_anonymous_args = 0
+ 427              		@ link register save eliminated.
+ 428 0000 80B4     		push	{r7}
+ 429              	.LCFI12:
+ 430              		.cfi_def_cfa_offset 4
+ 431              		.cfi_offset 7, -4
+ 432 0002 00AF     		add	r7, sp, #0
+ 433              	.LCFI13:
+ 434              		.cfi_def_cfa_register 7
+ 572:.\Generated_Source\PSoC5/USBFS_episr.c ****     /* `#START SOF_USER_CODE` Place your code here */
+ 573:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 574:.\Generated_Source\PSoC5/USBFS_episr.c ****     /* `#END` */
+ 575:.\Generated_Source\PSoC5/USBFS_episr.c **** }
+ 435              		.loc 1 575 0
+ 436 0004 BD46     		mov	sp, r7
+ 437 0006 80BC     		pop	{r7}
+ 438 0008 7047     		bx	lr
+ 439              		.cfi_endproc
+ 440              	.LFE6:
+ 441              		.size	USBFS_SOF_ISR, .-USBFS_SOF_ISR
+ 442 000a 00BF     		.section	.text.USBFS_BUS_RESET_ISR,"ax",%progbits
+ 443              		.align	2
+ 444              		.global	USBFS_BUS_RESET_ISR
+ 445              		.thumb
+ 446              		.thumb_func
+ 447              		.type	USBFS_BUS_RESET_ISR, %function
+ 448              	USBFS_BUS_RESET_ISR:
+ 449              	.LFB7:
+ 576:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 577:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 19
+
+
+ 578:.\Generated_Source\PSoC5/USBFS_episr.c **** /*******************************************************************************
+ 579:.\Generated_Source\PSoC5/USBFS_episr.c **** * Function Name: USBFS_BUS_RESET_ISR
+ 580:.\Generated_Source\PSoC5/USBFS_episr.c **** ********************************************************************************
+ 581:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 582:.\Generated_Source\PSoC5/USBFS_episr.c **** * Summary:
+ 583:.\Generated_Source\PSoC5/USBFS_episr.c **** *  USB Bus Reset Interrupt Service Routine.  Calls _Start with the same
+ 584:.\Generated_Source\PSoC5/USBFS_episr.c **** *  parameters as the last USER call to _Start
+ 585:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 586:.\Generated_Source\PSoC5/USBFS_episr.c **** * Parameters:
+ 587:.\Generated_Source\PSoC5/USBFS_episr.c **** *  None.
+ 588:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 589:.\Generated_Source\PSoC5/USBFS_episr.c **** * Return:
+ 590:.\Generated_Source\PSoC5/USBFS_episr.c **** *  None.
+ 591:.\Generated_Source\PSoC5/USBFS_episr.c **** *
+ 592:.\Generated_Source\PSoC5/USBFS_episr.c **** *******************************************************************************/
+ 593:.\Generated_Source\PSoC5/USBFS_episr.c **** CY_ISR(USBFS_BUS_RESET_ISR)
+ 594:.\Generated_Source\PSoC5/USBFS_episr.c **** {
+ 450              		.loc 1 594 0
+ 451              		.cfi_startproc
+ 452              		@ args = 0, pretend = 0, frame = 0
+ 453              		@ frame_needed = 1, uses_anonymous_args = 0
+ 454 0000 80B5     		push	{r7, lr}
+ 455              	.LCFI14:
+ 456              		.cfi_def_cfa_offset 8
+ 457              		.cfi_offset 7, -8
+ 458              		.cfi_offset 14, -4
+ 459 0002 00AF     		add	r7, sp, #0
+ 460              	.LCFI15:
+ 461              		.cfi_def_cfa_register 7
+ 595:.\Generated_Source\PSoC5/USBFS_episr.c ****     /* `#START BUS_RESET_USER_CODE` Place your code here */
+ 596:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 597:.\Generated_Source\PSoC5/USBFS_episr.c ****     /* `#END` */
+ 598:.\Generated_Source\PSoC5/USBFS_episr.c **** 
+ 599:.\Generated_Source\PSoC5/USBFS_episr.c ****     USBFS_ReInitComponent();
+ 462              		.loc 1 599 0
+ 463 0004 FFF7FEFF 		bl	USBFS_ReInitComponent
+ 600:.\Generated_Source\PSoC5/USBFS_episr.c **** }
+ 464              		.loc 1 600 0
+ 465 0008 80BD     		pop	{r7, pc}
+ 466              		.cfi_endproc
+ 467              	.LFE7:
+ 468              		.size	USBFS_BUS_RESET_ISR, .-USBFS_BUS_RESET_ISR
+ 469 000a 00BF     		.text
+ 470              	.Letext0:
+ 471              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 472              		.file 3 ".\\Generated_Source\\PSoC5\\USBFS.h"
+ 473              		.file 4 ".\\Generated_Source\\PSoC5\\USBFS_pvt.h"
+ 474              		.section	.debug_info,"",%progbits
+ 475              	.Ldebug_info0:
+ 476 0000 16020000 		.4byte	0x216
+ 477 0004 0200     		.2byte	0x2
+ 478 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 479 000a 04       		.byte	0x4
+ 480 000b 01       		.uleb128 0x1
+ 481 000c CF010000 		.4byte	.LASF34
+ 482 0010 01       		.byte	0x1
+ 483 0011 B1000000 		.4byte	.LASF35
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 20
+
+
+ 484 0015 00000000 		.4byte	.LASF36
+ 485 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 486 001d 00000000 		.4byte	0
+ 487 0021 00000000 		.4byte	0
+ 488 0025 00000000 		.4byte	.Ldebug_line0
+ 489 0029 02       		.uleb128 0x2
+ 490 002a 01       		.byte	0x1
+ 491 002b 06       		.byte	0x6
+ 492 002c 49020000 		.4byte	.LASF0
+ 493 0030 02       		.uleb128 0x2
+ 494 0031 01       		.byte	0x1
+ 495 0032 08       		.byte	0x8
+ 496 0033 A3000000 		.4byte	.LASF1
+ 497 0037 02       		.uleb128 0x2
+ 498 0038 02       		.byte	0x2
+ 499 0039 05       		.byte	0x5
+ 500 003a BF010000 		.4byte	.LASF2
+ 501 003e 02       		.uleb128 0x2
+ 502 003f 02       		.byte	0x2
+ 503 0040 07       		.byte	0x7
+ 504 0041 58000000 		.4byte	.LASF3
+ 505 0045 02       		.uleb128 0x2
+ 506 0046 04       		.byte	0x4
+ 507 0047 05       		.byte	0x5
+ 508 0048 31020000 		.4byte	.LASF4
+ 509 004c 02       		.uleb128 0x2
+ 510 004d 04       		.byte	0x4
+ 511 004e 07       		.byte	0x7
+ 512 004f DD000000 		.4byte	.LASF5
+ 513 0053 02       		.uleb128 0x2
+ 514 0054 08       		.byte	0x8
+ 515 0055 05       		.byte	0x5
+ 516 0056 A1010000 		.4byte	.LASF6
+ 517 005a 02       		.uleb128 0x2
+ 518 005b 08       		.byte	0x8
+ 519 005c 07       		.byte	0x7
+ 520 005d 52010000 		.4byte	.LASF7
+ 521 0061 03       		.uleb128 0x3
+ 522 0062 04       		.byte	0x4
+ 523 0063 05       		.byte	0x5
+ 524 0064 696E7400 		.ascii	"int\000"
+ 525 0068 02       		.uleb128 0x2
+ 526 0069 04       		.byte	0x4
+ 527 006a 07       		.byte	0x7
+ 528 006b 45010000 		.4byte	.LASF8
+ 529 006f 04       		.uleb128 0x4
+ 530 0070 C9010000 		.4byte	.LASF9
+ 531 0074 02       		.byte	0x2
+ 532 0075 5B       		.byte	0x5b
+ 533 0076 30000000 		.4byte	0x30
+ 534 007a 04       		.uleb128 0x4
+ 535 007b 33010000 		.4byte	.LASF10
+ 536 007f 02       		.byte	0x2
+ 537 0080 5C       		.byte	0x5c
+ 538 0081 3E000000 		.4byte	0x3e
+ 539 0085 02       		.uleb128 0x2
+ 540 0086 04       		.byte	0x4
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 21
+
+
+ 541 0087 04       		.byte	0x4
+ 542 0088 94000000 		.4byte	.LASF11
+ 543 008c 02       		.uleb128 0x2
+ 544 008d 08       		.byte	0x8
+ 545 008e 04       		.byte	0x4
+ 546 008f 1A010000 		.4byte	.LASF12
+ 547 0093 02       		.uleb128 0x2
+ 548 0094 01       		.byte	0x1
+ 549 0095 08       		.byte	0x8
+ 550 0096 AF010000 		.4byte	.LASF13
+ 551 009a 04       		.uleb128 0x4
+ 552 009b D8000000 		.4byte	.LASF14
+ 553 009f 02       		.byte	0x2
+ 554 00a0 F0       		.byte	0xf0
+ 555 00a1 A5000000 		.4byte	0xa5
+ 556 00a5 05       		.uleb128 0x5
+ 557 00a6 6F000000 		.4byte	0x6f
+ 558 00aa 02       		.uleb128 0x2
+ 559 00ab 04       		.byte	0x4
+ 560 00ac 07       		.byte	0x7
+ 561 00ad 91010000 		.4byte	.LASF15
+ 562 00b1 06       		.uleb128 0x6
+ 563 00b2 0C       		.byte	0xc
+ 564 00b3 03       		.byte	0x3
+ 565 00b4 76       		.byte	0x76
+ 566 00b5 38010000 		.4byte	0x138
+ 567 00b9 07       		.uleb128 0x7
+ 568 00ba 21010000 		.4byte	.LASF16
+ 569 00be 03       		.byte	0x3
+ 570 00bf 78       		.byte	0x78
+ 571 00c0 6F000000 		.4byte	0x6f
+ 572 00c4 02       		.byte	0x2
+ 573 00c5 23       		.byte	0x23
+ 574 00c6 00       		.uleb128 0
+ 575 00c7 07       		.uleb128 0x7
+ 576 00c8 3A010000 		.4byte	.LASF17
+ 577 00cc 03       		.byte	0x3
+ 578 00cd 79       		.byte	0x79
+ 579 00ce 6F000000 		.4byte	0x6f
+ 580 00d2 02       		.byte	0x2
+ 581 00d3 23       		.byte	0x23
+ 582 00d4 01       		.uleb128 0x1
+ 583 00d5 07       		.uleb128 0x7
+ 584 00d6 69010000 		.4byte	.LASF18
+ 585 00da 03       		.byte	0x3
+ 586 00db 7A       		.byte	0x7a
+ 587 00dc 6F000000 		.4byte	0x6f
+ 588 00e0 02       		.byte	0x2
+ 589 00e1 23       		.byte	0x23
+ 590 00e2 02       		.uleb128 0x2
+ 591 00e3 07       		.uleb128 0x7
+ 592 00e4 9A000000 		.4byte	.LASF19
+ 593 00e8 03       		.byte	0x3
+ 594 00e9 7B       		.byte	0x7b
+ 595 00ea 6F000000 		.4byte	0x6f
+ 596 00ee 02       		.byte	0x2
+ 597 00ef 23       		.byte	0x23
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 22
+
+
+ 598 00f0 03       		.uleb128 0x3
+ 599 00f1 07       		.uleb128 0x7
+ 600 00f2 EF000000 		.4byte	.LASF20
+ 601 00f6 03       		.byte	0x3
+ 602 00f7 7C       		.byte	0x7c
+ 603 00f8 6F000000 		.4byte	0x6f
+ 604 00fc 02       		.byte	0x2
+ 605 00fd 23       		.byte	0x23
+ 606 00fe 04       		.uleb128 0x4
+ 607 00ff 07       		.uleb128 0x7
+ 608 0100 9A010000 		.4byte	.LASF21
+ 609 0104 03       		.byte	0x3
+ 610 0105 7D       		.byte	0x7d
+ 611 0106 6F000000 		.4byte	0x6f
+ 612 010a 02       		.byte	0x2
+ 613 010b 23       		.byte	0x23
+ 614 010c 05       		.uleb128 0x5
+ 615 010d 07       		.uleb128 0x7
+ 616 010e 28010000 		.4byte	.LASF22
+ 617 0112 03       		.byte	0x3
+ 618 0113 7E       		.byte	0x7e
+ 619 0114 7A000000 		.4byte	0x7a
+ 620 0118 02       		.byte	0x2
+ 621 0119 23       		.byte	0x23
+ 622 011a 06       		.uleb128 0x6
+ 623 011b 07       		.uleb128 0x7
+ 624 011c B4010000 		.4byte	.LASF23
+ 625 0120 03       		.byte	0x3
+ 626 0121 7F       		.byte	0x7f
+ 627 0122 7A000000 		.4byte	0x7a
+ 628 0126 02       		.byte	0x2
+ 629 0127 23       		.byte	0x23
+ 630 0128 08       		.uleb128 0x8
+ 631 0129 07       		.uleb128 0x7
+ 632 012a 18020000 		.4byte	.LASF24
+ 633 012e 03       		.byte	0x3
+ 634 012f 80       		.byte	0x80
+ 635 0130 6F000000 		.4byte	0x6f
+ 636 0134 02       		.byte	0x2
+ 637 0135 23       		.byte	0x23
+ 638 0136 0A       		.uleb128 0xa
+ 639 0137 00       		.byte	0
+ 640 0138 04       		.uleb128 0x4
+ 641 0139 6B000000 		.4byte	.LASF25
+ 642 013d 03       		.byte	0x3
+ 643 013e 81       		.byte	0x81
+ 644 013f B1000000 		.4byte	0xb1
+ 645 0143 08       		.uleb128 0x8
+ 646 0144 01       		.byte	0x1
+ 647 0145 82010000 		.4byte	.LASF26
+ 648 0149 01       		.byte	0x1
+ 649 014a 35       		.byte	0x35
+ 650 014b 01       		.byte	0x1
+ 651 014c 00000000 		.4byte	.LFB0
+ 652 0150 72000000 		.4byte	.LFE0
+ 653 0154 00000000 		.4byte	.LLST0
+ 654 0158 01       		.byte	0x1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 23
+
+
+ 655 0159 08       		.uleb128 0x8
+ 656 015a 01       		.byte	0x1
+ 657 015b 3A020000 		.4byte	.LASF27
+ 658 015f 01       		.byte	0x1
+ 659 0160 76       		.byte	0x76
+ 660 0161 01       		.byte	0x1
+ 661 0162 00000000 		.4byte	.LFB1
+ 662 0166 72000000 		.4byte	.LFE1
+ 663 016a 2C000000 		.4byte	.LLST1
+ 664 016e 01       		.byte	0x1
+ 665 016f 08       		.uleb128 0x8
+ 666 0170 01       		.byte	0x1
+ 667 0171 49000000 		.4byte	.LASF28
+ 668 0175 01       		.byte	0x1
+ 669 0176 B7       		.byte	0xb7
+ 670 0177 01       		.byte	0x1
+ 671 0178 00000000 		.4byte	.LFB2
+ 672 017c 7A000000 		.4byte	.LFE2
+ 673 0180 58000000 		.4byte	.LLST2
+ 674 0184 01       		.byte	0x1
+ 675 0185 08       		.uleb128 0x8
+ 676 0186 01       		.byte	0x1
+ 677 0187 F4000000 		.4byte	.LASF29
+ 678 018b 01       		.byte	0x1
+ 679 018c F8       		.byte	0xf8
+ 680 018d 01       		.byte	0x1
+ 681 018e 00000000 		.4byte	.LFB3
+ 682 0192 7A000000 		.4byte	.LFE3
+ 683 0196 84000000 		.4byte	.LLST3
+ 684 019a 01       		.byte	0x1
+ 685 019b 09       		.uleb128 0x9
+ 686 019c 01       		.byte	0x1
+ 687 019d 73010000 		.4byte	.LASF30
+ 688 01a1 01       		.byte	0x1
+ 689 01a2 3901     		.2byte	0x139
+ 690 01a4 01       		.byte	0x1
+ 691 01a5 00000000 		.4byte	.LFB4
+ 692 01a9 7A000000 		.4byte	.LFE4
+ 693 01ad B0000000 		.4byte	.LLST4
+ 694 01b1 01       		.byte	0x1
+ 695 01b2 09       		.uleb128 0x9
+ 696 01b3 01       		.byte	0x1
+ 697 01b4 22020000 		.4byte	.LASF31
+ 698 01b8 01       		.byte	0x1
+ 699 01b9 7901     		.2byte	0x179
+ 700 01bb 01       		.byte	0x1
+ 701 01bc 00000000 		.4byte	.LFB5
+ 702 01c0 7A000000 		.4byte	.LFE5
+ 703 01c4 DC000000 		.4byte	.LLST5
+ 704 01c8 01       		.byte	0x1
+ 705 01c9 09       		.uleb128 0x9
+ 706 01ca 01       		.byte	0x1
+ 707 01cb 03010000 		.4byte	.LASF32
+ 708 01cf 01       		.byte	0x1
+ 709 01d0 3A02     		.2byte	0x23a
+ 710 01d2 01       		.byte	0x1
+ 711 01d3 00000000 		.4byte	.LFB6
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 24
+
+
+ 712 01d7 0A000000 		.4byte	.LFE6
+ 713 01db 08010000 		.4byte	.LLST6
+ 714 01df 01       		.byte	0x1
+ 715 01e0 0A       		.uleb128 0xa
+ 716 01e1 01       		.byte	0x1
+ 717 01e2 80000000 		.4byte	.LASF33
+ 718 01e6 01       		.byte	0x1
+ 719 01e7 5102     		.2byte	0x251
+ 720 01e9 01       		.byte	0x1
+ 721 01ea 00000000 		.4byte	.LFB7
+ 722 01ee 0A000000 		.4byte	.LFE7
+ 723 01f2 34010000 		.4byte	.LLST7
+ 724 01f6 01       		.byte	0x1
+ 725 01f7 0B       		.uleb128 0xb
+ 726 01f8 38010000 		.4byte	0x138
+ 727 01fc 07020000 		.4byte	0x207
+ 728 0200 0C       		.uleb128 0xc
+ 729 0201 AA000000 		.4byte	0xaa
+ 730 0205 08       		.byte	0x8
+ 731 0206 00       		.byte	0
+ 732 0207 0D       		.uleb128 0xd
+ 733 0208 11010000 		.4byte	.LASF37
+ 734 020c 04       		.byte	0x4
+ 735 020d 33       		.byte	0x33
+ 736 020e 14020000 		.4byte	0x214
+ 737 0212 01       		.byte	0x1
+ 738 0213 01       		.byte	0x1
+ 739 0214 05       		.uleb128 0x5
+ 740 0215 F7010000 		.4byte	0x1f7
+ 741 0219 00       		.byte	0
+ 742              		.section	.debug_abbrev,"",%progbits
+ 743              	.Ldebug_abbrev0:
+ 744 0000 01       		.uleb128 0x1
+ 745 0001 11       		.uleb128 0x11
+ 746 0002 01       		.byte	0x1
+ 747 0003 25       		.uleb128 0x25
+ 748 0004 0E       		.uleb128 0xe
+ 749 0005 13       		.uleb128 0x13
+ 750 0006 0B       		.uleb128 0xb
+ 751 0007 03       		.uleb128 0x3
+ 752 0008 0E       		.uleb128 0xe
+ 753 0009 1B       		.uleb128 0x1b
+ 754 000a 0E       		.uleb128 0xe
+ 755 000b 55       		.uleb128 0x55
+ 756 000c 06       		.uleb128 0x6
+ 757 000d 11       		.uleb128 0x11
+ 758 000e 01       		.uleb128 0x1
+ 759 000f 52       		.uleb128 0x52
+ 760 0010 01       		.uleb128 0x1
+ 761 0011 10       		.uleb128 0x10
+ 762 0012 06       		.uleb128 0x6
+ 763 0013 00       		.byte	0
+ 764 0014 00       		.byte	0
+ 765 0015 02       		.uleb128 0x2
+ 766 0016 24       		.uleb128 0x24
+ 767 0017 00       		.byte	0
+ 768 0018 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 25
+
+
+ 769 0019 0B       		.uleb128 0xb
+ 770 001a 3E       		.uleb128 0x3e
+ 771 001b 0B       		.uleb128 0xb
+ 772 001c 03       		.uleb128 0x3
+ 773 001d 0E       		.uleb128 0xe
+ 774 001e 00       		.byte	0
+ 775 001f 00       		.byte	0
+ 776 0020 03       		.uleb128 0x3
+ 777 0021 24       		.uleb128 0x24
+ 778 0022 00       		.byte	0
+ 779 0023 0B       		.uleb128 0xb
+ 780 0024 0B       		.uleb128 0xb
+ 781 0025 3E       		.uleb128 0x3e
+ 782 0026 0B       		.uleb128 0xb
+ 783 0027 03       		.uleb128 0x3
+ 784 0028 08       		.uleb128 0x8
+ 785 0029 00       		.byte	0
+ 786 002a 00       		.byte	0
+ 787 002b 04       		.uleb128 0x4
+ 788 002c 16       		.uleb128 0x16
+ 789 002d 00       		.byte	0
+ 790 002e 03       		.uleb128 0x3
+ 791 002f 0E       		.uleb128 0xe
+ 792 0030 3A       		.uleb128 0x3a
+ 793 0031 0B       		.uleb128 0xb
+ 794 0032 3B       		.uleb128 0x3b
+ 795 0033 0B       		.uleb128 0xb
+ 796 0034 49       		.uleb128 0x49
+ 797 0035 13       		.uleb128 0x13
+ 798 0036 00       		.byte	0
+ 799 0037 00       		.byte	0
+ 800 0038 05       		.uleb128 0x5
+ 801 0039 35       		.uleb128 0x35
+ 802 003a 00       		.byte	0
+ 803 003b 49       		.uleb128 0x49
+ 804 003c 13       		.uleb128 0x13
+ 805 003d 00       		.byte	0
+ 806 003e 00       		.byte	0
+ 807 003f 06       		.uleb128 0x6
+ 808 0040 13       		.uleb128 0x13
+ 809 0041 01       		.byte	0x1
+ 810 0042 0B       		.uleb128 0xb
+ 811 0043 0B       		.uleb128 0xb
+ 812 0044 3A       		.uleb128 0x3a
+ 813 0045 0B       		.uleb128 0xb
+ 814 0046 3B       		.uleb128 0x3b
+ 815 0047 0B       		.uleb128 0xb
+ 816 0048 01       		.uleb128 0x1
+ 817 0049 13       		.uleb128 0x13
+ 818 004a 00       		.byte	0
+ 819 004b 00       		.byte	0
+ 820 004c 07       		.uleb128 0x7
+ 821 004d 0D       		.uleb128 0xd
+ 822 004e 00       		.byte	0
+ 823 004f 03       		.uleb128 0x3
+ 824 0050 0E       		.uleb128 0xe
+ 825 0051 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 26
+
+
+ 826 0052 0B       		.uleb128 0xb
+ 827 0053 3B       		.uleb128 0x3b
+ 828 0054 0B       		.uleb128 0xb
+ 829 0055 49       		.uleb128 0x49
+ 830 0056 13       		.uleb128 0x13
+ 831 0057 38       		.uleb128 0x38
+ 832 0058 0A       		.uleb128 0xa
+ 833 0059 00       		.byte	0
+ 834 005a 00       		.byte	0
+ 835 005b 08       		.uleb128 0x8
+ 836 005c 2E       		.uleb128 0x2e
+ 837 005d 00       		.byte	0
+ 838 005e 3F       		.uleb128 0x3f
+ 839 005f 0C       		.uleb128 0xc
+ 840 0060 03       		.uleb128 0x3
+ 841 0061 0E       		.uleb128 0xe
+ 842 0062 3A       		.uleb128 0x3a
+ 843 0063 0B       		.uleb128 0xb
+ 844 0064 3B       		.uleb128 0x3b
+ 845 0065 0B       		.uleb128 0xb
+ 846 0066 27       		.uleb128 0x27
+ 847 0067 0C       		.uleb128 0xc
+ 848 0068 11       		.uleb128 0x11
+ 849 0069 01       		.uleb128 0x1
+ 850 006a 12       		.uleb128 0x12
+ 851 006b 01       		.uleb128 0x1
+ 852 006c 40       		.uleb128 0x40
+ 853 006d 06       		.uleb128 0x6
+ 854 006e 9742     		.uleb128 0x2117
+ 855 0070 0C       		.uleb128 0xc
+ 856 0071 00       		.byte	0
+ 857 0072 00       		.byte	0
+ 858 0073 09       		.uleb128 0x9
+ 859 0074 2E       		.uleb128 0x2e
+ 860 0075 00       		.byte	0
+ 861 0076 3F       		.uleb128 0x3f
+ 862 0077 0C       		.uleb128 0xc
+ 863 0078 03       		.uleb128 0x3
+ 864 0079 0E       		.uleb128 0xe
+ 865 007a 3A       		.uleb128 0x3a
+ 866 007b 0B       		.uleb128 0xb
+ 867 007c 3B       		.uleb128 0x3b
+ 868 007d 05       		.uleb128 0x5
+ 869 007e 27       		.uleb128 0x27
+ 870 007f 0C       		.uleb128 0xc
+ 871 0080 11       		.uleb128 0x11
+ 872 0081 01       		.uleb128 0x1
+ 873 0082 12       		.uleb128 0x12
+ 874 0083 01       		.uleb128 0x1
+ 875 0084 40       		.uleb128 0x40
+ 876 0085 06       		.uleb128 0x6
+ 877 0086 9742     		.uleb128 0x2117
+ 878 0088 0C       		.uleb128 0xc
+ 879 0089 00       		.byte	0
+ 880 008a 00       		.byte	0
+ 881 008b 0A       		.uleb128 0xa
+ 882 008c 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 27
+
+
+ 883 008d 00       		.byte	0
+ 884 008e 3F       		.uleb128 0x3f
+ 885 008f 0C       		.uleb128 0xc
+ 886 0090 03       		.uleb128 0x3
+ 887 0091 0E       		.uleb128 0xe
+ 888 0092 3A       		.uleb128 0x3a
+ 889 0093 0B       		.uleb128 0xb
+ 890 0094 3B       		.uleb128 0x3b
+ 891 0095 05       		.uleb128 0x5
+ 892 0096 27       		.uleb128 0x27
+ 893 0097 0C       		.uleb128 0xc
+ 894 0098 11       		.uleb128 0x11
+ 895 0099 01       		.uleb128 0x1
+ 896 009a 12       		.uleb128 0x12
+ 897 009b 01       		.uleb128 0x1
+ 898 009c 40       		.uleb128 0x40
+ 899 009d 06       		.uleb128 0x6
+ 900 009e 9642     		.uleb128 0x2116
+ 901 00a0 0C       		.uleb128 0xc
+ 902 00a1 00       		.byte	0
+ 903 00a2 00       		.byte	0
+ 904 00a3 0B       		.uleb128 0xb
+ 905 00a4 01       		.uleb128 0x1
+ 906 00a5 01       		.byte	0x1
+ 907 00a6 49       		.uleb128 0x49
+ 908 00a7 13       		.uleb128 0x13
+ 909 00a8 01       		.uleb128 0x1
+ 910 00a9 13       		.uleb128 0x13
+ 911 00aa 00       		.byte	0
+ 912 00ab 00       		.byte	0
+ 913 00ac 0C       		.uleb128 0xc
+ 914 00ad 21       		.uleb128 0x21
+ 915 00ae 00       		.byte	0
+ 916 00af 49       		.uleb128 0x49
+ 917 00b0 13       		.uleb128 0x13
+ 918 00b1 2F       		.uleb128 0x2f
+ 919 00b2 0B       		.uleb128 0xb
+ 920 00b3 00       		.byte	0
+ 921 00b4 00       		.byte	0
+ 922 00b5 0D       		.uleb128 0xd
+ 923 00b6 34       		.uleb128 0x34
+ 924 00b7 00       		.byte	0
+ 925 00b8 03       		.uleb128 0x3
+ 926 00b9 0E       		.uleb128 0xe
+ 927 00ba 3A       		.uleb128 0x3a
+ 928 00bb 0B       		.uleb128 0xb
+ 929 00bc 3B       		.uleb128 0x3b
+ 930 00bd 0B       		.uleb128 0xb
+ 931 00be 49       		.uleb128 0x49
+ 932 00bf 13       		.uleb128 0x13
+ 933 00c0 3F       		.uleb128 0x3f
+ 934 00c1 0C       		.uleb128 0xc
+ 935 00c2 3C       		.uleb128 0x3c
+ 936 00c3 0C       		.uleb128 0xc
+ 937 00c4 00       		.byte	0
+ 938 00c5 00       		.byte	0
+ 939 00c6 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 28
+
+
+ 940              		.section	.debug_loc,"",%progbits
+ 941              	.Ldebug_loc0:
+ 942              	.LLST0:
+ 943 0000 00000000 		.4byte	.LFB0
+ 944 0004 02000000 		.4byte	.LCFI0
+ 945 0008 0200     		.2byte	0x2
+ 946 000a 7D       		.byte	0x7d
+ 947 000b 00       		.sleb128 0
+ 948 000c 02000000 		.4byte	.LCFI0
+ 949 0010 04000000 		.4byte	.LCFI1
+ 950 0014 0200     		.2byte	0x2
+ 951 0016 7D       		.byte	0x7d
+ 952 0017 04       		.sleb128 4
+ 953 0018 04000000 		.4byte	.LCFI1
+ 954 001c 72000000 		.4byte	.LFE0
+ 955 0020 0200     		.2byte	0x2
+ 956 0022 77       		.byte	0x77
+ 957 0023 04       		.sleb128 4
+ 958 0024 00000000 		.4byte	0
+ 959 0028 00000000 		.4byte	0
+ 960              	.LLST1:
+ 961 002c 00000000 		.4byte	.LFB1
+ 962 0030 02000000 		.4byte	.LCFI2
+ 963 0034 0200     		.2byte	0x2
+ 964 0036 7D       		.byte	0x7d
+ 965 0037 00       		.sleb128 0
+ 966 0038 02000000 		.4byte	.LCFI2
+ 967 003c 04000000 		.4byte	.LCFI3
+ 968 0040 0200     		.2byte	0x2
+ 969 0042 7D       		.byte	0x7d
+ 970 0043 04       		.sleb128 4
+ 971 0044 04000000 		.4byte	.LCFI3
+ 972 0048 72000000 		.4byte	.LFE1
+ 973 004c 0200     		.2byte	0x2
+ 974 004e 77       		.byte	0x77
+ 975 004f 04       		.sleb128 4
+ 976 0050 00000000 		.4byte	0
+ 977 0054 00000000 		.4byte	0
+ 978              	.LLST2:
+ 979 0058 00000000 		.4byte	.LFB2
+ 980 005c 02000000 		.4byte	.LCFI4
+ 981 0060 0200     		.2byte	0x2
+ 982 0062 7D       		.byte	0x7d
+ 983 0063 00       		.sleb128 0
+ 984 0064 02000000 		.4byte	.LCFI4
+ 985 0068 04000000 		.4byte	.LCFI5
+ 986 006c 0200     		.2byte	0x2
+ 987 006e 7D       		.byte	0x7d
+ 988 006f 04       		.sleb128 4
+ 989 0070 04000000 		.4byte	.LCFI5
+ 990 0074 7A000000 		.4byte	.LFE2
+ 991 0078 0200     		.2byte	0x2
+ 992 007a 77       		.byte	0x77
+ 993 007b 04       		.sleb128 4
+ 994 007c 00000000 		.4byte	0
+ 995 0080 00000000 		.4byte	0
+ 996              	.LLST3:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 29
+
+
+ 997 0084 00000000 		.4byte	.LFB3
+ 998 0088 02000000 		.4byte	.LCFI6
+ 999 008c 0200     		.2byte	0x2
+ 1000 008e 7D       		.byte	0x7d
+ 1001 008f 00       		.sleb128 0
+ 1002 0090 02000000 		.4byte	.LCFI6
+ 1003 0094 04000000 		.4byte	.LCFI7
+ 1004 0098 0200     		.2byte	0x2
+ 1005 009a 7D       		.byte	0x7d
+ 1006 009b 04       		.sleb128 4
+ 1007 009c 04000000 		.4byte	.LCFI7
+ 1008 00a0 7A000000 		.4byte	.LFE3
+ 1009 00a4 0200     		.2byte	0x2
+ 1010 00a6 77       		.byte	0x77
+ 1011 00a7 04       		.sleb128 4
+ 1012 00a8 00000000 		.4byte	0
+ 1013 00ac 00000000 		.4byte	0
+ 1014              	.LLST4:
+ 1015 00b0 00000000 		.4byte	.LFB4
+ 1016 00b4 02000000 		.4byte	.LCFI8
+ 1017 00b8 0200     		.2byte	0x2
+ 1018 00ba 7D       		.byte	0x7d
+ 1019 00bb 00       		.sleb128 0
+ 1020 00bc 02000000 		.4byte	.LCFI8
+ 1021 00c0 04000000 		.4byte	.LCFI9
+ 1022 00c4 0200     		.2byte	0x2
+ 1023 00c6 7D       		.byte	0x7d
+ 1024 00c7 04       		.sleb128 4
+ 1025 00c8 04000000 		.4byte	.LCFI9
+ 1026 00cc 7A000000 		.4byte	.LFE4
+ 1027 00d0 0200     		.2byte	0x2
+ 1028 00d2 77       		.byte	0x77
+ 1029 00d3 04       		.sleb128 4
+ 1030 00d4 00000000 		.4byte	0
+ 1031 00d8 00000000 		.4byte	0
+ 1032              	.LLST5:
+ 1033 00dc 00000000 		.4byte	.LFB5
+ 1034 00e0 02000000 		.4byte	.LCFI10
+ 1035 00e4 0200     		.2byte	0x2
+ 1036 00e6 7D       		.byte	0x7d
+ 1037 00e7 00       		.sleb128 0
+ 1038 00e8 02000000 		.4byte	.LCFI10
+ 1039 00ec 04000000 		.4byte	.LCFI11
+ 1040 00f0 0200     		.2byte	0x2
+ 1041 00f2 7D       		.byte	0x7d
+ 1042 00f3 04       		.sleb128 4
+ 1043 00f4 04000000 		.4byte	.LCFI11
+ 1044 00f8 7A000000 		.4byte	.LFE5
+ 1045 00fc 0200     		.2byte	0x2
+ 1046 00fe 77       		.byte	0x77
+ 1047 00ff 04       		.sleb128 4
+ 1048 0100 00000000 		.4byte	0
+ 1049 0104 00000000 		.4byte	0
+ 1050              	.LLST6:
+ 1051 0108 00000000 		.4byte	.LFB6
+ 1052 010c 02000000 		.4byte	.LCFI12
+ 1053 0110 0200     		.2byte	0x2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 30
+
+
+ 1054 0112 7D       		.byte	0x7d
+ 1055 0113 00       		.sleb128 0
+ 1056 0114 02000000 		.4byte	.LCFI12
+ 1057 0118 04000000 		.4byte	.LCFI13
+ 1058 011c 0200     		.2byte	0x2
+ 1059 011e 7D       		.byte	0x7d
+ 1060 011f 04       		.sleb128 4
+ 1061 0120 04000000 		.4byte	.LCFI13
+ 1062 0124 0A000000 		.4byte	.LFE6
+ 1063 0128 0200     		.2byte	0x2
+ 1064 012a 77       		.byte	0x77
+ 1065 012b 04       		.sleb128 4
+ 1066 012c 00000000 		.4byte	0
+ 1067 0130 00000000 		.4byte	0
+ 1068              	.LLST7:
+ 1069 0134 00000000 		.4byte	.LFB7
+ 1070 0138 02000000 		.4byte	.LCFI14
+ 1071 013c 0200     		.2byte	0x2
+ 1072 013e 7D       		.byte	0x7d
+ 1073 013f 00       		.sleb128 0
+ 1074 0140 02000000 		.4byte	.LCFI14
+ 1075 0144 04000000 		.4byte	.LCFI15
+ 1076 0148 0200     		.2byte	0x2
+ 1077 014a 7D       		.byte	0x7d
+ 1078 014b 08       		.sleb128 8
+ 1079 014c 04000000 		.4byte	.LCFI15
+ 1080 0150 0A000000 		.4byte	.LFE7
+ 1081 0154 0200     		.2byte	0x2
+ 1082 0156 77       		.byte	0x77
+ 1083 0157 08       		.sleb128 8
+ 1084 0158 00000000 		.4byte	0
+ 1085 015c 00000000 		.4byte	0
+ 1086              		.section	.debug_aranges,"",%progbits
+ 1087 0000 54000000 		.4byte	0x54
+ 1088 0004 0200     		.2byte	0x2
+ 1089 0006 00000000 		.4byte	.Ldebug_info0
+ 1090 000a 04       		.byte	0x4
+ 1091 000b 00       		.byte	0
+ 1092 000c 0000     		.2byte	0
+ 1093 000e 0000     		.2byte	0
+ 1094 0010 00000000 		.4byte	.LFB0
+ 1095 0014 72000000 		.4byte	.LFE0-.LFB0
+ 1096 0018 00000000 		.4byte	.LFB1
+ 1097 001c 72000000 		.4byte	.LFE1-.LFB1
+ 1098 0020 00000000 		.4byte	.LFB2
+ 1099 0024 7A000000 		.4byte	.LFE2-.LFB2
+ 1100 0028 00000000 		.4byte	.LFB3
+ 1101 002c 7A000000 		.4byte	.LFE3-.LFB3
+ 1102 0030 00000000 		.4byte	.LFB4
+ 1103 0034 7A000000 		.4byte	.LFE4-.LFB4
+ 1104 0038 00000000 		.4byte	.LFB5
+ 1105 003c 7A000000 		.4byte	.LFE5-.LFB5
+ 1106 0040 00000000 		.4byte	.LFB6
+ 1107 0044 0A000000 		.4byte	.LFE6-.LFB6
+ 1108 0048 00000000 		.4byte	.LFB7
+ 1109 004c 0A000000 		.4byte	.LFE7-.LFB7
+ 1110 0050 00000000 		.4byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 31
+
+
+ 1111 0054 00000000 		.4byte	0
+ 1112              		.section	.debug_ranges,"",%progbits
+ 1113              	.Ldebug_ranges0:
+ 1114 0000 00000000 		.4byte	.LFB0
+ 1115 0004 72000000 		.4byte	.LFE0
+ 1116 0008 00000000 		.4byte	.LFB1
+ 1117 000c 72000000 		.4byte	.LFE1
+ 1118 0010 00000000 		.4byte	.LFB2
+ 1119 0014 7A000000 		.4byte	.LFE2
+ 1120 0018 00000000 		.4byte	.LFB3
+ 1121 001c 7A000000 		.4byte	.LFE3
+ 1122 0020 00000000 		.4byte	.LFB4
+ 1123 0024 7A000000 		.4byte	.LFE4
+ 1124 0028 00000000 		.4byte	.LFB5
+ 1125 002c 7A000000 		.4byte	.LFE5
+ 1126 0030 00000000 		.4byte	.LFB6
+ 1127 0034 0A000000 		.4byte	.LFE6
+ 1128 0038 00000000 		.4byte	.LFB7
+ 1129 003c 0A000000 		.4byte	.LFE7
+ 1130 0040 00000000 		.4byte	0
+ 1131 0044 00000000 		.4byte	0
+ 1132              		.section	.debug_line,"",%progbits
+ 1133              	.Ldebug_line0:
+ 1134 0000 2C010000 		.section	.debug_str,"MS",%progbits,1
+ 1134      02006400 
+ 1134      00000201 
+ 1134      FB0E0D00 
+ 1134      01010101 
+ 1135              	.LASF36:
+ 1136 0000 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 1136      73657273 
+ 1136      5C566963 
+ 1136      746F7220 
+ 1136      5275656C 
+ 1137 002d 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 1137      54657374 
+ 1137      65555342 
+ 1137      5C546573 
+ 1137      74655553 
+ 1138              	.LASF28:
+ 1139 0049 55534246 		.ascii	"USBFS_EP_3_ISR\000"
+ 1139      535F4550 
+ 1139      5F335F49 
+ 1139      535200
+ 1140              	.LASF3:
+ 1141 0058 73686F72 		.ascii	"short unsigned int\000"
+ 1141      7420756E 
+ 1141      7369676E 
+ 1141      65642069 
+ 1141      6E7400
+ 1142              	.LASF25:
+ 1143 006b 545F5553 		.ascii	"T_USBFS_EP_CTL_BLOCK\000"
+ 1143      4246535F 
+ 1143      45505F43 
+ 1143      544C5F42 
+ 1143      4C4F434B 
+ 1144              	.LASF33:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 32
+
+
+ 1145 0080 55534246 		.ascii	"USBFS_BUS_RESET_ISR\000"
+ 1145      535F4255 
+ 1145      535F5245 
+ 1145      5345545F 
+ 1145      49535200 
+ 1146              	.LASF11:
+ 1147 0094 666C6F61 		.ascii	"float\000"
+ 1147      7400
+ 1148              	.LASF19:
+ 1149 009a 6570546F 		.ascii	"epToggle\000"
+ 1149      67676C65 
+ 1149      00
+ 1150              	.LASF1:
+ 1151 00a3 756E7369 		.ascii	"unsigned char\000"
+ 1151      676E6564 
+ 1151      20636861 
+ 1151      7200
+ 1152              	.LASF35:
+ 1153 00b1 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\USBFS_episr.c\000"
+ 1153      6E657261 
+ 1153      7465645F 
+ 1153      536F7572 
+ 1153      63655C50 
+ 1154              	.LASF14:
+ 1155 00d8 72656738 		.ascii	"reg8\000"
+ 1155      00
+ 1156              	.LASF5:
+ 1157 00dd 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1157      20756E73 
+ 1157      69676E65 
+ 1157      6420696E 
+ 1157      7400
+ 1158              	.LASF20:
+ 1159 00ef 61646472 		.ascii	"addr\000"
+ 1159      00
+ 1160              	.LASF29:
+ 1161 00f4 55534246 		.ascii	"USBFS_EP_4_ISR\000"
+ 1161      535F4550 
+ 1161      5F345F49 
+ 1161      535200
+ 1162              	.LASF32:
+ 1163 0103 55534246 		.ascii	"USBFS_SOF_ISR\000"
+ 1163      535F534F 
+ 1163      465F4953 
+ 1163      5200
+ 1164              	.LASF37:
+ 1165 0111 55534246 		.ascii	"USBFS_EP\000"
+ 1165      535F4550 
+ 1165      00
+ 1166              	.LASF12:
+ 1167 011a 646F7562 		.ascii	"double\000"
+ 1167      6C6500
+ 1168              	.LASF16:
+ 1169 0121 61747472 		.ascii	"attrib\000"
+ 1169      696200
+ 1170              	.LASF22:
+ 1171 0128 62756666 		.ascii	"buffOffset\000"
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 33
+
+
+ 1171      4F666673 
+ 1171      657400
+ 1172              	.LASF10:
+ 1173 0133 75696E74 		.ascii	"uint16\000"
+ 1173      313600
+ 1174              	.LASF17:
+ 1175 013a 61706945 		.ascii	"apiEpState\000"
+ 1175      70537461 
+ 1175      746500
+ 1176              	.LASF8:
+ 1177 0145 756E7369 		.ascii	"unsigned int\000"
+ 1177      676E6564 
+ 1177      20696E74 
+ 1177      00
+ 1178              	.LASF7:
+ 1179 0152 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1179      206C6F6E 
+ 1179      6720756E 
+ 1179      7369676E 
+ 1179      65642069 
+ 1180              	.LASF18:
+ 1181 0169 68774570 		.ascii	"hwEpState\000"
+ 1181      53746174 
+ 1181      6500
+ 1182              	.LASF30:
+ 1183 0173 55534246 		.ascii	"USBFS_EP_5_ISR\000"
+ 1183      535F4550 
+ 1183      5F355F49 
+ 1183      535200
+ 1184              	.LASF26:
+ 1185 0182 55534246 		.ascii	"USBFS_EP_1_ISR\000"
+ 1185      535F4550 
+ 1185      5F315F49 
+ 1185      535200
+ 1186              	.LASF15:
+ 1187 0191 73697A65 		.ascii	"sizetype\000"
+ 1187      74797065 
+ 1187      00
+ 1188              	.LASF21:
+ 1189 019a 65704D6F 		.ascii	"epMode\000"
+ 1189      646500
+ 1190              	.LASF6:
+ 1191 01a1 6C6F6E67 		.ascii	"long long int\000"
+ 1191      206C6F6E 
+ 1191      6720696E 
+ 1191      7400
+ 1192              	.LASF13:
+ 1193 01af 63686172 		.ascii	"char\000"
+ 1193      00
+ 1194              	.LASF23:
+ 1195 01b4 62756666 		.ascii	"bufferSize\000"
+ 1195      65725369 
+ 1195      7A6500
+ 1196              	.LASF2:
+ 1197 01bf 73686F72 		.ascii	"short int\000"
+ 1197      7420696E 
+ 1197      7400
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccOdoS4G.s 			page 34
+
+
+ 1198              	.LASF9:
+ 1199 01c9 75696E74 		.ascii	"uint8\000"
+ 1199      3800
+ 1200              	.LASF34:
+ 1201 01cf 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1201      4320342E 
+ 1201      372E3320 
+ 1201      32303133 
+ 1201      30333132 
+ 1202 0202 616E6368 		.ascii	"anch revision 196615]\000"
+ 1202      20726576 
+ 1202      6973696F 
+ 1202      6E203139 
+ 1202      36363135 
+ 1203              	.LASF24:
+ 1204 0218 696E7465 		.ascii	"interface\000"
+ 1204      72666163 
+ 1204      6500
+ 1205              	.LASF31:
+ 1206 0222 55534246 		.ascii	"USBFS_EP_6_ISR\000"
+ 1206      535F4550 
+ 1206      5F365F49 
+ 1206      535200
+ 1207              	.LASF4:
+ 1208 0231 6C6F6E67 		.ascii	"long int\000"
+ 1208      20696E74 
+ 1208      00
+ 1209              	.LASF27:
+ 1210 023a 55534246 		.ascii	"USBFS_EP_2_ISR\000"
+ 1210      535F4550 
+ 1210      5F325F49 
+ 1210      535200
+ 1211              	.LASF0:
+ 1212 0249 7369676E 		.ascii	"signed char\000"
+ 1212      65642063 
+ 1212      68617200 
+ 1213              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

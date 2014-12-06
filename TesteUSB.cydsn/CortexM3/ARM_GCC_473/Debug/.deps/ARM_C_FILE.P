@@ -1,0 +1,22 @@
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/CortexM3/ARM_GCC_473/Debug/cyfitter_cfg.o : C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter_cfg.c 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/Victor\ Ruela/Desktop/IC/CTPmag/testeUSB/TesteUSB/TesteUSB.cydsn/Generated_Source/PSoC5/cyfitter_cfg.c : 
+

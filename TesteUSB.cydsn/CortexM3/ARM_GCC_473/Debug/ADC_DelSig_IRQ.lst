@@ -1,0 +1,2114 @@
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ADC_DelSig_IRQ.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ADC_DelSig_IRQ_Start,"ax",%progbits
+  19              		.align	2
+  20              		.global	ADC_DelSig_IRQ_Start
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ADC_DelSig_IRQ_Start, %function
+  24              	ADC_DelSig_IRQ_Start:
+  25              	.LFB56:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\ADC_DelSig_IRQ.c"
+   1:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * File Name: ADC_DelSig_IRQ.c  
+   3:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Version 1.70
+   4:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+   5:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *  Description:
+   6:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   API for controlling the state of an interrupt.
+   7:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+   8:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+   9:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *  Note:
+  10:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  11:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  18:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  19:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #include <cydevice_trm.h>
+  20:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #include <CyLib.h>
+  21:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #include <ADC_DelSig_IRQ.h>
+  22:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  23:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #if !defined(ADC_DelSig_IRQ__REMOVED) /* Check for removal by optimization */
+  24:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  25:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *  Place your includes, defines and code here 
+  27:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************/
+  28:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /* `#START ADC_DelSig_IRQ_intc` */
+  29:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #include <device.h>
+  30:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     
+  31:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /* `#END` */
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  33:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #ifndef CYINT_IRQ_BASE
+  34:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #define CYINT_IRQ_BASE      16
+  35:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #endif /* CYINT_IRQ_BASE */
+  36:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #ifndef CYINT_VECT_TABLE
+  37:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #define CYINT_VECT_TABLE    ((cyisraddress **) CYREG_NVIC_VECT_OFFSET)
+  38:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** #endif /* CYINT_VECT_TABLE */
+  39:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  40:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /* Declared in startup, used to set unused interrupts to. */
+  41:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** CY_ISR_PROTO(IntDefaultHandler);
+  42:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  43:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  44:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+  45:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_Start
+  46:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+  47:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  48:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+  49:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *  Set up the interrupt and enable it.
+  50:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  51:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:  
+  52:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+  53:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  54:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+  55:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+  56:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  57:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+  58:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_Start(void)
+  59:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+  27              		.loc 1 59 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_register 7
+  60:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* For all we know the interrupt is active. */
+  61:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_Disable();
+  39              		.loc 1 61 0
+  40 0004 FFF7FEFF 		bl	ADC_DelSig_IRQ_Disable
+  62:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  63:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Set the ISR to point to the ADC_DelSig_IRQ Interrupt. */
+  64:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_SetVector(&ADC_DelSig_IRQ_Interrupt);
+  41              		.loc 1 64 0
+  42 0008 40F20000 		movw	r0, #:lower16:ADC_DelSig_IRQ_Interrupt
+  43 000c C0F20000 		movt	r0, #:upper16:ADC_DelSig_IRQ_Interrupt
+  44 0010 FFF7FEFF 		bl	ADC_DelSig_IRQ_SetVector
+  65:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  66:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Set the priority. */
+  67:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_SetPriority((uint8)ADC_DelSig_IRQ_INTC_PRIOR_NUMBER);
+  45              		.loc 1 67 0
+  46 0014 4FF00700 		mov	r0, #7
+  47 0018 FFF7FEFF 		bl	ADC_DelSig_IRQ_SetPriority
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 3
+
+
+  68:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  69:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Enable it. */
+  70:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_Enable();
+  48              		.loc 1 70 0
+  49 001c FFF7FEFF 		bl	ADC_DelSig_IRQ_Enable
+  71:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+  50              		.loc 1 71 0
+  51 0020 80BD     		pop	{r7, pc}
+  52              		.cfi_endproc
+  53              	.LFE56:
+  54              		.size	ADC_DelSig_IRQ_Start, .-ADC_DelSig_IRQ_Start
+  55 0022 00BF     		.section	.text.ADC_DelSig_IRQ_StartEx,"ax",%progbits
+  56              		.align	2
+  57              		.global	ADC_DelSig_IRQ_StartEx
+  58              		.thumb
+  59              		.thumb_func
+  60              		.type	ADC_DelSig_IRQ_StartEx, %function
+  61              	ADC_DelSig_IRQ_StartEx:
+  62              	.LFB57:
+  72:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  73:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  74:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+  75:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_StartEx
+  76:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+  77:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  78:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+  79:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *  Set up the interrupt and enable it.
+  80:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  81:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:  
+  82:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  83:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  84:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+  85:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+  86:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+  87:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+  88:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_StartEx(cyisraddress address)
+  89:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+  63              		.loc 1 89 0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 8
+  66              		@ frame_needed = 1, uses_anonymous_args = 0
+  67 0000 80B5     		push	{r7, lr}
+  68              	.LCFI2:
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 7, -8
+  71              		.cfi_offset 14, -4
+  72 0002 82B0     		sub	sp, sp, #8
+  73              	.LCFI3:
+  74              		.cfi_def_cfa_offset 16
+  75 0004 00AF     		add	r7, sp, #0
+  76              	.LCFI4:
+  77              		.cfi_def_cfa_register 7
+  78 0006 7860     		str	r0, [r7, #4]
+  90:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* For all we know the interrupt is active. */
+  91:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_Disable();
+  79              		.loc 1 91 0
+  80 0008 FFF7FEFF 		bl	ADC_DelSig_IRQ_Disable
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 4
+
+
+  92:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  93:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Set the ISR to point to the ADC_DelSig_IRQ Interrupt. */
+  94:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_SetVector(address);
+  81              		.loc 1 94 0
+  82 000c 7868     		ldr	r0, [r7, #4]
+  83 000e FFF7FEFF 		bl	ADC_DelSig_IRQ_SetVector
+  95:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  96:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Set the priority. */
+  97:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_SetPriority((uint8)ADC_DelSig_IRQ_INTC_PRIOR_NUMBER);
+  84              		.loc 1 97 0
+  85 0012 4FF00700 		mov	r0, #7
+  86 0016 FFF7FEFF 		bl	ADC_DelSig_IRQ_SetPriority
+  98:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+  99:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Enable it. */
+ 100:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_Enable();
+  87              		.loc 1 100 0
+  88 001a FFF7FEFF 		bl	ADC_DelSig_IRQ_Enable
+ 101:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+  89              		.loc 1 101 0
+  90 001e 07F10807 		add	r7, r7, #8
+  91 0022 BD46     		mov	sp, r7
+  92 0024 80BD     		pop	{r7, pc}
+  93              		.cfi_endproc
+  94              	.LFE57:
+  95              		.size	ADC_DelSig_IRQ_StartEx, .-ADC_DelSig_IRQ_StartEx
+  96 0026 00BF     		.section	.text.ADC_DelSig_IRQ_Stop,"ax",%progbits
+  97              		.align	2
+  98              		.global	ADC_DelSig_IRQ_Stop
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	ADC_DelSig_IRQ_Stop, %function
+ 102              	ADC_DelSig_IRQ_Stop:
+ 103              	.LFB58:
+ 102:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 103:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 104:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 105:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_Stop
+ 106:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 107:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 108:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 109:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Disables and removes the interrupt.
+ 110:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 111:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:  
+ 112:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 113:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 114:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 115:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 116:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 117:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_Stop(void)
+ 118:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 104              		.loc 1 118 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 1, uses_anonymous_args = 0
+ 108 0000 80B5     		push	{r7, lr}
+ 109              	.LCFI5:
+ 110              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 5
+
+
+ 111              		.cfi_offset 7, -8
+ 112              		.cfi_offset 14, -4
+ 113 0002 00AF     		add	r7, sp, #0
+ 114              	.LCFI6:
+ 115              		.cfi_def_cfa_register 7
+ 119:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Disable this interrupt. */
+ 120:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_Disable();
+ 116              		.loc 1 120 0
+ 117 0004 FFF7FEFF 		bl	ADC_DelSig_IRQ_Disable
+ 121:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 122:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Set the ISR to point to the passive one. */
+ 123:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ADC_DelSig_IRQ_SetVector(&IntDefaultHandler);
+ 118              		.loc 1 123 0
+ 119 0008 40F20000 		movw	r0, #:lower16:IntDefaultHandler
+ 120 000c C0F20000 		movt	r0, #:upper16:IntDefaultHandler
+ 121 0010 FFF7FEFF 		bl	ADC_DelSig_IRQ_SetVector
+ 124:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 122              		.loc 1 124 0
+ 123 0014 80BD     		pop	{r7, pc}
+ 124              		.cfi_endproc
+ 125              	.LFE58:
+ 126              		.size	ADC_DelSig_IRQ_Stop, .-ADC_DelSig_IRQ_Stop
+ 127 0016 00BF     		.section	.text.ADC_DelSig_IRQ_Interrupt,"ax",%progbits
+ 128              		.align	2
+ 129              		.global	ADC_DelSig_IRQ_Interrupt
+ 130              		.thumb
+ 131              		.thumb_func
+ 132              		.type	ADC_DelSig_IRQ_Interrupt, %function
+ 133              	ADC_DelSig_IRQ_Interrupt:
+ 134              	.LFB59:
+ 125:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 126:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 127:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 128:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_Interrupt
+ 129:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 130:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 131:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 132:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   The default Interrupt Service Routine for ADC_DelSig_IRQ.
+ 133:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 134:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Add custom code between the coments to keep the next version of this file
+ 135:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   from over writting your code.
+ 136:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 137:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:  
+ 138:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 139:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 140:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 141:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 142:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 143:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** CY_ISR(ADC_DelSig_IRQ_Interrupt)
+ 144:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 135              		.loc 1 144 0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 1, uses_anonymous_args = 0
+ 139              		@ link register save eliminated.
+ 140 0000 80B4     		push	{r7}
+ 141              	.LCFI7:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 6
+
+
+ 142              		.cfi_def_cfa_offset 4
+ 143              		.cfi_offset 7, -4
+ 144 0002 00AF     		add	r7, sp, #0
+ 145              	.LCFI8:
+ 146              		.cfi_def_cfa_register 7
+ 145:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /*  Place your Interrupt code here. */
+ 146:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* `#START ADC_DelSig_IRQ_Interrupt` */
+ 147:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****        
+ 148:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* `#END` */
+ 149:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 147              		.loc 1 149 0
+ 148 0004 BD46     		mov	sp, r7
+ 149 0006 80BC     		pop	{r7}
+ 150 0008 7047     		bx	lr
+ 151              		.cfi_endproc
+ 152              	.LFE59:
+ 153              		.size	ADC_DelSig_IRQ_Interrupt, .-ADC_DelSig_IRQ_Interrupt
+ 154 000a 00BF     		.section	.text.ADC_DelSig_IRQ_SetVector,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	ADC_DelSig_IRQ_SetVector
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	ADC_DelSig_IRQ_SetVector, %function
+ 160              	ADC_DelSig_IRQ_SetVector:
+ 161              	.LFB60:
+ 150:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 151:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 152:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 153:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_SetVector
+ 154:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 155:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 156:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 157:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Change the ISR vector for the Interrupt. Note calling ADC_DelSig_IRQ_Start
+ 158:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   will override any effect this method would have had. To set the vector 
+ 159:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   before the component has been started use ADC_DelSig_IRQ_StartEx instead.
+ 160:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 161:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 162:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 163:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 164:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 165:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 166:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 167:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 168:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_SetVector(cyisraddress address)
+ 169:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 162              		.loc 1 169 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 16
+ 165              		@ frame_needed = 1, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 167 0000 80B4     		push	{r7}
+ 168              	.LCFI9:
+ 169              		.cfi_def_cfa_offset 4
+ 170              		.cfi_offset 7, -4
+ 171 0002 85B0     		sub	sp, sp, #20
+ 172              	.LCFI10:
+ 173              		.cfi_def_cfa_offset 24
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 7
+
+
+ 174 0004 00AF     		add	r7, sp, #0
+ 175              	.LCFI11:
+ 176              		.cfi_def_cfa_register 7
+ 177 0006 7860     		str	r0, [r7, #4]
+ 170:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     cyisraddress * ramVectorTable;
+ 171:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 172:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 178              		.loc 1 172 0
+ 179 0008 4EF60853 		movw	r3, #60680
+ 180 000c CEF20003 		movt	r3, 57344
+ 181 0010 1B68     		ldr	r3, [r3, #0]
+ 182 0012 FB60     		str	r3, [r7, #12]
+ 173:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 174:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ramVectorTable[CYINT_IRQ_BASE + (uint32)ADC_DelSig_IRQ__INTC_NUMBER] = address;
+ 183              		.loc 1 174 0
+ 184 0014 FB68     		ldr	r3, [r7, #12]
+ 185 0016 03F1B403 		add	r3, r3, #180
+ 186 001a 7A68     		ldr	r2, [r7, #4]
+ 187 001c 1A60     		str	r2, [r3, #0]
+ 175:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 188              		.loc 1 175 0
+ 189 001e 07F11407 		add	r7, r7, #20
+ 190 0022 BD46     		mov	sp, r7
+ 191 0024 80BC     		pop	{r7}
+ 192 0026 7047     		bx	lr
+ 193              		.cfi_endproc
+ 194              	.LFE60:
+ 195              		.size	ADC_DelSig_IRQ_SetVector, .-ADC_DelSig_IRQ_SetVector
+ 196              		.section	.text.ADC_DelSig_IRQ_GetVector,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	ADC_DelSig_IRQ_GetVector
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	ADC_DelSig_IRQ_GetVector, %function
+ 202              	ADC_DelSig_IRQ_GetVector:
+ 203              	.LFB61:
+ 176:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 177:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 178:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 179:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_GetVector
+ 180:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 181:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 182:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 183:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 184:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 185:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 186:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 187:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 188:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 189:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Address of the ISR in the interrupt vector table.
+ 190:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 191:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 192:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** cyisraddress ADC_DelSig_IRQ_GetVector(void)
+ 193:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 204              		.loc 1 193 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 8
+
+
+ 207              		@ frame_needed = 1, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 209 0000 80B4     		push	{r7}
+ 210              	.LCFI12:
+ 211              		.cfi_def_cfa_offset 4
+ 212              		.cfi_offset 7, -4
+ 213 0002 83B0     		sub	sp, sp, #12
+ 214              	.LCFI13:
+ 215              		.cfi_def_cfa_offset 16
+ 216 0004 00AF     		add	r7, sp, #0
+ 217              	.LCFI14:
+ 218              		.cfi_def_cfa_register 7
+ 194:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     cyisraddress * ramVectorTable;
+ 195:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 196:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 219              		.loc 1 196 0
+ 220 0006 4EF60853 		movw	r3, #60680
+ 221 000a CEF20003 		movt	r3, 57344
+ 222 000e 1B68     		ldr	r3, [r3, #0]
+ 223 0010 7B60     		str	r3, [r7, #4]
+ 197:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 198:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     return ramVectorTable[CYINT_IRQ_BASE + (uint32)ADC_DelSig_IRQ__INTC_NUMBER];
+ 224              		.loc 1 198 0
+ 225 0012 7B68     		ldr	r3, [r7, #4]
+ 226 0014 D3F8B430 		ldr	r3, [r3, #180]
+ 199:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 227              		.loc 1 199 0
+ 228 0018 1846     		mov	r0, r3
+ 229 001a 07F10C07 		add	r7, r7, #12
+ 230 001e BD46     		mov	sp, r7
+ 231 0020 80BC     		pop	{r7}
+ 232 0022 7047     		bx	lr
+ 233              		.cfi_endproc
+ 234              	.LFE61:
+ 235              		.size	ADC_DelSig_IRQ_GetVector, .-ADC_DelSig_IRQ_GetVector
+ 236              		.section	.text.ADC_DelSig_IRQ_SetPriority,"ax",%progbits
+ 237              		.align	2
+ 238              		.global	ADC_DelSig_IRQ_SetPriority
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.type	ADC_DelSig_IRQ_SetPriority, %function
+ 242              	ADC_DelSig_IRQ_SetPriority:
+ 243              	.LFB62:
+ 200:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 201:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 202:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 203:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_SetPriority
+ 204:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 205:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 206:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 207:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Sets the Priority of the Interrupt. Note calling ADC_DelSig_IRQ_Start
+ 208:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   or ADC_DelSig_IRQ_StartEx will override any effect this method 
+ 209:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   would have had. This method should only be called after 
+ 210:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   ADC_DelSig_IRQ_Start or ADC_DelSig_IRQ_StartEx has been called. To set 
+ 211:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   the initial priority for the component use the cydwr file in the tool.
+ 212:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 213:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 9
+
+
+ 214:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   priority: Priority of the interrupt. 0 - 7, 0 being the highest.
+ 215:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 216:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 217:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 218:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 219:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 220:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_SetPriority(uint8 priority)
+ 221:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 244              		.loc 1 221 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 8
+ 247              		@ frame_needed = 1, uses_anonymous_args = 0
+ 248              		@ link register save eliminated.
+ 249 0000 80B4     		push	{r7}
+ 250              	.LCFI15:
+ 251              		.cfi_def_cfa_offset 4
+ 252              		.cfi_offset 7, -4
+ 253 0002 83B0     		sub	sp, sp, #12
+ 254              	.LCFI16:
+ 255              		.cfi_def_cfa_offset 16
+ 256 0004 00AF     		add	r7, sp, #0
+ 257              	.LCFI17:
+ 258              		.cfi_def_cfa_register 7
+ 259 0006 0346     		mov	r3, r0
+ 260 0008 FB71     		strb	r3, [r7, #7]
+ 222:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     *ADC_DelSig_IRQ_INTC_PRIOR = priority << 5;
+ 261              		.loc 1 222 0
+ 262 000a 4EF21D43 		movw	r3, #58397
+ 263 000e CEF20003 		movt	r3, 57344
+ 264 0012 FA79     		ldrb	r2, [r7, #7]
+ 265 0014 4FEA4212 		lsl	r2, r2, #5
+ 266 0018 D2B2     		uxtb	r2, r2
+ 267 001a 1A70     		strb	r2, [r3, #0]
+ 223:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 268              		.loc 1 223 0
+ 269 001c 07F10C07 		add	r7, r7, #12
+ 270 0020 BD46     		mov	sp, r7
+ 271 0022 80BC     		pop	{r7}
+ 272 0024 7047     		bx	lr
+ 273              		.cfi_endproc
+ 274              	.LFE62:
+ 275              		.size	ADC_DelSig_IRQ_SetPriority, .-ADC_DelSig_IRQ_SetPriority
+ 276 0026 00BF     		.section	.text.ADC_DelSig_IRQ_GetPriority,"ax",%progbits
+ 277              		.align	2
+ 278              		.global	ADC_DelSig_IRQ_GetPriority
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.type	ADC_DelSig_IRQ_GetPriority, %function
+ 282              	ADC_DelSig_IRQ_GetPriority:
+ 283              	.LFB63:
+ 224:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 225:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 226:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 227:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_GetPriority
+ 228:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 229:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 230:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 10
+
+
+ 231:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Gets the Priority of the Interrupt.
+ 232:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 233:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 234:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 235:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 236:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 237:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Priority of the interrupt. 0 - 7, 0 being the highest.
+ 238:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 239:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 240:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** uint8 ADC_DelSig_IRQ_GetPriority(void)
+ 241:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 284              		.loc 1 241 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 8
+ 287              		@ frame_needed = 1, uses_anonymous_args = 0
+ 288              		@ link register save eliminated.
+ 289 0000 80B4     		push	{r7}
+ 290              	.LCFI18:
+ 291              		.cfi_def_cfa_offset 4
+ 292              		.cfi_offset 7, -4
+ 293 0002 83B0     		sub	sp, sp, #12
+ 294              	.LCFI19:
+ 295              		.cfi_def_cfa_offset 16
+ 296 0004 00AF     		add	r7, sp, #0
+ 297              	.LCFI20:
+ 298              		.cfi_def_cfa_register 7
+ 242:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     uint8 priority;
+ 243:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 244:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 245:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     priority = *ADC_DelSig_IRQ_INTC_PRIOR >> 5;
+ 299              		.loc 1 245 0
+ 300 0006 4EF21D43 		movw	r3, #58397
+ 301 000a CEF20003 		movt	r3, 57344
+ 302 000e 1B78     		ldrb	r3, [r3, #0]
+ 303 0010 DBB2     		uxtb	r3, r3
+ 304 0012 4FEA5313 		lsr	r3, r3, #5
+ 305 0016 FB71     		strb	r3, [r7, #7]
+ 246:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 247:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     return priority;
+ 306              		.loc 1 247 0
+ 307 0018 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 248:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 308              		.loc 1 248 0
+ 309 001a 1846     		mov	r0, r3
+ 310 001c 07F10C07 		add	r7, r7, #12
+ 311 0020 BD46     		mov	sp, r7
+ 312 0022 80BC     		pop	{r7}
+ 313 0024 7047     		bx	lr
+ 314              		.cfi_endproc
+ 315              	.LFE63:
+ 316              		.size	ADC_DelSig_IRQ_GetPriority, .-ADC_DelSig_IRQ_GetPriority
+ 317 0026 00BF     		.section	.text.ADC_DelSig_IRQ_Enable,"ax",%progbits
+ 318              		.align	2
+ 319              		.global	ADC_DelSig_IRQ_Enable
+ 320              		.thumb
+ 321              		.thumb_func
+ 322              		.type	ADC_DelSig_IRQ_Enable, %function
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 11
+
+
+ 323              	ADC_DelSig_IRQ_Enable:
+ 324              	.LFB64:
+ 249:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 250:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 251:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 252:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_Enable
+ 253:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 254:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 255:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 256:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Enables the interrupt.
+ 257:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 258:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 259:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 260:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 261:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 262:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 263:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 264:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 265:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_Enable(void)
+ 266:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 325              		.loc 1 266 0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 1, uses_anonymous_args = 0
+ 329              		@ link register save eliminated.
+ 330 0000 80B4     		push	{r7}
+ 331              	.LCFI21:
+ 332              		.cfi_def_cfa_offset 4
+ 333              		.cfi_offset 7, -4
+ 334 0002 00AF     		add	r7, sp, #0
+ 335              	.LCFI22:
+ 336              		.cfi_def_cfa_register 7
+ 267:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Enable the general interrupt. */
+ 268:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     *ADC_DelSig_IRQ_INTC_SET_EN = ADC_DelSig_IRQ__INTC_MASK;
+ 337              		.loc 1 268 0
+ 338 0004 4FF46143 		mov	r3, #57600
+ 339 0008 CEF20003 		movt	r3, 57344
+ 340 000c 4FF00052 		mov	r2, #536870912
+ 341 0010 1A60     		str	r2, [r3, #0]
+ 269:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 342              		.loc 1 269 0
+ 343 0012 BD46     		mov	sp, r7
+ 344 0014 80BC     		pop	{r7}
+ 345 0016 7047     		bx	lr
+ 346              		.cfi_endproc
+ 347              	.LFE64:
+ 348              		.size	ADC_DelSig_IRQ_Enable, .-ADC_DelSig_IRQ_Enable
+ 349              		.section	.text.ADC_DelSig_IRQ_GetState,"ax",%progbits
+ 350              		.align	2
+ 351              		.global	ADC_DelSig_IRQ_GetState
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.type	ADC_DelSig_IRQ_GetState, %function
+ 355              	ADC_DelSig_IRQ_GetState:
+ 356              	.LFB65:
+ 270:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 271:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 12
+
+
+ 272:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 273:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_GetState
+ 274:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 275:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 276:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 277:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 278:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 279:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 280:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 281:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 282:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 283:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   1 if enabled, 0 if disabled.
+ 284:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 285:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 286:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** uint8 ADC_DelSig_IRQ_GetState(void)
+ 287:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 357              		.loc 1 287 0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 1, uses_anonymous_args = 0
+ 361              		@ link register save eliminated.
+ 362 0000 80B4     		push	{r7}
+ 363              	.LCFI23:
+ 364              		.cfi_def_cfa_offset 4
+ 365              		.cfi_offset 7, -4
+ 366 0002 00AF     		add	r7, sp, #0
+ 367              	.LCFI24:
+ 368              		.cfi_def_cfa_register 7
+ 288:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Get the state of the general interrupt. */
+ 289:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     return ((*ADC_DelSig_IRQ_INTC_SET_EN & (uint32)ADC_DelSig_IRQ__INTC_MASK) != 0u) ? 1u:0u;
+ 369              		.loc 1 289 0
+ 370 0004 4FF46143 		mov	r3, #57600
+ 371 0008 CEF20003 		movt	r3, 57344
+ 372 000c 1B68     		ldr	r3, [r3, #0]
+ 373 000e 03F00053 		and	r3, r3, #536870912
+ 374 0012 002B     		cmp	r3, #0
+ 375 0014 02D0     		beq	.L13
+ 376              		.loc 1 289 0 is_stmt 0 discriminator 1
+ 377 0016 4FF00103 		mov	r3, #1
+ 378 001a 01E0     		b	.L14
+ 379              	.L13:
+ 380              		.loc 1 289 0 discriminator 2
+ 381 001c 4FF00003 		mov	r3, #0
+ 382              	.L14:
+ 290:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 383              		.loc 1 290 0 is_stmt 1 discriminator 3
+ 384 0020 1846     		mov	r0, r3
+ 385 0022 BD46     		mov	sp, r7
+ 386 0024 80BC     		pop	{r7}
+ 387 0026 7047     		bx	lr
+ 388              		.cfi_endproc
+ 389              	.LFE65:
+ 390              		.size	ADC_DelSig_IRQ_GetState, .-ADC_DelSig_IRQ_GetState
+ 391              		.section	.text.ADC_DelSig_IRQ_Disable,"ax",%progbits
+ 392              		.align	2
+ 393              		.global	ADC_DelSig_IRQ_Disable
+ 394              		.thumb
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 13
+
+
+ 395              		.thumb_func
+ 396              		.type	ADC_DelSig_IRQ_Disable, %function
+ 397              	ADC_DelSig_IRQ_Disable:
+ 398              	.LFB66:
+ 291:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 292:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 293:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 294:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_Disable
+ 295:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 296:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 297:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 298:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Disables the Interrupt.
+ 299:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 300:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 301:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 302:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 303:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 304:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 305:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 306:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 307:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_Disable(void)
+ 308:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 399              		.loc 1 308 0
+ 400              		.cfi_startproc
+ 401              		@ args = 0, pretend = 0, frame = 0
+ 402              		@ frame_needed = 1, uses_anonymous_args = 0
+ 403              		@ link register save eliminated.
+ 404 0000 80B4     		push	{r7}
+ 405              	.LCFI25:
+ 406              		.cfi_def_cfa_offset 4
+ 407              		.cfi_offset 7, -4
+ 408 0002 00AF     		add	r7, sp, #0
+ 409              	.LCFI26:
+ 410              		.cfi_def_cfa_register 7
+ 309:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     /* Disable the general interrupt. */
+ 310:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     *ADC_DelSig_IRQ_INTC_CLR_EN = ADC_DelSig_IRQ__INTC_MASK;
+ 411              		.loc 1 310 0
+ 412 0004 4EF28013 		movw	r3, #57728
+ 413 0008 CEF20003 		movt	r3, 57344
+ 414 000c 4FF00052 		mov	r2, #536870912
+ 415 0010 1A60     		str	r2, [r3, #0]
+ 311:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 416              		.loc 1 311 0
+ 417 0012 BD46     		mov	sp, r7
+ 418 0014 80BC     		pop	{r7}
+ 419 0016 7047     		bx	lr
+ 420              		.cfi_endproc
+ 421              	.LFE66:
+ 422              		.size	ADC_DelSig_IRQ_Disable, .-ADC_DelSig_IRQ_Disable
+ 423              		.section	.text.ADC_DelSig_IRQ_SetPending,"ax",%progbits
+ 424              		.align	2
+ 425              		.global	ADC_DelSig_IRQ_SetPending
+ 426              		.thumb
+ 427              		.thumb_func
+ 428              		.type	ADC_DelSig_IRQ_SetPending, %function
+ 429              	ADC_DelSig_IRQ_SetPending:
+ 430              	.LFB67:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 14
+
+
+ 312:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 313:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 314:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 315:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_SetPending
+ 316:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 317:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 318:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 319:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 320:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   generating the interrupt.
+ 321:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 322:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 323:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 324:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 325:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 326:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 327:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 328:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 329:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_SetPending(void)
+ 330:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 431              		.loc 1 330 0
+ 432              		.cfi_startproc
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 1, uses_anonymous_args = 0
+ 435              		@ link register save eliminated.
+ 436 0000 80B4     		push	{r7}
+ 437              	.LCFI27:
+ 438              		.cfi_def_cfa_offset 4
+ 439              		.cfi_offset 7, -4
+ 440 0002 00AF     		add	r7, sp, #0
+ 441              	.LCFI28:
+ 442              		.cfi_def_cfa_register 7
+ 331:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     *ADC_DelSig_IRQ_INTC_SET_PD = ADC_DelSig_IRQ__INTC_MASK;
+ 443              		.loc 1 331 0
+ 444 0004 4FF46243 		mov	r3, #57856
+ 445 0008 CEF20003 		movt	r3, 57344
+ 446 000c 4FF00052 		mov	r2, #536870912
+ 447 0010 1A60     		str	r2, [r3, #0]
+ 332:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 448              		.loc 1 332 0
+ 449 0012 BD46     		mov	sp, r7
+ 450 0014 80BC     		pop	{r7}
+ 451 0016 7047     		bx	lr
+ 452              		.cfi_endproc
+ 453              	.LFE67:
+ 454              		.size	ADC_DelSig_IRQ_SetPending, .-ADC_DelSig_IRQ_SetPending
+ 455              		.section	.text.ADC_DelSig_IRQ_ClearPending,"ax",%progbits
+ 456              		.align	2
+ 457              		.global	ADC_DelSig_IRQ_ClearPending
+ 458              		.thumb
+ 459              		.thumb_func
+ 460              		.type	ADC_DelSig_IRQ_ClearPending, %function
+ 461              	ADC_DelSig_IRQ_ClearPending:
+ 462              	.LFB68:
+ 333:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 334:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** 
+ 335:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** /*******************************************************************************
+ 336:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Function Name: ADC_DelSig_IRQ_ClearPending
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 15
+
+
+ 337:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** ********************************************************************************
+ 338:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 339:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Summary:
+ 340:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   Clears a pending interrupt.
+ 341:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 342:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Parameters:
+ 343:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 344:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 345:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** * Return:
+ 346:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *   None
+ 347:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *
+ 348:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** *******************************************************************************/
+ 349:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** void ADC_DelSig_IRQ_ClearPending(void)
+ 350:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** {
+ 463              		.loc 1 350 0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 1, uses_anonymous_args = 0
+ 467              		@ link register save eliminated.
+ 468 0000 80B4     		push	{r7}
+ 469              	.LCFI29:
+ 470              		.cfi_def_cfa_offset 4
+ 471              		.cfi_offset 7, -4
+ 472 0002 00AF     		add	r7, sp, #0
+ 473              	.LCFI30:
+ 474              		.cfi_def_cfa_register 7
+ 351:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c ****     *ADC_DelSig_IRQ_INTC_CLR_PD = ADC_DelSig_IRQ__INTC_MASK;
+ 475              		.loc 1 351 0
+ 476 0004 4EF28023 		movw	r3, #57984
+ 477 0008 CEF20003 		movt	r3, 57344
+ 478 000c 4FF00052 		mov	r2, #536870912
+ 479 0010 1A60     		str	r2, [r3, #0]
+ 352:.\Generated_Source\PSoC5/ADC_DelSig_IRQ.c **** }
+ 480              		.loc 1 352 0
+ 481 0012 BD46     		mov	sp, r7
+ 482 0014 80BC     		pop	{r7}
+ 483 0016 7047     		bx	lr
+ 484              		.cfi_endproc
+ 485              	.LFE68:
+ 486              		.size	ADC_DelSig_IRQ_ClearPending, .-ADC_DelSig_IRQ_ClearPending
+ 487              		.text
+ 488              	.Letext0:
+ 489              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 490              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 491              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 492              		.section	.debug_info,"",%progbits
+ 493              	.Ldebug_info0:
+ 494 0000 92020000 		.4byte	0x292
+ 495 0004 0200     		.2byte	0x2
+ 496 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 497 000a 04       		.byte	0x4
+ 498 000b 01       		.uleb128 0x1
+ 499 000c A8020000 		.4byte	.LASF34
+ 500 0010 01       		.byte	0x1
+ 501 0011 06000000 		.4byte	.LASF35
+ 502 0015 48000000 		.4byte	.LASF36
+ 503 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 16
+
+
+ 504 001d 00000000 		.4byte	0
+ 505 0021 00000000 		.4byte	0
+ 506 0025 00000000 		.4byte	.Ldebug_line0
+ 507 0029 02       		.uleb128 0x2
+ 508 002a 01       		.byte	0x1
+ 509 002b 06       		.byte	0x6
+ 510 002c 9C020000 		.4byte	.LASF0
+ 511 0030 02       		.uleb128 0x2
+ 512 0031 01       		.byte	0x1
+ 513 0032 08       		.byte	0x8
+ 514 0033 F6000000 		.4byte	.LASF1
+ 515 0037 02       		.uleb128 0x2
+ 516 0038 02       		.byte	0x2
+ 517 0039 05       		.byte	0x5
+ 518 003a 6C020000 		.4byte	.LASF2
+ 519 003e 02       		.uleb128 0x2
+ 520 003f 02       		.byte	0x2
+ 521 0040 07       		.byte	0x7
+ 522 0041 A6000000 		.4byte	.LASF3
+ 523 0045 03       		.uleb128 0x3
+ 524 0046 04       		.byte	0x4
+ 525 0047 05       		.byte	0x5
+ 526 0048 696E7400 		.ascii	"int\000"
+ 527 004c 02       		.uleb128 0x2
+ 528 004d 04       		.byte	0x4
+ 529 004e 07       		.byte	0x7
+ 530 004f 86010000 		.4byte	.LASF4
+ 531 0053 02       		.uleb128 0x2
+ 532 0054 08       		.byte	0x8
+ 533 0055 05       		.byte	0x5
+ 534 0056 30020000 		.4byte	.LASF5
+ 535 005a 02       		.uleb128 0x2
+ 536 005b 08       		.byte	0x8
+ 537 005c 07       		.byte	0x7
+ 538 005d B6010000 		.4byte	.LASF6
+ 539 0061 02       		.uleb128 0x2
+ 540 0062 04       		.byte	0x4
+ 541 0063 05       		.byte	0x5
+ 542 0064 93020000 		.4byte	.LASF7
+ 543 0068 02       		.uleb128 0x2
+ 544 0069 04       		.byte	0x4
+ 545 006a 07       		.byte	0x7
+ 546 006b 27020000 		.4byte	.LASF8
+ 547 006f 02       		.uleb128 0x2
+ 548 0070 04       		.byte	0x4
+ 549 0071 07       		.byte	0x7
+ 550 0072 09010000 		.4byte	.LASF9
+ 551 0076 04       		.uleb128 0x4
+ 552 0077 01       		.byte	0x1
+ 553 0078 05       		.uleb128 0x5
+ 554 0079 04       		.byte	0x4
+ 555 007a 76000000 		.4byte	0x76
+ 556 007e 02       		.uleb128 0x2
+ 557 007f 01       		.byte	0x1
+ 558 0080 08       		.byte	0x8
+ 559 0081 3E020000 		.4byte	.LASF10
+ 560 0085 06       		.uleb128 0x6
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 17
+
+
+ 561 0086 B9000000 		.4byte	.LASF11
+ 562 008a 02       		.byte	0x2
+ 563 008b 4F       		.byte	0x4f
+ 564 008c 61000000 		.4byte	0x61
+ 565 0090 06       		.uleb128 0x6
+ 566 0091 76020000 		.4byte	.LASF12
+ 567 0095 03       		.byte	0x3
+ 568 0096 5B       		.byte	0x5b
+ 569 0097 30000000 		.4byte	0x30
+ 570 009b 06       		.uleb128 0x6
+ 571 009c 68010000 		.4byte	.LASF13
+ 572 00a0 03       		.byte	0x3
+ 573 00a1 5D       		.byte	0x5d
+ 574 00a2 6F000000 		.4byte	0x6f
+ 575 00a6 02       		.uleb128 0x2
+ 576 00a7 04       		.byte	0x4
+ 577 00a8 04       		.byte	0x4
+ 578 00a9 DA000000 		.4byte	.LASF14
+ 579 00ad 02       		.uleb128 0x2
+ 580 00ae 08       		.byte	0x8
+ 581 00af 04       		.byte	0x4
+ 582 00b0 3C010000 		.4byte	.LASF15
+ 583 00b4 06       		.uleb128 0x6
+ 584 00b5 04010000 		.4byte	.LASF16
+ 585 00b9 03       		.byte	0x3
+ 586 00ba F0       		.byte	0xf0
+ 587 00bb BF000000 		.4byte	0xbf
+ 588 00bf 07       		.uleb128 0x7
+ 589 00c0 90000000 		.4byte	0x90
+ 590 00c4 06       		.uleb128 0x6
+ 591 00c5 00000000 		.4byte	.LASF17
+ 592 00c9 03       		.byte	0x3
+ 593 00ca F2       		.byte	0xf2
+ 594 00cb CF000000 		.4byte	0xcf
+ 595 00cf 07       		.uleb128 0x7
+ 596 00d0 9B000000 		.4byte	0x9b
+ 597 00d4 08       		.uleb128 0x8
+ 598 00d5 FF010000 		.4byte	.LASF18
+ 599 00d9 03       		.byte	0x3
+ 600 00da 0201     		.2byte	0x102
+ 601 00dc 78000000 		.4byte	0x78
+ 602 00e0 09       		.uleb128 0x9
+ 603 00e1 01       		.byte	0x1
+ 604 00e2 91000000 		.4byte	.LASF19
+ 605 00e6 01       		.byte	0x1
+ 606 00e7 3A       		.byte	0x3a
+ 607 00e8 01       		.byte	0x1
+ 608 00e9 00000000 		.4byte	.LFB56
+ 609 00ed 22000000 		.4byte	.LFE56
+ 610 00f1 00000000 		.4byte	.LLST0
+ 611 00f5 01       		.byte	0x1
+ 612 00f6 0A       		.uleb128 0xa
+ 613 00f7 01       		.byte	0x1
+ 614 00f8 6F010000 		.4byte	.LASF22
+ 615 00fc 01       		.byte	0x1
+ 616 00fd 58       		.byte	0x58
+ 617 00fe 01       		.byte	0x1
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 18
+
+
+ 618 00ff 00000000 		.4byte	.LFB57
+ 619 0103 26000000 		.4byte	.LFE57
+ 620 0107 2C000000 		.4byte	.LLST1
+ 621 010b 01       		.byte	0x1
+ 622 010c 1F010000 		.4byte	0x11f
+ 623 0110 0B       		.uleb128 0xb
+ 624 0111 AE010000 		.4byte	.LASF24
+ 625 0115 01       		.byte	0x1
+ 626 0116 58       		.byte	0x58
+ 627 0117 D4000000 		.4byte	0xd4
+ 628 011b 02       		.byte	0x2
+ 629 011c 91       		.byte	0x91
+ 630 011d 74       		.sleb128 -12
+ 631 011e 00       		.byte	0
+ 632 011f 09       		.uleb128 0x9
+ 633 0120 01       		.byte	0x1
+ 634 0121 1B010000 		.4byte	.LASF20
+ 635 0125 01       		.byte	0x1
+ 636 0126 75       		.byte	0x75
+ 637 0127 01       		.byte	0x1
+ 638 0128 00000000 		.4byte	.LFB58
+ 639 012c 16000000 		.4byte	.LFE58
+ 640 0130 64000000 		.4byte	.LLST2
+ 641 0134 01       		.byte	0x1
+ 642 0135 0C       		.uleb128 0xc
+ 643 0136 01       		.byte	0x1
+ 644 0137 E6010000 		.4byte	.LASF21
+ 645 013b 01       		.byte	0x1
+ 646 013c 8F       		.byte	0x8f
+ 647 013d 01       		.byte	0x1
+ 648 013e 00000000 		.4byte	.LFB59
+ 649 0142 0A000000 		.4byte	.LFE59
+ 650 0146 90000000 		.4byte	.LLST3
+ 651 014a 01       		.byte	0x1
+ 652 014b 0D       		.uleb128 0xd
+ 653 014c 01       		.byte	0x1
+ 654 014d C1000000 		.4byte	.LASF23
+ 655 0151 01       		.byte	0x1
+ 656 0152 A8       		.byte	0xa8
+ 657 0153 01       		.byte	0x1
+ 658 0154 00000000 		.4byte	.LFB60
+ 659 0158 28000000 		.4byte	.LFE60
+ 660 015c BC000000 		.4byte	.LLST4
+ 661 0160 01       		.byte	0x1
+ 662 0161 82010000 		.4byte	0x182
+ 663 0165 0B       		.uleb128 0xb
+ 664 0166 AE010000 		.4byte	.LASF24
+ 665 016a 01       		.byte	0x1
+ 666 016b A8       		.byte	0xa8
+ 667 016c D4000000 		.4byte	0xd4
+ 668 0170 02       		.byte	0x2
+ 669 0171 91       		.byte	0x91
+ 670 0172 6C       		.sleb128 -20
+ 671 0173 0E       		.uleb128 0xe
+ 672 0174 43020000 		.4byte	.LASF25
+ 673 0178 01       		.byte	0x1
+ 674 0179 AA       		.byte	0xaa
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 19
+
+
+ 675 017a 82010000 		.4byte	0x182
+ 676 017e 02       		.byte	0x2
+ 677 017f 91       		.byte	0x91
+ 678 0180 74       		.sleb128 -12
+ 679 0181 00       		.byte	0
+ 680 0182 05       		.uleb128 0x5
+ 681 0183 04       		.byte	0x4
+ 682 0184 D4000000 		.4byte	0xd4
+ 683 0188 0F       		.uleb128 0xf
+ 684 0189 01       		.byte	0x1
+ 685 018a CD010000 		.4byte	.LASF28
+ 686 018e 01       		.byte	0x1
+ 687 018f C0       		.byte	0xc0
+ 688 0190 01       		.byte	0x1
+ 689 0191 D4000000 		.4byte	0xd4
+ 690 0195 00000000 		.4byte	.LFB61
+ 691 0199 24000000 		.4byte	.LFE61
+ 692 019d F4000000 		.4byte	.LLST5
+ 693 01a1 01       		.byte	0x1
+ 694 01a2 B5010000 		.4byte	0x1b5
+ 695 01a6 0E       		.uleb128 0xe
+ 696 01a7 43020000 		.4byte	.LASF25
+ 697 01ab 01       		.byte	0x1
+ 698 01ac C2       		.byte	0xc2
+ 699 01ad 82010000 		.4byte	0x182
+ 700 01b1 02       		.byte	0x2
+ 701 01b2 91       		.byte	0x91
+ 702 01b3 74       		.sleb128 -12
+ 703 01b4 00       		.byte	0
+ 704 01b5 0D       		.uleb128 0xd
+ 705 01b6 01       		.byte	0x1
+ 706 01b7 93010000 		.4byte	.LASF26
+ 707 01bb 01       		.byte	0x1
+ 708 01bc DC       		.byte	0xdc
+ 709 01bd 01       		.byte	0x1
+ 710 01be 00000000 		.4byte	.LFB62
+ 711 01c2 26000000 		.4byte	.LFE62
+ 712 01c6 2C010000 		.4byte	.LLST6
+ 713 01ca 01       		.byte	0x1
+ 714 01cb DE010000 		.4byte	0x1de
+ 715 01cf 0B       		.uleb128 0xb
+ 716 01d0 43010000 		.4byte	.LASF27
+ 717 01d4 01       		.byte	0x1
+ 718 01d5 DC       		.byte	0xdc
+ 719 01d6 90000000 		.4byte	0x90
+ 720 01da 02       		.byte	0x2
+ 721 01db 91       		.byte	0x91
+ 722 01dc 77       		.sleb128 -9
+ 723 01dd 00       		.byte	0
+ 724 01de 0F       		.uleb128 0xf
+ 725 01df 01       		.byte	0x1
+ 726 01e0 0C020000 		.4byte	.LASF29
+ 727 01e4 01       		.byte	0x1
+ 728 01e5 F0       		.byte	0xf0
+ 729 01e6 01       		.byte	0x1
+ 730 01e7 90000000 		.4byte	0x90
+ 731 01eb 00000000 		.4byte	.LFB63
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 20
+
+
+ 732 01ef 26000000 		.4byte	.LFE63
+ 733 01f3 64010000 		.4byte	.LLST7
+ 734 01f7 01       		.byte	0x1
+ 735 01f8 0B020000 		.4byte	0x20b
+ 736 01fc 0E       		.uleb128 0xe
+ 737 01fd 43010000 		.4byte	.LASF27
+ 738 0201 01       		.byte	0x1
+ 739 0202 F2       		.byte	0xf2
+ 740 0203 90000000 		.4byte	0x90
+ 741 0207 02       		.byte	0x2
+ 742 0208 91       		.byte	0x91
+ 743 0209 77       		.sleb128 -9
+ 744 020a 00       		.byte	0
+ 745 020b 10       		.uleb128 0x10
+ 746 020c 01       		.byte	0x1
+ 747 020d E0000000 		.4byte	.LASF30
+ 748 0211 01       		.byte	0x1
+ 749 0212 0901     		.2byte	0x109
+ 750 0214 01       		.byte	0x1
+ 751 0215 00000000 		.4byte	.LFB64
+ 752 0219 18000000 		.4byte	.LFE64
+ 753 021d 9C010000 		.4byte	.LLST8
+ 754 0221 01       		.byte	0x1
+ 755 0222 11       		.uleb128 0x11
+ 756 0223 01       		.byte	0x1
+ 757 0224 30000000 		.4byte	.LASF37
+ 758 0228 01       		.byte	0x1
+ 759 0229 1E01     		.2byte	0x11e
+ 760 022b 01       		.byte	0x1
+ 761 022c 90000000 		.4byte	0x90
+ 762 0230 00000000 		.4byte	.LFB65
+ 763 0234 28000000 		.4byte	.LFE65
+ 764 0238 C8010000 		.4byte	.LLST9
+ 765 023c 01       		.byte	0x1
+ 766 023d 10       		.uleb128 0x10
+ 767 023e 01       		.byte	0x1
+ 768 023f 7C020000 		.4byte	.LASF31
+ 769 0243 01       		.byte	0x1
+ 770 0244 3301     		.2byte	0x133
+ 771 0246 01       		.byte	0x1
+ 772 0247 00000000 		.4byte	.LFB66
+ 773 024b 18000000 		.4byte	.LFE66
+ 774 024f F4010000 		.4byte	.LLST10
+ 775 0253 01       		.byte	0x1
+ 776 0254 10       		.uleb128 0x10
+ 777 0255 01       		.byte	0x1
+ 778 0256 52020000 		.4byte	.LASF32
+ 779 025a 01       		.byte	0x1
+ 780 025b 4901     		.2byte	0x149
+ 781 025d 01       		.byte	0x1
+ 782 025e 00000000 		.4byte	.LFB67
+ 783 0262 18000000 		.4byte	.LFE67
+ 784 0266 20020000 		.4byte	.LLST11
+ 785 026a 01       		.byte	0x1
+ 786 026b 10       		.uleb128 0x10
+ 787 026c 01       		.byte	0x1
+ 788 026d 4C010000 		.4byte	.LASF33
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 21
+
+
+ 789 0271 01       		.byte	0x1
+ 790 0272 5D01     		.2byte	0x15d
+ 791 0274 01       		.byte	0x1
+ 792 0275 00000000 		.4byte	.LFB68
+ 793 0279 18000000 		.4byte	.LFE68
+ 794 027d 4C020000 		.4byte	.LLST12
+ 795 0281 01       		.byte	0x1
+ 796 0282 12       		.uleb128 0x12
+ 797 0283 2F010000 		.4byte	.LASF38
+ 798 0287 04       		.byte	0x4
+ 799 0288 1606     		.2byte	0x616
+ 800 028a 90020000 		.4byte	0x290
+ 801 028e 01       		.byte	0x1
+ 802 028f 01       		.byte	0x1
+ 803 0290 07       		.uleb128 0x7
+ 804 0291 85000000 		.4byte	0x85
+ 805 0295 00       		.byte	0
+ 806              		.section	.debug_abbrev,"",%progbits
+ 807              	.Ldebug_abbrev0:
+ 808 0000 01       		.uleb128 0x1
+ 809 0001 11       		.uleb128 0x11
+ 810 0002 01       		.byte	0x1
+ 811 0003 25       		.uleb128 0x25
+ 812 0004 0E       		.uleb128 0xe
+ 813 0005 13       		.uleb128 0x13
+ 814 0006 0B       		.uleb128 0xb
+ 815 0007 03       		.uleb128 0x3
+ 816 0008 0E       		.uleb128 0xe
+ 817 0009 1B       		.uleb128 0x1b
+ 818 000a 0E       		.uleb128 0xe
+ 819 000b 55       		.uleb128 0x55
+ 820 000c 06       		.uleb128 0x6
+ 821 000d 11       		.uleb128 0x11
+ 822 000e 01       		.uleb128 0x1
+ 823 000f 52       		.uleb128 0x52
+ 824 0010 01       		.uleb128 0x1
+ 825 0011 10       		.uleb128 0x10
+ 826 0012 06       		.uleb128 0x6
+ 827 0013 00       		.byte	0
+ 828 0014 00       		.byte	0
+ 829 0015 02       		.uleb128 0x2
+ 830 0016 24       		.uleb128 0x24
+ 831 0017 00       		.byte	0
+ 832 0018 0B       		.uleb128 0xb
+ 833 0019 0B       		.uleb128 0xb
+ 834 001a 3E       		.uleb128 0x3e
+ 835 001b 0B       		.uleb128 0xb
+ 836 001c 03       		.uleb128 0x3
+ 837 001d 0E       		.uleb128 0xe
+ 838 001e 00       		.byte	0
+ 839 001f 00       		.byte	0
+ 840 0020 03       		.uleb128 0x3
+ 841 0021 24       		.uleb128 0x24
+ 842 0022 00       		.byte	0
+ 843 0023 0B       		.uleb128 0xb
+ 844 0024 0B       		.uleb128 0xb
+ 845 0025 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 22
+
+
+ 846 0026 0B       		.uleb128 0xb
+ 847 0027 03       		.uleb128 0x3
+ 848 0028 08       		.uleb128 0x8
+ 849 0029 00       		.byte	0
+ 850 002a 00       		.byte	0
+ 851 002b 04       		.uleb128 0x4
+ 852 002c 15       		.uleb128 0x15
+ 853 002d 00       		.byte	0
+ 854 002e 27       		.uleb128 0x27
+ 855 002f 0C       		.uleb128 0xc
+ 856 0030 00       		.byte	0
+ 857 0031 00       		.byte	0
+ 858 0032 05       		.uleb128 0x5
+ 859 0033 0F       		.uleb128 0xf
+ 860 0034 00       		.byte	0
+ 861 0035 0B       		.uleb128 0xb
+ 862 0036 0B       		.uleb128 0xb
+ 863 0037 49       		.uleb128 0x49
+ 864 0038 13       		.uleb128 0x13
+ 865 0039 00       		.byte	0
+ 866 003a 00       		.byte	0
+ 867 003b 06       		.uleb128 0x6
+ 868 003c 16       		.uleb128 0x16
+ 869 003d 00       		.byte	0
+ 870 003e 03       		.uleb128 0x3
+ 871 003f 0E       		.uleb128 0xe
+ 872 0040 3A       		.uleb128 0x3a
+ 873 0041 0B       		.uleb128 0xb
+ 874 0042 3B       		.uleb128 0x3b
+ 875 0043 0B       		.uleb128 0xb
+ 876 0044 49       		.uleb128 0x49
+ 877 0045 13       		.uleb128 0x13
+ 878 0046 00       		.byte	0
+ 879 0047 00       		.byte	0
+ 880 0048 07       		.uleb128 0x7
+ 881 0049 35       		.uleb128 0x35
+ 882 004a 00       		.byte	0
+ 883 004b 49       		.uleb128 0x49
+ 884 004c 13       		.uleb128 0x13
+ 885 004d 00       		.byte	0
+ 886 004e 00       		.byte	0
+ 887 004f 08       		.uleb128 0x8
+ 888 0050 16       		.uleb128 0x16
+ 889 0051 00       		.byte	0
+ 890 0052 03       		.uleb128 0x3
+ 891 0053 0E       		.uleb128 0xe
+ 892 0054 3A       		.uleb128 0x3a
+ 893 0055 0B       		.uleb128 0xb
+ 894 0056 3B       		.uleb128 0x3b
+ 895 0057 05       		.uleb128 0x5
+ 896 0058 49       		.uleb128 0x49
+ 897 0059 13       		.uleb128 0x13
+ 898 005a 00       		.byte	0
+ 899 005b 00       		.byte	0
+ 900 005c 09       		.uleb128 0x9
+ 901 005d 2E       		.uleb128 0x2e
+ 902 005e 00       		.byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 23
+
+
+ 903 005f 3F       		.uleb128 0x3f
+ 904 0060 0C       		.uleb128 0xc
+ 905 0061 03       		.uleb128 0x3
+ 906 0062 0E       		.uleb128 0xe
+ 907 0063 3A       		.uleb128 0x3a
+ 908 0064 0B       		.uleb128 0xb
+ 909 0065 3B       		.uleb128 0x3b
+ 910 0066 0B       		.uleb128 0xb
+ 911 0067 27       		.uleb128 0x27
+ 912 0068 0C       		.uleb128 0xc
+ 913 0069 11       		.uleb128 0x11
+ 914 006a 01       		.uleb128 0x1
+ 915 006b 12       		.uleb128 0x12
+ 916 006c 01       		.uleb128 0x1
+ 917 006d 40       		.uleb128 0x40
+ 918 006e 06       		.uleb128 0x6
+ 919 006f 9642     		.uleb128 0x2116
+ 920 0071 0C       		.uleb128 0xc
+ 921 0072 00       		.byte	0
+ 922 0073 00       		.byte	0
+ 923 0074 0A       		.uleb128 0xa
+ 924 0075 2E       		.uleb128 0x2e
+ 925 0076 01       		.byte	0x1
+ 926 0077 3F       		.uleb128 0x3f
+ 927 0078 0C       		.uleb128 0xc
+ 928 0079 03       		.uleb128 0x3
+ 929 007a 0E       		.uleb128 0xe
+ 930 007b 3A       		.uleb128 0x3a
+ 931 007c 0B       		.uleb128 0xb
+ 932 007d 3B       		.uleb128 0x3b
+ 933 007e 0B       		.uleb128 0xb
+ 934 007f 27       		.uleb128 0x27
+ 935 0080 0C       		.uleb128 0xc
+ 936 0081 11       		.uleb128 0x11
+ 937 0082 01       		.uleb128 0x1
+ 938 0083 12       		.uleb128 0x12
+ 939 0084 01       		.uleb128 0x1
+ 940 0085 40       		.uleb128 0x40
+ 941 0086 06       		.uleb128 0x6
+ 942 0087 9642     		.uleb128 0x2116
+ 943 0089 0C       		.uleb128 0xc
+ 944 008a 01       		.uleb128 0x1
+ 945 008b 13       		.uleb128 0x13
+ 946 008c 00       		.byte	0
+ 947 008d 00       		.byte	0
+ 948 008e 0B       		.uleb128 0xb
+ 949 008f 05       		.uleb128 0x5
+ 950 0090 00       		.byte	0
+ 951 0091 03       		.uleb128 0x3
+ 952 0092 0E       		.uleb128 0xe
+ 953 0093 3A       		.uleb128 0x3a
+ 954 0094 0B       		.uleb128 0xb
+ 955 0095 3B       		.uleb128 0x3b
+ 956 0096 0B       		.uleb128 0xb
+ 957 0097 49       		.uleb128 0x49
+ 958 0098 13       		.uleb128 0x13
+ 959 0099 02       		.uleb128 0x2
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 24
+
+
+ 960 009a 0A       		.uleb128 0xa
+ 961 009b 00       		.byte	0
+ 962 009c 00       		.byte	0
+ 963 009d 0C       		.uleb128 0xc
+ 964 009e 2E       		.uleb128 0x2e
+ 965 009f 00       		.byte	0
+ 966 00a0 3F       		.uleb128 0x3f
+ 967 00a1 0C       		.uleb128 0xc
+ 968 00a2 03       		.uleb128 0x3
+ 969 00a3 0E       		.uleb128 0xe
+ 970 00a4 3A       		.uleb128 0x3a
+ 971 00a5 0B       		.uleb128 0xb
+ 972 00a6 3B       		.uleb128 0x3b
+ 973 00a7 0B       		.uleb128 0xb
+ 974 00a8 27       		.uleb128 0x27
+ 975 00a9 0C       		.uleb128 0xc
+ 976 00aa 11       		.uleb128 0x11
+ 977 00ab 01       		.uleb128 0x1
+ 978 00ac 12       		.uleb128 0x12
+ 979 00ad 01       		.uleb128 0x1
+ 980 00ae 40       		.uleb128 0x40
+ 981 00af 06       		.uleb128 0x6
+ 982 00b0 9742     		.uleb128 0x2117
+ 983 00b2 0C       		.uleb128 0xc
+ 984 00b3 00       		.byte	0
+ 985 00b4 00       		.byte	0
+ 986 00b5 0D       		.uleb128 0xd
+ 987 00b6 2E       		.uleb128 0x2e
+ 988 00b7 01       		.byte	0x1
+ 989 00b8 3F       		.uleb128 0x3f
+ 990 00b9 0C       		.uleb128 0xc
+ 991 00ba 03       		.uleb128 0x3
+ 992 00bb 0E       		.uleb128 0xe
+ 993 00bc 3A       		.uleb128 0x3a
+ 994 00bd 0B       		.uleb128 0xb
+ 995 00be 3B       		.uleb128 0x3b
+ 996 00bf 0B       		.uleb128 0xb
+ 997 00c0 27       		.uleb128 0x27
+ 998 00c1 0C       		.uleb128 0xc
+ 999 00c2 11       		.uleb128 0x11
+ 1000 00c3 01       		.uleb128 0x1
+ 1001 00c4 12       		.uleb128 0x12
+ 1002 00c5 01       		.uleb128 0x1
+ 1003 00c6 40       		.uleb128 0x40
+ 1004 00c7 06       		.uleb128 0x6
+ 1005 00c8 9742     		.uleb128 0x2117
+ 1006 00ca 0C       		.uleb128 0xc
+ 1007 00cb 01       		.uleb128 0x1
+ 1008 00cc 13       		.uleb128 0x13
+ 1009 00cd 00       		.byte	0
+ 1010 00ce 00       		.byte	0
+ 1011 00cf 0E       		.uleb128 0xe
+ 1012 00d0 34       		.uleb128 0x34
+ 1013 00d1 00       		.byte	0
+ 1014 00d2 03       		.uleb128 0x3
+ 1015 00d3 0E       		.uleb128 0xe
+ 1016 00d4 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 25
+
+
+ 1017 00d5 0B       		.uleb128 0xb
+ 1018 00d6 3B       		.uleb128 0x3b
+ 1019 00d7 0B       		.uleb128 0xb
+ 1020 00d8 49       		.uleb128 0x49
+ 1021 00d9 13       		.uleb128 0x13
+ 1022 00da 02       		.uleb128 0x2
+ 1023 00db 0A       		.uleb128 0xa
+ 1024 00dc 00       		.byte	0
+ 1025 00dd 00       		.byte	0
+ 1026 00de 0F       		.uleb128 0xf
+ 1027 00df 2E       		.uleb128 0x2e
+ 1028 00e0 01       		.byte	0x1
+ 1029 00e1 3F       		.uleb128 0x3f
+ 1030 00e2 0C       		.uleb128 0xc
+ 1031 00e3 03       		.uleb128 0x3
+ 1032 00e4 0E       		.uleb128 0xe
+ 1033 00e5 3A       		.uleb128 0x3a
+ 1034 00e6 0B       		.uleb128 0xb
+ 1035 00e7 3B       		.uleb128 0x3b
+ 1036 00e8 0B       		.uleb128 0xb
+ 1037 00e9 27       		.uleb128 0x27
+ 1038 00ea 0C       		.uleb128 0xc
+ 1039 00eb 49       		.uleb128 0x49
+ 1040 00ec 13       		.uleb128 0x13
+ 1041 00ed 11       		.uleb128 0x11
+ 1042 00ee 01       		.uleb128 0x1
+ 1043 00ef 12       		.uleb128 0x12
+ 1044 00f0 01       		.uleb128 0x1
+ 1045 00f1 40       		.uleb128 0x40
+ 1046 00f2 06       		.uleb128 0x6
+ 1047 00f3 9742     		.uleb128 0x2117
+ 1048 00f5 0C       		.uleb128 0xc
+ 1049 00f6 01       		.uleb128 0x1
+ 1050 00f7 13       		.uleb128 0x13
+ 1051 00f8 00       		.byte	0
+ 1052 00f9 00       		.byte	0
+ 1053 00fa 10       		.uleb128 0x10
+ 1054 00fb 2E       		.uleb128 0x2e
+ 1055 00fc 00       		.byte	0
+ 1056 00fd 3F       		.uleb128 0x3f
+ 1057 00fe 0C       		.uleb128 0xc
+ 1058 00ff 03       		.uleb128 0x3
+ 1059 0100 0E       		.uleb128 0xe
+ 1060 0101 3A       		.uleb128 0x3a
+ 1061 0102 0B       		.uleb128 0xb
+ 1062 0103 3B       		.uleb128 0x3b
+ 1063 0104 05       		.uleb128 0x5
+ 1064 0105 27       		.uleb128 0x27
+ 1065 0106 0C       		.uleb128 0xc
+ 1066 0107 11       		.uleb128 0x11
+ 1067 0108 01       		.uleb128 0x1
+ 1068 0109 12       		.uleb128 0x12
+ 1069 010a 01       		.uleb128 0x1
+ 1070 010b 40       		.uleb128 0x40
+ 1071 010c 06       		.uleb128 0x6
+ 1072 010d 9742     		.uleb128 0x2117
+ 1073 010f 0C       		.uleb128 0xc
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 26
+
+
+ 1074 0110 00       		.byte	0
+ 1075 0111 00       		.byte	0
+ 1076 0112 11       		.uleb128 0x11
+ 1077 0113 2E       		.uleb128 0x2e
+ 1078 0114 00       		.byte	0
+ 1079 0115 3F       		.uleb128 0x3f
+ 1080 0116 0C       		.uleb128 0xc
+ 1081 0117 03       		.uleb128 0x3
+ 1082 0118 0E       		.uleb128 0xe
+ 1083 0119 3A       		.uleb128 0x3a
+ 1084 011a 0B       		.uleb128 0xb
+ 1085 011b 3B       		.uleb128 0x3b
+ 1086 011c 05       		.uleb128 0x5
+ 1087 011d 27       		.uleb128 0x27
+ 1088 011e 0C       		.uleb128 0xc
+ 1089 011f 49       		.uleb128 0x49
+ 1090 0120 13       		.uleb128 0x13
+ 1091 0121 11       		.uleb128 0x11
+ 1092 0122 01       		.uleb128 0x1
+ 1093 0123 12       		.uleb128 0x12
+ 1094 0124 01       		.uleb128 0x1
+ 1095 0125 40       		.uleb128 0x40
+ 1096 0126 06       		.uleb128 0x6
+ 1097 0127 9742     		.uleb128 0x2117
+ 1098 0129 0C       		.uleb128 0xc
+ 1099 012a 00       		.byte	0
+ 1100 012b 00       		.byte	0
+ 1101 012c 12       		.uleb128 0x12
+ 1102 012d 34       		.uleb128 0x34
+ 1103 012e 00       		.byte	0
+ 1104 012f 03       		.uleb128 0x3
+ 1105 0130 0E       		.uleb128 0xe
+ 1106 0131 3A       		.uleb128 0x3a
+ 1107 0132 0B       		.uleb128 0xb
+ 1108 0133 3B       		.uleb128 0x3b
+ 1109 0134 05       		.uleb128 0x5
+ 1110 0135 49       		.uleb128 0x49
+ 1111 0136 13       		.uleb128 0x13
+ 1112 0137 3F       		.uleb128 0x3f
+ 1113 0138 0C       		.uleb128 0xc
+ 1114 0139 3C       		.uleb128 0x3c
+ 1115 013a 0C       		.uleb128 0xc
+ 1116 013b 00       		.byte	0
+ 1117 013c 00       		.byte	0
+ 1118 013d 00       		.byte	0
+ 1119              		.section	.debug_loc,"",%progbits
+ 1120              	.Ldebug_loc0:
+ 1121              	.LLST0:
+ 1122 0000 00000000 		.4byte	.LFB56
+ 1123 0004 02000000 		.4byte	.LCFI0
+ 1124 0008 0200     		.2byte	0x2
+ 1125 000a 7D       		.byte	0x7d
+ 1126 000b 00       		.sleb128 0
+ 1127 000c 02000000 		.4byte	.LCFI0
+ 1128 0010 04000000 		.4byte	.LCFI1
+ 1129 0014 0200     		.2byte	0x2
+ 1130 0016 7D       		.byte	0x7d
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 27
+
+
+ 1131 0017 08       		.sleb128 8
+ 1132 0018 04000000 		.4byte	.LCFI1
+ 1133 001c 22000000 		.4byte	.LFE56
+ 1134 0020 0200     		.2byte	0x2
+ 1135 0022 77       		.byte	0x77
+ 1136 0023 08       		.sleb128 8
+ 1137 0024 00000000 		.4byte	0
+ 1138 0028 00000000 		.4byte	0
+ 1139              	.LLST1:
+ 1140 002c 00000000 		.4byte	.LFB57
+ 1141 0030 02000000 		.4byte	.LCFI2
+ 1142 0034 0200     		.2byte	0x2
+ 1143 0036 7D       		.byte	0x7d
+ 1144 0037 00       		.sleb128 0
+ 1145 0038 02000000 		.4byte	.LCFI2
+ 1146 003c 04000000 		.4byte	.LCFI3
+ 1147 0040 0200     		.2byte	0x2
+ 1148 0042 7D       		.byte	0x7d
+ 1149 0043 08       		.sleb128 8
+ 1150 0044 04000000 		.4byte	.LCFI3
+ 1151 0048 06000000 		.4byte	.LCFI4
+ 1152 004c 0200     		.2byte	0x2
+ 1153 004e 7D       		.byte	0x7d
+ 1154 004f 10       		.sleb128 16
+ 1155 0050 06000000 		.4byte	.LCFI4
+ 1156 0054 26000000 		.4byte	.LFE57
+ 1157 0058 0200     		.2byte	0x2
+ 1158 005a 77       		.byte	0x77
+ 1159 005b 10       		.sleb128 16
+ 1160 005c 00000000 		.4byte	0
+ 1161 0060 00000000 		.4byte	0
+ 1162              	.LLST2:
+ 1163 0064 00000000 		.4byte	.LFB58
+ 1164 0068 02000000 		.4byte	.LCFI5
+ 1165 006c 0200     		.2byte	0x2
+ 1166 006e 7D       		.byte	0x7d
+ 1167 006f 00       		.sleb128 0
+ 1168 0070 02000000 		.4byte	.LCFI5
+ 1169 0074 04000000 		.4byte	.LCFI6
+ 1170 0078 0200     		.2byte	0x2
+ 1171 007a 7D       		.byte	0x7d
+ 1172 007b 08       		.sleb128 8
+ 1173 007c 04000000 		.4byte	.LCFI6
+ 1174 0080 16000000 		.4byte	.LFE58
+ 1175 0084 0200     		.2byte	0x2
+ 1176 0086 77       		.byte	0x77
+ 1177 0087 08       		.sleb128 8
+ 1178 0088 00000000 		.4byte	0
+ 1179 008c 00000000 		.4byte	0
+ 1180              	.LLST3:
+ 1181 0090 00000000 		.4byte	.LFB59
+ 1182 0094 02000000 		.4byte	.LCFI7
+ 1183 0098 0200     		.2byte	0x2
+ 1184 009a 7D       		.byte	0x7d
+ 1185 009b 00       		.sleb128 0
+ 1186 009c 02000000 		.4byte	.LCFI7
+ 1187 00a0 04000000 		.4byte	.LCFI8
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 28
+
+
+ 1188 00a4 0200     		.2byte	0x2
+ 1189 00a6 7D       		.byte	0x7d
+ 1190 00a7 04       		.sleb128 4
+ 1191 00a8 04000000 		.4byte	.LCFI8
+ 1192 00ac 0A000000 		.4byte	.LFE59
+ 1193 00b0 0200     		.2byte	0x2
+ 1194 00b2 77       		.byte	0x77
+ 1195 00b3 04       		.sleb128 4
+ 1196 00b4 00000000 		.4byte	0
+ 1197 00b8 00000000 		.4byte	0
+ 1198              	.LLST4:
+ 1199 00bc 00000000 		.4byte	.LFB60
+ 1200 00c0 02000000 		.4byte	.LCFI9
+ 1201 00c4 0200     		.2byte	0x2
+ 1202 00c6 7D       		.byte	0x7d
+ 1203 00c7 00       		.sleb128 0
+ 1204 00c8 02000000 		.4byte	.LCFI9
+ 1205 00cc 04000000 		.4byte	.LCFI10
+ 1206 00d0 0200     		.2byte	0x2
+ 1207 00d2 7D       		.byte	0x7d
+ 1208 00d3 04       		.sleb128 4
+ 1209 00d4 04000000 		.4byte	.LCFI10
+ 1210 00d8 06000000 		.4byte	.LCFI11
+ 1211 00dc 0200     		.2byte	0x2
+ 1212 00de 7D       		.byte	0x7d
+ 1213 00df 18       		.sleb128 24
+ 1214 00e0 06000000 		.4byte	.LCFI11
+ 1215 00e4 28000000 		.4byte	.LFE60
+ 1216 00e8 0200     		.2byte	0x2
+ 1217 00ea 77       		.byte	0x77
+ 1218 00eb 18       		.sleb128 24
+ 1219 00ec 00000000 		.4byte	0
+ 1220 00f0 00000000 		.4byte	0
+ 1221              	.LLST5:
+ 1222 00f4 00000000 		.4byte	.LFB61
+ 1223 00f8 02000000 		.4byte	.LCFI12
+ 1224 00fc 0200     		.2byte	0x2
+ 1225 00fe 7D       		.byte	0x7d
+ 1226 00ff 00       		.sleb128 0
+ 1227 0100 02000000 		.4byte	.LCFI12
+ 1228 0104 04000000 		.4byte	.LCFI13
+ 1229 0108 0200     		.2byte	0x2
+ 1230 010a 7D       		.byte	0x7d
+ 1231 010b 04       		.sleb128 4
+ 1232 010c 04000000 		.4byte	.LCFI13
+ 1233 0110 06000000 		.4byte	.LCFI14
+ 1234 0114 0200     		.2byte	0x2
+ 1235 0116 7D       		.byte	0x7d
+ 1236 0117 10       		.sleb128 16
+ 1237 0118 06000000 		.4byte	.LCFI14
+ 1238 011c 24000000 		.4byte	.LFE61
+ 1239 0120 0200     		.2byte	0x2
+ 1240 0122 77       		.byte	0x77
+ 1241 0123 10       		.sleb128 16
+ 1242 0124 00000000 		.4byte	0
+ 1243 0128 00000000 		.4byte	0
+ 1244              	.LLST6:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 29
+
+
+ 1245 012c 00000000 		.4byte	.LFB62
+ 1246 0130 02000000 		.4byte	.LCFI15
+ 1247 0134 0200     		.2byte	0x2
+ 1248 0136 7D       		.byte	0x7d
+ 1249 0137 00       		.sleb128 0
+ 1250 0138 02000000 		.4byte	.LCFI15
+ 1251 013c 04000000 		.4byte	.LCFI16
+ 1252 0140 0200     		.2byte	0x2
+ 1253 0142 7D       		.byte	0x7d
+ 1254 0143 04       		.sleb128 4
+ 1255 0144 04000000 		.4byte	.LCFI16
+ 1256 0148 06000000 		.4byte	.LCFI17
+ 1257 014c 0200     		.2byte	0x2
+ 1258 014e 7D       		.byte	0x7d
+ 1259 014f 10       		.sleb128 16
+ 1260 0150 06000000 		.4byte	.LCFI17
+ 1261 0154 26000000 		.4byte	.LFE62
+ 1262 0158 0200     		.2byte	0x2
+ 1263 015a 77       		.byte	0x77
+ 1264 015b 10       		.sleb128 16
+ 1265 015c 00000000 		.4byte	0
+ 1266 0160 00000000 		.4byte	0
+ 1267              	.LLST7:
+ 1268 0164 00000000 		.4byte	.LFB63
+ 1269 0168 02000000 		.4byte	.LCFI18
+ 1270 016c 0200     		.2byte	0x2
+ 1271 016e 7D       		.byte	0x7d
+ 1272 016f 00       		.sleb128 0
+ 1273 0170 02000000 		.4byte	.LCFI18
+ 1274 0174 04000000 		.4byte	.LCFI19
+ 1275 0178 0200     		.2byte	0x2
+ 1276 017a 7D       		.byte	0x7d
+ 1277 017b 04       		.sleb128 4
+ 1278 017c 04000000 		.4byte	.LCFI19
+ 1279 0180 06000000 		.4byte	.LCFI20
+ 1280 0184 0200     		.2byte	0x2
+ 1281 0186 7D       		.byte	0x7d
+ 1282 0187 10       		.sleb128 16
+ 1283 0188 06000000 		.4byte	.LCFI20
+ 1284 018c 26000000 		.4byte	.LFE63
+ 1285 0190 0200     		.2byte	0x2
+ 1286 0192 77       		.byte	0x77
+ 1287 0193 10       		.sleb128 16
+ 1288 0194 00000000 		.4byte	0
+ 1289 0198 00000000 		.4byte	0
+ 1290              	.LLST8:
+ 1291 019c 00000000 		.4byte	.LFB64
+ 1292 01a0 02000000 		.4byte	.LCFI21
+ 1293 01a4 0200     		.2byte	0x2
+ 1294 01a6 7D       		.byte	0x7d
+ 1295 01a7 00       		.sleb128 0
+ 1296 01a8 02000000 		.4byte	.LCFI21
+ 1297 01ac 04000000 		.4byte	.LCFI22
+ 1298 01b0 0200     		.2byte	0x2
+ 1299 01b2 7D       		.byte	0x7d
+ 1300 01b3 04       		.sleb128 4
+ 1301 01b4 04000000 		.4byte	.LCFI22
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 30
+
+
+ 1302 01b8 18000000 		.4byte	.LFE64
+ 1303 01bc 0200     		.2byte	0x2
+ 1304 01be 77       		.byte	0x77
+ 1305 01bf 04       		.sleb128 4
+ 1306 01c0 00000000 		.4byte	0
+ 1307 01c4 00000000 		.4byte	0
+ 1308              	.LLST9:
+ 1309 01c8 00000000 		.4byte	.LFB65
+ 1310 01cc 02000000 		.4byte	.LCFI23
+ 1311 01d0 0200     		.2byte	0x2
+ 1312 01d2 7D       		.byte	0x7d
+ 1313 01d3 00       		.sleb128 0
+ 1314 01d4 02000000 		.4byte	.LCFI23
+ 1315 01d8 04000000 		.4byte	.LCFI24
+ 1316 01dc 0200     		.2byte	0x2
+ 1317 01de 7D       		.byte	0x7d
+ 1318 01df 04       		.sleb128 4
+ 1319 01e0 04000000 		.4byte	.LCFI24
+ 1320 01e4 28000000 		.4byte	.LFE65
+ 1321 01e8 0200     		.2byte	0x2
+ 1322 01ea 77       		.byte	0x77
+ 1323 01eb 04       		.sleb128 4
+ 1324 01ec 00000000 		.4byte	0
+ 1325 01f0 00000000 		.4byte	0
+ 1326              	.LLST10:
+ 1327 01f4 00000000 		.4byte	.LFB66
+ 1328 01f8 02000000 		.4byte	.LCFI25
+ 1329 01fc 0200     		.2byte	0x2
+ 1330 01fe 7D       		.byte	0x7d
+ 1331 01ff 00       		.sleb128 0
+ 1332 0200 02000000 		.4byte	.LCFI25
+ 1333 0204 04000000 		.4byte	.LCFI26
+ 1334 0208 0200     		.2byte	0x2
+ 1335 020a 7D       		.byte	0x7d
+ 1336 020b 04       		.sleb128 4
+ 1337 020c 04000000 		.4byte	.LCFI26
+ 1338 0210 18000000 		.4byte	.LFE66
+ 1339 0214 0200     		.2byte	0x2
+ 1340 0216 77       		.byte	0x77
+ 1341 0217 04       		.sleb128 4
+ 1342 0218 00000000 		.4byte	0
+ 1343 021c 00000000 		.4byte	0
+ 1344              	.LLST11:
+ 1345 0220 00000000 		.4byte	.LFB67
+ 1346 0224 02000000 		.4byte	.LCFI27
+ 1347 0228 0200     		.2byte	0x2
+ 1348 022a 7D       		.byte	0x7d
+ 1349 022b 00       		.sleb128 0
+ 1350 022c 02000000 		.4byte	.LCFI27
+ 1351 0230 04000000 		.4byte	.LCFI28
+ 1352 0234 0200     		.2byte	0x2
+ 1353 0236 7D       		.byte	0x7d
+ 1354 0237 04       		.sleb128 4
+ 1355 0238 04000000 		.4byte	.LCFI28
+ 1356 023c 18000000 		.4byte	.LFE67
+ 1357 0240 0200     		.2byte	0x2
+ 1358 0242 77       		.byte	0x77
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 31
+
+
+ 1359 0243 04       		.sleb128 4
+ 1360 0244 00000000 		.4byte	0
+ 1361 0248 00000000 		.4byte	0
+ 1362              	.LLST12:
+ 1363 024c 00000000 		.4byte	.LFB68
+ 1364 0250 02000000 		.4byte	.LCFI29
+ 1365 0254 0200     		.2byte	0x2
+ 1366 0256 7D       		.byte	0x7d
+ 1367 0257 00       		.sleb128 0
+ 1368 0258 02000000 		.4byte	.LCFI29
+ 1369 025c 04000000 		.4byte	.LCFI30
+ 1370 0260 0200     		.2byte	0x2
+ 1371 0262 7D       		.byte	0x7d
+ 1372 0263 04       		.sleb128 4
+ 1373 0264 04000000 		.4byte	.LCFI30
+ 1374 0268 18000000 		.4byte	.LFE68
+ 1375 026c 0200     		.2byte	0x2
+ 1376 026e 77       		.byte	0x77
+ 1377 026f 04       		.sleb128 4
+ 1378 0270 00000000 		.4byte	0
+ 1379 0274 00000000 		.4byte	0
+ 1380              		.section	.debug_aranges,"",%progbits
+ 1381 0000 7C000000 		.4byte	0x7c
+ 1382 0004 0200     		.2byte	0x2
+ 1383 0006 00000000 		.4byte	.Ldebug_info0
+ 1384 000a 04       		.byte	0x4
+ 1385 000b 00       		.byte	0
+ 1386 000c 0000     		.2byte	0
+ 1387 000e 0000     		.2byte	0
+ 1388 0010 00000000 		.4byte	.LFB56
+ 1389 0014 22000000 		.4byte	.LFE56-.LFB56
+ 1390 0018 00000000 		.4byte	.LFB57
+ 1391 001c 26000000 		.4byte	.LFE57-.LFB57
+ 1392 0020 00000000 		.4byte	.LFB58
+ 1393 0024 16000000 		.4byte	.LFE58-.LFB58
+ 1394 0028 00000000 		.4byte	.LFB59
+ 1395 002c 0A000000 		.4byte	.LFE59-.LFB59
+ 1396 0030 00000000 		.4byte	.LFB60
+ 1397 0034 28000000 		.4byte	.LFE60-.LFB60
+ 1398 0038 00000000 		.4byte	.LFB61
+ 1399 003c 24000000 		.4byte	.LFE61-.LFB61
+ 1400 0040 00000000 		.4byte	.LFB62
+ 1401 0044 26000000 		.4byte	.LFE62-.LFB62
+ 1402 0048 00000000 		.4byte	.LFB63
+ 1403 004c 26000000 		.4byte	.LFE63-.LFB63
+ 1404 0050 00000000 		.4byte	.LFB64
+ 1405 0054 18000000 		.4byte	.LFE64-.LFB64
+ 1406 0058 00000000 		.4byte	.LFB65
+ 1407 005c 28000000 		.4byte	.LFE65-.LFB65
+ 1408 0060 00000000 		.4byte	.LFB66
+ 1409 0064 18000000 		.4byte	.LFE66-.LFB66
+ 1410 0068 00000000 		.4byte	.LFB67
+ 1411 006c 18000000 		.4byte	.LFE67-.LFB67
+ 1412 0070 00000000 		.4byte	.LFB68
+ 1413 0074 18000000 		.4byte	.LFE68-.LFB68
+ 1414 0078 00000000 		.4byte	0
+ 1415 007c 00000000 		.4byte	0
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 32
+
+
+ 1416              		.section	.debug_ranges,"",%progbits
+ 1417              	.Ldebug_ranges0:
+ 1418 0000 00000000 		.4byte	.LFB56
+ 1419 0004 22000000 		.4byte	.LFE56
+ 1420 0008 00000000 		.4byte	.LFB57
+ 1421 000c 26000000 		.4byte	.LFE57
+ 1422 0010 00000000 		.4byte	.LFB58
+ 1423 0014 16000000 		.4byte	.LFE58
+ 1424 0018 00000000 		.4byte	.LFB59
+ 1425 001c 0A000000 		.4byte	.LFE59
+ 1426 0020 00000000 		.4byte	.LFB60
+ 1427 0024 28000000 		.4byte	.LFE60
+ 1428 0028 00000000 		.4byte	.LFB61
+ 1429 002c 24000000 		.4byte	.LFE61
+ 1430 0030 00000000 		.4byte	.LFB62
+ 1431 0034 26000000 		.4byte	.LFE62
+ 1432 0038 00000000 		.4byte	.LFB63
+ 1433 003c 26000000 		.4byte	.LFE63
+ 1434 0040 00000000 		.4byte	.LFB64
+ 1435 0044 18000000 		.4byte	.LFE64
+ 1436 0048 00000000 		.4byte	.LFB65
+ 1437 004c 28000000 		.4byte	.LFE65
+ 1438 0050 00000000 		.4byte	.LFB66
+ 1439 0054 18000000 		.4byte	.LFE66
+ 1440 0058 00000000 		.4byte	.LFB67
+ 1441 005c 18000000 		.4byte	.LFE67
+ 1442 0060 00000000 		.4byte	.LFB68
+ 1443 0064 18000000 		.4byte	.LFE68
+ 1444 0068 00000000 		.4byte	0
+ 1445 006c 00000000 		.4byte	0
+ 1446              		.section	.debug_line,"",%progbits
+ 1447              	.Ldebug_line0:
+ 1448 0000 09020000 		.section	.debug_str,"MS",%progbits,1
+ 1448      02000101 
+ 1448      00000201 
+ 1448      FB0E0D00 
+ 1448      01010101 
+ 1449              	.LASF17:
+ 1450 0000 72656733 		.ascii	"reg32\000"
+ 1450      3200
+ 1451              	.LASF35:
+ 1452 0006 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_DelSig_IRQ.c\000"
+ 1452      6E657261 
+ 1452      7465645F 
+ 1452      536F7572 
+ 1452      63655C50 
+ 1453              	.LASF37:
+ 1454 0030 4144435F 		.ascii	"ADC_DelSig_IRQ_GetState\000"
+ 1454      44656C53 
+ 1454      69675F49 
+ 1454      52515F47 
+ 1454      65745374 
+ 1455              	.LASF36:
+ 1456 0048 433A5C55 		.ascii	"C:\\Users\\Victor Ruela\\Desktop\\IC\\CTPmag\\teste"
+ 1456      73657273 
+ 1456      5C566963 
+ 1456      746F7220 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 33
+
+
+ 1456      5275656C 
+ 1457 0075 5553425C 		.ascii	"USB\\TesteUSB\\TesteUSB.cydsn\000"
+ 1457      54657374 
+ 1457      65555342 
+ 1457      5C546573 
+ 1457      74655553 
+ 1458              	.LASF19:
+ 1459 0091 4144435F 		.ascii	"ADC_DelSig_IRQ_Start\000"
+ 1459      44656C53 
+ 1459      69675F49 
+ 1459      52515F53 
+ 1459      74617274 
+ 1460              	.LASF3:
+ 1461 00a6 73686F72 		.ascii	"short unsigned int\000"
+ 1461      7420756E 
+ 1461      7369676E 
+ 1461      65642069 
+ 1461      6E7400
+ 1462              	.LASF11:
+ 1463 00b9 696E7433 		.ascii	"int32_t\000"
+ 1463      325F7400 
+ 1464              	.LASF23:
+ 1465 00c1 4144435F 		.ascii	"ADC_DelSig_IRQ_SetVector\000"
+ 1465      44656C53 
+ 1465      69675F49 
+ 1465      52515F53 
+ 1465      65745665 
+ 1466              	.LASF14:
+ 1467 00da 666C6F61 		.ascii	"float\000"
+ 1467      7400
+ 1468              	.LASF30:
+ 1469 00e0 4144435F 		.ascii	"ADC_DelSig_IRQ_Enable\000"
+ 1469      44656C53 
+ 1469      69675F49 
+ 1469      52515F45 
+ 1469      6E61626C 
+ 1470              	.LASF1:
+ 1471 00f6 756E7369 		.ascii	"unsigned char\000"
+ 1471      676E6564 
+ 1471      20636861 
+ 1471      7200
+ 1472              	.LASF16:
+ 1473 0104 72656738 		.ascii	"reg8\000"
+ 1473      00
+ 1474              	.LASF9:
+ 1475 0109 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1475      20756E73 
+ 1475      69676E65 
+ 1475      6420696E 
+ 1475      7400
+ 1476              	.LASF20:
+ 1477 011b 4144435F 		.ascii	"ADC_DelSig_IRQ_Stop\000"
+ 1477      44656C53 
+ 1477      69675F49 
+ 1477      52515F53 
+ 1477      746F7000 
+ 1478              	.LASF38:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 34
+
+
+ 1479 012f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1479      52784275 
+ 1479      66666572 
+ 1479      00
+ 1480              	.LASF15:
+ 1481 013c 646F7562 		.ascii	"double\000"
+ 1481      6C6500
+ 1482              	.LASF27:
+ 1483 0143 7072696F 		.ascii	"priority\000"
+ 1483      72697479 
+ 1483      00
+ 1484              	.LASF33:
+ 1485 014c 4144435F 		.ascii	"ADC_DelSig_IRQ_ClearPending\000"
+ 1485      44656C53 
+ 1485      69675F49 
+ 1485      52515F43 
+ 1485      6C656172 
+ 1486              	.LASF13:
+ 1487 0168 75696E74 		.ascii	"uint32\000"
+ 1487      333200
+ 1488              	.LASF22:
+ 1489 016f 4144435F 		.ascii	"ADC_DelSig_IRQ_StartEx\000"
+ 1489      44656C53 
+ 1489      69675F49 
+ 1489      52515F53 
+ 1489      74617274 
+ 1490              	.LASF4:
+ 1491 0186 756E7369 		.ascii	"unsigned int\000"
+ 1491      676E6564 
+ 1491      20696E74 
+ 1491      00
+ 1492              	.LASF26:
+ 1493 0193 4144435F 		.ascii	"ADC_DelSig_IRQ_SetPriority\000"
+ 1493      44656C53 
+ 1493      69675F49 
+ 1493      52515F53 
+ 1493      65745072 
+ 1494              	.LASF24:
+ 1495 01ae 61646472 		.ascii	"address\000"
+ 1495      65737300 
+ 1496              	.LASF6:
+ 1497 01b6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1497      206C6F6E 
+ 1497      6720756E 
+ 1497      7369676E 
+ 1497      65642069 
+ 1498              	.LASF28:
+ 1499 01cd 4144435F 		.ascii	"ADC_DelSig_IRQ_GetVector\000"
+ 1499      44656C53 
+ 1499      69675F49 
+ 1499      52515F47 
+ 1499      65745665 
+ 1500              	.LASF21:
+ 1501 01e6 4144435F 		.ascii	"ADC_DelSig_IRQ_Interrupt\000"
+ 1501      44656C53 
+ 1501      69675F49 
+ 1501      52515F49 
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 35
+
+
+ 1501      6E746572 
+ 1502              	.LASF18:
+ 1503 01ff 63796973 		.ascii	"cyisraddress\000"
+ 1503      72616464 
+ 1503      72657373 
+ 1503      00
+ 1504              	.LASF29:
+ 1505 020c 4144435F 		.ascii	"ADC_DelSig_IRQ_GetPriority\000"
+ 1505      44656C53 
+ 1505      69675F49 
+ 1505      52515F47 
+ 1505      65745072 
+ 1506              	.LASF8:
+ 1507 0227 73697A65 		.ascii	"sizetype\000"
+ 1507      74797065 
+ 1507      00
+ 1508              	.LASF5:
+ 1509 0230 6C6F6E67 		.ascii	"long long int\000"
+ 1509      206C6F6E 
+ 1509      6720696E 
+ 1509      7400
+ 1510              	.LASF10:
+ 1511 023e 63686172 		.ascii	"char\000"
+ 1511      00
+ 1512              	.LASF25:
+ 1513 0243 72616D56 		.ascii	"ramVectorTable\000"
+ 1513      6563746F 
+ 1513      72546162 
+ 1513      6C6500
+ 1514              	.LASF32:
+ 1515 0252 4144435F 		.ascii	"ADC_DelSig_IRQ_SetPending\000"
+ 1515      44656C53 
+ 1515      69675F49 
+ 1515      52515F53 
+ 1515      65745065 
+ 1516              	.LASF2:
+ 1517 026c 73686F72 		.ascii	"short int\000"
+ 1517      7420696E 
+ 1517      7400
+ 1518              	.LASF12:
+ 1519 0276 75696E74 		.ascii	"uint8\000"
+ 1519      3800
+ 1520              	.LASF31:
+ 1521 027c 4144435F 		.ascii	"ADC_DelSig_IRQ_Disable\000"
+ 1521      44656C53 
+ 1521      69675F49 
+ 1521      52515F44 
+ 1521      69736162 
+ 1522              	.LASF7:
+ 1523 0293 6C6F6E67 		.ascii	"long int\000"
+ 1523      20696E74 
+ 1523      00
+ 1524              	.LASF0:
+ 1525 029c 7369676E 		.ascii	"signed char\000"
+ 1525      65642063 
+ 1525      68617200 
+ 1526              	.LASF34:
+ARM GAS  C:\Users\VICTOR~1\AppData\Local\Temp\ccuhA6Eo.s 			page 36
+
+
+ 1527 02a8 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1527      4320342E 
+ 1527      372E3320 
+ 1527      32303133 
+ 1527      30333132 
+ 1528 02db 616E6368 		.ascii	"anch revision 196615]\000"
+ 1528      20726576 
+ 1528      6973696F 
+ 1528      6E203139 
+ 1528      36363135 
+ 1529              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
